@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 1: Coin Collection - Curating Data Exhibition</title>
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../../styles/main.css">
     <style>
         .assignment-header {
-            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 4rem 2rem;
             margin-bottom: 2rem;
         }
         
         .assignment-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem 4rem;
         }
         
         .author-info {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
             margin-bottom: 2rem;
             border-left: 4px solid #3498db;
         }
         
         .download-section {
-            background: #e8f4fc;
-            padding: 2rem;
+            background: white;
             border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
             margin: 3rem 0;
             text-align: center;
         }
@@ -71,7 +75,18 @@
         }
         
         .section {
-            margin-bottom: 3rem;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
         
         .section h2 {
@@ -79,16 +94,33 @@
             border-bottom: 2px solid #3498db;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
         
         .reference-list {
             background: #f8f9fa;
             padding: 1.5rem;
             border-radius: 8px;
+            margin-top: 1rem;
         }
         
         .reference-list li {
             margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
         }
         
         @media (max-width: 768px) {
@@ -102,6 +134,18 @@
                 max-width: 250px;
                 justify-content: center;
             }
+            
+            .assignment-header {
+                padding: 3rem 1rem;
+            }
+            
+            .assignment-content {
+                padding: 0 1rem 3rem;
+            }
+            
+            .section, .author-info, .download-section {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -110,16 +154,16 @@
         <nav>
             <div class="logo">Curating Data</div>
             <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
+                <li><a href="../../index.html">Home</a></li>
                 <li><a href="../curatorial-statement.html">Curatorial Statement</a></li>
-                <li><a href="assignment1.html">Assignments</a></li>
-                <li><a href="../obsidian-notes.html">Obsidian Notes</a></li>
+                <li><a href="../assignments.html">Assignments</a></li>
+                <li><a href="../notes.html">Notes</a></li>
+                <li><a href="../games.html">Games</a></li>
                 <li><a href="../datasets.html">Datasets</a></li>
                 <li><a href="../about.html">About</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
         <section class="assignment-header">
             <div class="assignment-content">
@@ -152,18 +196,6 @@
                             <path d="M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         View Excel Dataset (Google Sheets)
-                    </a>
-                    <a href="../assets/documents/holst_coin_collection_report.pdf" 
-                    class="download-btn" 
-                    download>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 9H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        Download PDF Report
                     </a>
                 </div>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">

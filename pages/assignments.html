@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments - Curating Data Exhibition</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        .assignments-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .assignments-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .assignment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .assignment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .assignment-number {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .assignment-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .assignment-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .assignment-meta {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .assignment-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .assignment-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .coming-soon {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .coming-soon:hover {
+            background: #7f8c8d;
+            transform: none;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-in-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-upcoming {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
+        @media (max-width: 768px) {
+            .assignments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .assignments-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Curating Data</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="datasets.html">Datasets</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="assignments-header">
+            <div class="assignments-content">
+                <h1>Course Assignments</h1>
+                <p>Exploring data curation through practical projects and critical reflection</p>
+            </div>
+        </section>
+
+        <section class="assignments-content">
+            <div class="assignments-grid">
+                <!-- Assignment 1 -->
+                <div class="assignment-card">
+                    <div class="assignment-number">1</div>
+                    <h3>Curating the Holst Family Coin Collection
+                        <span class="status-badge status-complete">Complete</span>
+                    </h3>
+                    <div class="assignment-meta">
+                        <strong>Focus:</strong> Collecting & Digitizing<br>
+                        <strong>Tools:</strong> Google Sheets, Photography<br>
+                        <strong>Outputs:</strong> Dataset, Critical Report
+                    </div>
+                    <p class="assignment-description">
+                        A hands-on exploration of datafication by transforming 75 physical coins into a structured digital archive. 
+                        This assignment examines the process of selecting, measuring, and categorizing physical objects, 
+                        while critically reflecting on what gets included or excluded in the dataset.
+                    </p>
+                    <a href="assignments/assignment1.html" class="assignment-link">
+                        View Assignment 1
+                    </a>
+                </div>
+
+                <!-- Assignment 2 -->
+                <div class="assignment-card">
+                    <div class="assignment-number">2</div>
+                    <h3>Wikidata & Semantic Infrastructure
+                        <span class="status-badge status-complete">Complete</span>
+                    </h3>
+                    <div class="assignment-meta">
+                        <strong>Focus:</strong> Categorizing & Knowledge Making<br>
+                        <strong>Tools:</strong> Wikidata, SPARQL<br>
+                        <strong>Outputs:</strong> Data Model, Critical Report
+                    </div>
+                    <p class="assignment-description">
+                        Working with linked open data through Wikidata to categorize and represent historical biographies. 
+                        This project explores semantic infrastructures, ontologies, and the politics of classification systems 
+                        while contributing to the representation of marginalized histories.
+                    </p>
+                    <a href="assignments/assignment2.html" class="assignment-link">
+                        View Assignment 2
+                    </a>
+                </div>
+
+                <!-- Assignment 3 -->
+                <div class="assignment-card">
+                    <div class="assignment-number">3</div>
+                    <h3>Recommender Systems Analysis
+                        <span class="status-badge status-in-progress">In Progress</span>
+                    </h3>
+                    <div class="assignment-meta">
+                        <strong>Focus:</strong> Algorithmic Categorization<br>
+                        <strong>Tools:</strong> Platform Analysis, Data Collection<br>
+                        <strong>Outputs:</strong> System Analysis, Ethical Evaluation
+                    </div>
+                    <p class="assignment-description">
+                        Investigating how recommender systems shape user experiences and create filter bubbles. 
+                        This assignment involves analyzing platform algorithms, documenting recommendation patterns, 
+                        and critically examining the ethical implications of personalized content curation.
+                    </p>
+                    <a href="assignments/assignment3.html" class="assignment-link">
+                        View Assignment 3
+                    </a>
+                </div>
+
+                <h1 style="grid-column: 1 / -1; margin-top: 3rem;">Workshops</h1>
+
+                <!-- Workshop 1 -->
+                <div class="assignment-card">
+                    <div class="assignment-number">W1</div>
+                    <h3>Dekoloniale Wikidata Workshop
+                        <span class="status-badge status-complete">Complete</span>
+                    </h3>
+                    <div class="assignment-meta">
+                        <strong>Focus:</strong> Decolonial Data Practices<br>
+                        <strong>Tools:</strong> Wikidata, Data Modeling<br>
+                        <strong>Outputs:</strong> Collaborative Data Entry
+                    </div>
+                    <p class="assignment-description">
+                        A hands-on workshop focusing on decolonial approaches to data categorization using Wikidata. 
+                        Participants worked with biographical data from marginalized historical figures, 
+                        exploring how to represent complex histories within structured data systems.
+                    </p>
+                    <a href="workshops/dekoloniale.html" class="assignment-link">
+                        View Workshop
+                    </a>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2rem; background: #f8f9fa; border-radius: 10px;">
+                <h2>Assignment Progression</h2>
+                <p>The assignments follow the course structure of data curation:</p>
+                <ol style="line-height: 1.8; margin-top: 1rem;">
+                    <li><strong>Collecting</strong> - Transforming physical objects into digital data</li>
+                    <li><strong>Categorizing</strong> - Creating knowledge through classification systems</li>
+                    <li><strong>Displaying</strong> - Visualizing and communicating data insights</li>
+                    <li><strong>Archiving</strong> - Preserving and curating for future access</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curating Data Exhibition</p>
+    </footer>
+</body>
+</html>
