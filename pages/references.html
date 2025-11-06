@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References - Curating Data Exhibition</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #e9ecef;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .references-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .page-header:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+        
+        .references-main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .section-card h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        .references-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .reference-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .reference-item:last-child {
+            border-bottom: none;
+        }
+        
+        .reference-number {
+            font-weight: 600;
+            color: var(--secondary);
+            min-width: 30px;
+        }
+        
+        .reference-content {
+            flex: 1;
+        }
+        
+        .reference-content p {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        .reference-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .reference-link:hover {
+            text-decoration: underline;
+        }
+        
+        .datasets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .dataset-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .dataset-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .dataset-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .dataset-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .dataset-link {
+            display: inline-block;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .dataset-link:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .sidebar-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .sidebar-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sidebar-card h3:before {
+            content: "";
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+        
+        .categories-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .categories-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        
+        .categories-list li:before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .citation-format {
+            background: linear-gradient(135deg, #f8f0ff 0%, #f0e6ff 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .citation-format p {
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .citation-format code {
+            background: white;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+        
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .nav-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .nav-button.next {
+            margin-left: auto;
+        }
+        
+        .course-module {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .course-module h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .section-card {
+                padding: 1.8rem;
+            }
+            
+            .datasets-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Curating Data</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="references.html">References</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="references-container">
+        <div class="page-header">
+            <h1>References & Datasets</h1>
+            <p>A comprehensive list of academic sources and data resources used throughout the Curating Data course</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="references-main">
+                <section class="section-card">
+                    <h2>Datasets & Online Resources</h2>
+                    <div class="datasets-grid">
+                        <div class="dataset-card">
+                            <h4>Numista Coin Catalog</h4>
+                            <p>Comprehensive database of world coins with detailed information and images.</p>
+                            <a href="https://en.numista.com/" class="dataset-link" target="_blank">Visit Resource →</a>
+                        </div>
+                        <div class="dataset-card">
+                            <h4>Wikidata: Liao Huanxing</h4>
+                            <p>Structured data entry for Chinese artist Liao Huanxing (Q136450200).</p>
+                            <a href="https://www.wikidata.org/wiki/Q136450200" class="dataset-link" target="_blank">View Entry →</a>
+                        </div>
+                        <div class="dataset-card">
+                            <h4>Dekoloniale Memory Culture</h4>
+                            <p>Project documenting colonial memory culture in urban spaces.</p>
+                            <a href="https://www.dekoloniale.de/en/" class="dataset-link" target="_blank">Explore Project →</a>
+                        </div>
+                        <div class="dataset-card">
+                            <h4>Wikidata Query Service</h4>
+                            <p>Tool for querying and visualizing structured data from Wikidata.</p>
+                            <a href="https://query.wikidata.org/" class="dataset-link" target="_blank">Use Tool →</a>
+                        </div>
+                        <div class="dataset-card">
+                            <h4>Wikimedia Commons</h4>
+                            <p>Repository of freely usable media files with structured metadata.</p>
+                            <a href="https://commons.wikimedia.org/" class="dataset-link" target="_blank">Browse Media →</a>
+                        </div>
+                        <div class="dataset-card">
+                            <h4>E-commerce Transaction Dataset</h4>
+                            <p>Transactional dataset from an e-commerce application (Pratama, 2023).</p>
+                            <a href="https://www.kaggle.com/datasets/abhijitdahatonde/ecommerce-transactional-dataset" class="dataset-link" target="_blank">Access Dataset →</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="section-card">
+                    <h2>Academic References</h2>
+                    <ul class="references-list">
+                        <li class="reference-item">
+                            <div class="reference-number">1</div>
+                            <div class="reference-content">
+                                <p>Ackoff, R. L. (1989). From Data to Wisdom. <em>Journal of Applied Systems Analysis</em>, 16, 3–9.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">2</div>
+                            <div class="reference-content">
+                                <p>Acker, A. (2021). Metadata. In N. B. Thylstrup, D. Agostinho, A. Ring, C. D'Ignazio, & K. Veel (Eds.), <em>Uncertain Archives: Critical Keywords for Big Data</em> (pp. 321–329). The MIT Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">3</div>
+                            <div class="reference-content">
+                                <p>Bowker, G. C., & Star, S. L. (2000). <em>Sorting Things Out: Classification and Its Consequences</em>. MIT Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">4</div>
+                            <div class="reference-content">
+                                <p>boyd, d., & Crawford, K. (2012). Critical questions for Big Data. <em>Information, Communication & Society</em>, 15(5), 662–679.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">5</div>
+                            <div class="reference-content">
+                                <p>Carroll, S. R., Herczog, E., Hudson, M., Russell, K., & Stall, S. (2021). Operationalizing the CARE and FAIR Principles for Indigenous Data Futures. <em>Scientific Data</em>, 8(1), 108.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">6</div>
+                            <div class="reference-content">
+                                <p>Clausen, B., Engel, D., & Wharton, G. (2023). Capturing Narrative and Data in Performance Art: The Joan Jonas Knowledge Base. In T. Gusman (Ed.), <em>Reconstructing Performance Art: Practices of Historicisation, Documentation and Representation</em> (pp. 155–172). Routledge.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">7</div>
+                            <div class="reference-content">
+                                <p>Crawford, K., & Paglen, T. (2021). Excavating AI: The politics of images in machine learning sets. <em>AI & Society</em>, 1105-1116.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">8</div>
+                            <div class="reference-content">
+                                <p>Cui, W. (2019). Visual Analytics: A Comprehensive Overview. <em>IEEE Access</em>, 7, 81555–81573.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">9</div>
+                            <div class="reference-content">
+                                <p>Dalton, C., & Thatcher, J. (2014). What Does a Critical Data Studies Look like, and Why Do We Care? Seven Points for a Critical Approach to 'Big Data'. <em>Society and Space</em>.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">10</div>
+                            <div class="reference-content">
+                                <p>Das, S., & Lowe, M. (2018). Nature Read in Black and White: Decolonial Approaches to Interpreting Natural History Collections. <em>Journal of Natural Science Collections</em>, 4–14.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">11</div>
+                            <div class="reference-content">
+                                <p>Day, S. (2023). Visualising humanities data. In J. O'Sullivan (Ed.), <em>The Bloomsbury Handbook to the Digital Humanities</em> (pp. 211-219). Bloomsbury Publishing.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">12</div>
+                            <div class="reference-content">
+                                <p>D'Ignazio, C., & Klein, L. F. (2020). <em>Data Feminism</em>. MIT Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">13</div>
+                            <div class="reference-content">
+                                <p>Dörk, M., Feng, P., Collins, C., & Carpendale, S. (2013). Critical InfoVis: Exploring the Politics of Visualization. In <em>CHI '13 Extended Abstracts on Human Factors in Computing Systems</em> (pp. 2189–2198). ACM.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">14</div>
+                            <div class="reference-content">
+                                <p>Dourish, P. (2017). Spreadsheets and Spreadsheet Events in Organizational Life. In <em>The Stuff of Bits: An Essay on the Materialities of Information</em> (pp. 81–104). The MIT Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">15</div>
+                            <div class="reference-content">
+                                <p>Drucker, J. (2011). Humanities Approaches to Graphical Display. <em>Digital Humanities Quarterly</em>, 5(1).</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">16</div>
+                            <div class="reference-content">
+                                <p>Flyverbom, M., & Murray, J. (2018). Datastructuring—Organizing and Curating Digital Traces into Action. <em>Big Data & Society</em>, 5(2).</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">17</div>
+                            <div class="reference-content">
+                                <p>Ford, H., & Illadis, A. (2023). Wikidata as semantic infrastructure. <em>Social Media + Society</em>, 9(3).</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">18</div>
+                            <div class="reference-content">
+                                <p>Gitelman, L., & Jackson, V. (2013). Introduction. In <em>"Raw Data" Is an Oxymoron</em> (pp. 1–12). The MIT Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">19</div>
+                            <div class="reference-content">
+                                <p>Hullman, J., & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative Visualization. <em>IEEE Transactions on Visualization and Computer Graphics</em>, 17(12), 2231–2240.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">20</div>
+                            <div class="reference-content">
+                                <p>Illadis, A., & Russo, F. (2016). Critical Data Studies: An introduction. <em>Big Data & Society</em>, 3(2).</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">21</div>
+                            <div class="reference-content">
+                                <p>Indigenous Archives Collective. (2021). The Indigenous Archives Collective Position Statement on the Right of Reply to Indigenous Knowledges and Information Held in Archives. <em>Archives & Manuscripts</em>, 49(3), 244–252.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">22</div>
+                            <div class="reference-content">
+                                <p>Jeppesen, S., & Sartoretto, P. (2023). Cartographies of Resistance: Counter-Data Mapping as the New Frontier of Digital Media Activism. <em>Media and Communication</em>, 11(1), 150–162.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">23</div>
+                            <div class="reference-content">
+                                <p>Jordon, J., Szpruch, L., Houssiau, F., Bottarelli, M., Cherubin, G., Maple, C., Cohen, S. N., & Weller, A. (2022). Synthetic Data—What, why and how? <em>arXiv</em>. https://doi.org/10.48550/arXiv.2205.03257</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">24</div>
+                            <div class="reference-content">
+                                <p>Kitchin, R. (2022). <em>The Data Revolution: Big Data, Open Data, Data Infrastructures and Their Consequences</em>. SAGE Publications Ltd.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">25</div>
+                            <div class="reference-content">
+                                <p>Larsson, Å. M., Bornsäter, B., & Hacke, M. (2025). Developing Practices for FAIR and Linked Data in Heritage Science. <em>Npj Heritage Science</em>, 13(1), 53.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">26</div>
+                            <div class="reference-content">
+                                <p>Loukissas, Y. A. (2019). A Place for Plant Data. In <em>All Data Are Local: Thinking Critically in a Data-Driven Society</em>. MIT Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">27</div>
+                            <div class="reference-content">
+                                <p>Milano, S., Taddeo, M., & Floridi, L. (2020). Recommender Systems and Their Ethical Challenges. <em>AI & Society</em>, 35(4), 957–967.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">28</div>
+                            <div class="reference-content">
+                                <p>Nadim, T. (2021). The Datafication of Nature: Data Formations and New Scales in Natural History. <em>Journal of the Royal Anthropological Institute</em>, 27(S1), 62–75.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">29</div>
+                            <div class="reference-content">
+                                <p>Rowley, J. (2007). The wisdom hierarchy: Representations of the DIKW hierarchy. <em>Journal of Information Science</em>.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">30</div>
+                            <div class="reference-content">
+                                <p>Rusert, B., & Battle-Baptiste, W. (Eds.). (2018). <em>W. E. B. Du Bois's Data Portraits: Visualizing Black America</em>. Princeton Architectural Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">31</div>
+                            <div class="reference-content">
+                                <p>Saunavaara, J., Laine, A., & Salo, M. (2022). The Nordic societies and the development of the data centre industry: Digital transformation meets infrastructural and industrial inheritance. <em>Technology in Society</em>, 69, 101931.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">32</div>
+                            <div class="reference-content">
+                                <p>Seaver, N. (2022). <em>Computing Taste: Algorithms and the Makers of Music Recommendation</em>. University of Chicago Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">33</div>
+                            <div class="reference-content">
+                                <p>Sluis, K. (2017). Accumulate, Aggregate, Destroy. Database Fever and the Archival Web. In A. Dekker (Ed.), <em>Lost and Living (in) Archives: Collectively Shaping New Memories</em> (pp. 27–40).</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">34</div>
+                            <div class="reference-content">
+                                <p>Steinhoff, J. (2024). Toward a political economy of synthetic data: A data-intensive capitalism that is not a surveillance capitalism? <em>New Media & Society</em>, 26(6), 3290–3306.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">35</div>
+                            <div class="reference-content">
+                                <p>Tang, M. (2022). The challenge of the cloud: Between transnational capitalism and data sovereignty. <em>Information, Communication & Society</em>, 25(16), 2397–2411.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">36</div>
+                            <div class="reference-content">
+                                <p>Tufte, E. R. (2007). <em>The Visual Display of Quantitative Information</em> (2nd ed.). Graphics Press.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">37</div>
+                            <div class="reference-content">
+                                <p>Tyżlik-Carver, M. (2017). | Curator | Curating | the Curatorial | Not-Just-Art Curating. Genealogy of Posthuman Curating. <em>Springerin</em>.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">38</div>
+                            <div class="reference-content">
+                                <p>Upward, F. (2005). The Records Continuum. In <em>Archives</em>. Chandos Publishing.</p>
+                            </div>
+                        </li>
+                        <li class="reference-item">
+                            <div class="reference-number">39</div>
+                            <div class="reference-content">
+                                <p>Wernimont, J. (2021). Quantification. In N. B. Thylstrup, D. Agostinho, A. Ring, C. D'Ignazio, & K. Veel (Eds.), <em>Uncertain Archives: Critical Keywords for Big Data</em> (pp. 427–431). The MIT Press.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="section-card">
+                    <h2>Course Syllabus Readings</h2>
+                    <p>Required and recommended readings from the Curating Data course organized by module:</p>
+                    
+                    <div class="course-module">
+                        <h3>Module 1: Collecting</h3>
+                        <ul class="references-list">
+                            <li class="reference-item">
+                                <div class="reference-number">W36</div>
+                                <div class="reference-content">
+                                    <p>Dalton, C., & Thatcher, J. (2014). What Does a Critical Data Studies Look like, and Why Do We Care? Seven Points for a Critical Approach to 'Big Data'. <em>Society and Space</em>.</p>
+                                    <p>Kitchin, R. (2022). Critical Data Studies. In <em>The Data Revolution</em> (pp. 21–41). SAGE Publications Ltd.</p>
+                                    <p>Ackoff, R. L. (1989). From Data to Wisdom. <em>Journal of Applied Systems Analysis</em>, 16, 3–9.</p>
+                                    <p>Rowley, J. (2007). The wisdom hierarchy: Representations of the DIKW hierarchy. <em>Journal of Information Science</em>.</p>
+                                    <p>Tyżlik-Carver, M. (2017). | Curator | Curating | the Curatorial | Not-Just-Art Curating. Genealogy of Posthuman Curating. <em>Springerin</em>.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W37</div>
+                                <div class="reference-content">
+                                    <p>Kitchin, R. (2022). Introducing Data. In <em>The Data Revolution</em> (pp. 1–19). SAGE Publications Ltd.</p>
+                                    <p>Acker, A. (2021). Metadata. In <em>Uncertain Archives: Critical Keywords for Big Data</em> (pp. 321–329). The MIT Press.</p>
+                                    <p>Wernimont, J. (2021). Quantification. In <em>Uncertain Archives: Critical Keywords for Big Data</em> (pp. 427–431). The MIT Press.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W38</div>
+                                <div class="reference-content">
+                                    <p>Jordon, J., et al. (2022). Synthetic Data—What, why and how? <em>arXiv</em>.</p>
+                                    <p>Steinhoff, J. (2024). Toward a political economy of synthetic data. <em>New Media & Society</em>, 26(6), 3290–3306.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W39</div>
+                                <div class="reference-content">
+                                    <p>Dourish, P. (2017). Spreadsheets and Spreadsheet Events in Organizational Life. In <em>The Stuff of Bits</em> (pp. 81–104). The MIT Press.</p>
+                                    <p>Kitchin, R. (2022). Small Data and Data Infrastructures. In <em>The Data Revolution</em> (pp. 44–59). SAGE Publications Ltd.</p>
+                                    <p>Flyverbom, M., & Murray, J. (2018). Datastructuring—Organizing and Curating Digital Traces into Action. <em>Big Data & Society</em>, 5(2).</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-module">
+                        <h3>Module 2: Categorizing</h3>
+                        <ul class="references-list">
+                            <li class="reference-item">
+                                <div class="reference-number">W40</div>
+                                <div class="reference-content">
+                                    <p>Bowker, G. C., & Star, S. L. (2000). Why Classifications Matter. In <em>Sorting Things out: Classification and Its Consequences</em> (pp. 319-326). The MIT Press.</p>
+                                    <p>Ford, H., & Illadis, A. (2023). Wikidata as semantic infrastructure. <em>Social Media + Society</em>, 9(3).</p>
+                                    <p>Clausen, B., Engel, D., & Wharton, G. (2023). Capturing Narrative and Data in Performance Art: The Joan Jonas Knowledge Base. In <em>Reconstructing Performance Art</em> (pp. 155–172). Routledge.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W41</div>
+                                <div class="reference-content">
+                                    <p>Crawford, K., & Paglen, T. (2021). Excavating AI: The politics of images in machine learning sets. <em>AI & Society</em>, 1105-1116.</p>
+                                    <p>Das, S., & Lowe, M. (2018). Nature Read in Black and White: Decolonial Approaches to Interpreting Natural History Collections. <em>Journal of Natural Science Collections</em>, 4–14.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W43</div>
+                                <div class="reference-content">
+                                    <p>Seaver, N. (2022). <em>Computing Taste: Algorithms and the Makers of Music Recommendation</em>. University of Chicago Press. (Chapter 4: Hearing and Counting)</p>
+                                    <p>Milano, S., Taddeo, M., & Floridi, L. (2020). Recommender Systems and Their Ethical Challenges. <em>AI & Society</em>, 35(4), 957–967.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-module">
+                        <h3>Module 3: Displaying / Visualizing</h3>
+                        <ul class="references-list">
+                            <li class="reference-item">
+                                <div class="reference-number">W44</div>
+                                <div class="reference-content">
+                                    <p>Tufte, E. R. (2007). <em>The Visual Display of Quantitative Information</em> (2nd ed.). Graphics Press. (Chapter 1: Graphical Excellence)</p>
+                                    <p>Cui, W. (2019). Visual Analytics: A Comprehensive Overview. <em>IEEE Access</em>, 7, 81555–81573.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W45</div>
+                                <div class="reference-content">
+                                    <p>D'Ignazio, C., & Klein, L. F. (2020). Chapter 3: On Rational, Scientific, Objective Viewpoints from Mythical, Imaginary, Impossible Standpoints. In <em>Data Feminism</em>.</p>
+                                    <p>Rusert, B., & Battle-Baptiste, W. (Eds.). (2018). <em>W. E. B. Du Bois's Data Portraits: Visualizing Black America</em>. Princeton Architectural Press.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-module">
+                        <h3>Module 4: Archiving</h3>
+                        <ul class="references-list">
+                            <li class="reference-item">
+                                <div class="reference-number">W46</div>
+                                <div class="reference-content">
+                                    <p>Sluis, K. (2017). Accumulate, Aggregate, Destroy. Database Fever and the Archival Web. In <em>Lost and Living (in) Archives: Collectively Shaping New Memories</em> (pp. 27–40).</p>
+                                    <p>Indigenous Archives Collective. (2021). The Indigenous Archives Collective Position Statement on the Right of Reply to Indigenous Knowledges and Information Held in Archives. <em>Archives & Manuscripts</em>, 49(3), 244–252.</p>
+                                </div>
+                            </li>
+                            <li class="reference-item">
+                                <div class="reference-number">W47</div>
+                                <div class="reference-content">
+                                    <p>Saunavaara, J., Laine, A., & Salo, M. (2022). The Nordic societies and the development of the data centre industry. <em>Technology in Society</em>, 69, 101931.</p>
+                                    <p>Tang, M. (2022). The challenge of the cloud: Between transnational capitalism and data sovereignty. <em>Information, Communication & Society</em>, 25(16), 2397–2411.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <h3>Reference Categories</h3>
+                    <ul class="categories-list">
+                        <li>Data Theory & Philosophy</li>
+                        <li>Classification Systems</li>
+                        <li>Visualization & Analytics</li>
+                        <li>Ethics of Data</li>
+                        <li>Infrastructure Studies</li>
+                        <li>Cultural Data</li>
+                        <li>Course Readings</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Citation Format</h3>
+                    <p>All references follow APA 7th edition formatting guidelines.</p>
+                    <div class="citation-format">
+                        <p><strong>Book Example:</strong></p>
+                        <p><code>Author, A. A. (Year). <em>Title of work</em>. Publisher.</code></p>
+                        <p><strong>Article Example:</strong></p>
+                        <p><code>Author, A. A. (Year). Title of article. <em>Journal Name</em>, <em>Volume</em>(Issue), pages.</code></p>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Course Modules</h3>
+                    <ul class="categories-list">
+                        <li>Collecting</li>
+                        <li>Categorizing</li>
+                        <li>Displaying/Visualizing</li>
+                        <li>Archiving</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Curating Data Exhibition | Clara Holst</p>
+    </footer>
+</body>
+</html>
