@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2: Visualizing Consumer Psychology - Curating Data Exhibition</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <style>
+        /* === Styling from previous assignment === */
+        .assignment-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .assignment-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .author-info, .section, .download-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .author-info {
+            border-left: 4px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .reference-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .reference-list li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .assignment-header {
+                padding: 3rem 1rem;
+            }
+            .assignment-content {
+                padding: 0 1rem 3rem;
+            }
+            .section, .author-info {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Curating Data</div>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../curatorial-statement.html">Curatorial Statement</a></li>
+                <li><a href="../assignments.html">Assignments</a></li>
+                <li><a href="../notes.html">Notes</a></li>
+                <li><a href="../games.html">Games</a></li>
+                <li><a href="../datasets.html">Datasets</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="assignment-header">
+        <h1>Visualizing Consumer Psychology</h1>
+        <p><em>A Critical Analysis of E-commerce Behavioral Data</em></p>
+    </section>
+
+    <main class="assignment-content">
+        <section class="author-info">
+            <p><strong>Author:</strong> Clara Holst (CH)</p>
+            <p><strong>Student ID:</strong> AU737540 | 202306022@post.au.dk</p>
+            <p><strong>Program:</strong> BSc Cognitive Science, 5th Semester</p>
+            <p><strong>Institution:</strong> Arts Faculty, Aarhus University</p>
+            <p><strong>Course:</strong> Critical Data Studies (Curating Data)</p>
+            <p><strong>Location:</strong> Jens Chr. Skous Vej 2, 8000 Aarhus, Denmark</p>
+            <p><strong>Characters:</strong> 4,979 (~2 pages)</p>
+        </section>
+
+        <section class="section">
+            <h2>Introduction</h2>
+            <p>
+                This report analyzes 1.25 million e-commerce transactions from a Kaggle dataset through two distinct data visualization approaches: a traditional visual analytics method and a feminist/critical data studies perspective. The goal is to explore how these different methods reveal or suppress understandings of consumer psychology and price perception, aligning with the course objective to practice data visualization from multiple viewpoints.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Visual Analytics Approach</h2>
+            <p>
+                The first visualization is a scatter plot mapping perceived value against actual product prices, with customers divided into nine behavioral segments (e.g., Value-Optimistic, Budget-Pessimistic). This follows Cui’s (2019) definition of visual analytics as “the science of analytical reasoning facilitated by interactive visual interfaces.”
+            </p>
+            <p>
+                The plot reveals systematic patterns. Perceived value aligns closely with actual price at lower levels, clustering around the “perfect perception” line, but becomes more scattered as prices rise. This indicates greater uncertainty in how high-value products are perceived, possibly due to reduced price familiarity or aspirational tendencies among consumers.
+            </p>
+            <p>
+                Despite its analytical clarity, this approach has key limitations. It privileges quantitative precision and abstracts complex psychological processes into data points (D’Ignazio & Klein, 2020). The “perfect perception” line imposes a normative standard that equates accuracy with value, reinforcing capitalist ideals and marginalizing alternative consumer perspectives.
+            </p>
+            <p><strong>Figure 1:</strong> Scatter plot comparing actual product prices (x-axis) against perceived value (y-axis) across 1.25 million transactions, colored by nine behavioral segments.</p>
+        </section>
+
+        <section class="section">
+            <h2>Critical Data Studies Perspective</h2>
+            <p>
+                The second visualization is a stacked bar chart showing the distribution of buying behaviors across age and gender demographics. This critical approach questions whose perceptions are being measured and how marketing systems might exploit these psychological patterns (D’Ignazio & Klein, 2020). 
+            </p>
+            <p>
+                This method attempts to “visceralize” the data, presenting it as human patterns rather than abstract points to engage the viewer emotionally. It creates a narrative about how consumer identity shapes economic behavior, showing, for example, a dominance of Value-Optimistic behavior in the 18–24 age group.
+            </p>
+            <p>
+                Yet, this visualization also carries risk. By using binary gender and discrete age categories, it may reinforce what D’Ignazio & Klein (2020) term a “mythical, imaginary, impossible” objective viewpoint, presenting socially constructed categories as natural and suppressing intersectional complexities.
+            </p>
+            <p><strong>Figure 2:</strong> Stacked bar chart showing behavioral distribution across five age groups (18–24 to 55+) and two genders, highlighting dominant Value-Optimistic patterns in younger demographics.</p>
+        </section>
+
+        <section class="section">
+            <h2>Reflection on Design and Viewer Experience</h2>
+            <p>
+                The design choices directly shape the viewer’s understanding. The scatter plot creates distance, encouraging objective analysis but potentially dehumanizing consumers. Conversely, the demographic chart fosters empathy but risks stereotyping. Both visualizations, by operating on 1.25 million data points, create statistical significance at the cost of obscuring personal narratives and cultural contexts (Drucker, 2011).
+            </p>
+            <p>
+                A significant unaddressed gap is that the “perceived value” metric is simulated, highlighting how consumer psychology is often inferred—a practice reminiscent of engineers trying to “close the semantic gap” between human experience and data (Seaver, 2022). A more feminist approach could involve interactive installations where viewers experience price perception tests themselves, making the data more visceral and challenging the power dynamics inherent in the original analysis.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Conclusion</h2>
+            <p>
+                These two visualizations demonstrate that design choices in data representation are not neutral. The visual analytics approach (Cui, 2019) reveals systematic patterns but reduces human complexity. The critical approach (D’Ignazio & Klein, 2020) fosters engagement but may reinforce categorical thinking. The key insight is the consistent misperception of value across all segments, suggesting universal psychological patterns that challenge demographic targeting.
+            </p>
+            <p>
+                Ultimately, these visualizations reveal not only how consumers perceive prices but also how data systems perceive consumers as patterns to be analyzed and influenced—a process fraught with ethical considerations for autonomy and fairness (Milano et al., 2020).
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>References</h2>
+            <ul class="reference-list">
+                <li>Cui, W. (2019). Visual Analytics: A Comprehensive Overview. <em>IEEE Access, 7</em>, 81555–81573. https://doi.org/10.1109/ACCESS.2019.2923736</li>
+                <li>D’Ignazio, C., & Klein, L. F. (2020). <em>Data Feminism</em>. MIT Press.</li>
+                <li>Drucker, J. (2011). Humanities Approaches to Graphical Display. <em>Digital Humanities Quarterly, 5</em>(1).</li>
+                <li>Hullman, J., & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative Visualization. <em>IEEE Transactions on Visualization and Computer Graphics, 17</em>(12), 2231–2240.</li>
+                <li>Pratama, A. B. (2023). E-commerce App Transactional Dataset. Kaggle.</li>
+                <li>Milano, S., Taddeo, M., & Floridi, L. (2020). Recommender Systems and Their Ethical Challenges. <em>AI & Society, 35</em>(4), 957–967.</li>
+                <li>Seaver, N. (2022). <em>Computing Taste: Algorithms and the Makers of Music Recommendation</em>. University of Chicago Press.</li>
+                <li>Tufte, E. R. (2007). <em>The Visual Display of Quantitative Information</em> (2nd ed.). Graphics Press.</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

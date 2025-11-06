@@ -3,113 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Methodology Report – Liao Huanxing | Curating Data Exhibition</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <title>Assignment 2: Liao Huanxing - Curating Data Exhibition</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <style>
+        .assignment-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #9b59b6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .assignment-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        
+        .author-info {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            margin-bottom: 2rem;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #9b59b6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .reference-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .reference-list li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .image-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            color: #6c757d;
+        }
+        
+        .image-placeholder img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        @media (max-width: 768px) {
+            .assignment-header {
+                padding: 3rem 1rem;
+            }
+            
+            .assignment-content {
+                padding: 0 1rem 3rem;
+            }
+            
+            .section, .author-info {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">Curating Data</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pages/curatorial-statement.html">Curatorial Statement</a></li>
-                <li><a href="pages/assignments.html">Assignments</a></li>
-                <li><a href="pages/notes.html">Notes</a></li>
-                <li><a href="pages/games.html">Games</a></li>
-                <li><a href="pages/datasets.html">Datasets</a></li>
-                <li><a href="pages/about.html">About</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../curatorial-statement.html">Curatorial Statement</a></li>
+                <li><a href="../assignments.html">Assignments</a></li>
+                <li><a href="../obsidian-notes.html">Obsidian Notes</a></li>
+                <li><a href="../datasets.html">Datasets</a></li>
+                <li><a href="../about.html">About</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="content">
-        <article>
-            <h1>Methodology Report: “Liao Huanxing” Documentation in Wikidata</h1>
-            <p><strong>Author:</strong> Clara Holst (CH), AU737540, <a href="mailto:202306022@post.au.dk">202306022@post.au.dk</a><br>
-            <strong>Program:</strong> 5th Semester, Cognitive Science BSc, Arts Faculty, Aarhus University<br>
-            <strong>Course:</strong> Critical Data Studies, Elective – Curating Data Course<br>
-            <strong>Location:</strong> Jens Chr. Skous Vej 2, 8000 Aarhus, Denmark<br>
-            <strong>Characters:</strong> 7,139 (~3 pages)</p>
+    <main>
+        <section class="assignment-header">
+            <div class="assignment-content">
+                <h1>Assignment 2: "Liao Huanxing" Documentation in Wikidata</h1>
+                <p>Structured Data and Semantic Infrastructure</p>
+            </div>
+        </section>
 
-            <section>
+        <article class="assignment-content">
+            <div class="author-info">
+                <p><strong>Clara Holst (CH), AU737540, 202306022@post.au.dk</strong></p>
+                <p>5th Semester, Cognitive Science BSc, Arts Faculty, Aarhus University</p>
+                <p>Jens Chr. Skous Vej 2, 8000 Aarhus, Denmark</p>
+                <p>Critical Data Studies, Elective | Curating Data Course</p>
+                <p>Characters: 7,139 ~ 3 pages</p>
+            </div>
+
+            <div class="section">
                 <h2>Introduction and Context</h2>
-                <p>This report details my work for Assignment 2, which centred on the biography of Liao Huanxing (1895–1964), a Chinese anti-colonial activist whose life and work were documented by the Dekoloniale project. The primary aim of this task was to transform the narrative, qualitative information from this marginalized history into structured, machine-readable data on Wikidata. This process served a dual purpose: to enhance the digital visibility of a figure often omitted from mainstream historical narratives and to engage practically with the principles and challenges of Linked Open Data (LOD). By contributing to an open knowledge graph, the task aimed to connect Liao Huanxing’s story to a wider web of historical data, thereby supporting the findability, accessibility, and reusability of decolonial knowledge resources beyond their original, potentially ephemeral, online presence.</p>
+                <p>This report details my work for Assignment 2, which centred on the biography of Liao Huanxing (1895–1964), a Chinese anti-colonial activist whose life and work were documented by the Dekoloniale project. The primary aim of this task was to transform the narrative, qualitative information from this marginalized history into structured, machine-readable data on Wikidata. This process served a dual purpose: to enhance the digital visibility of a figure often omitted from mainstream historical narratives and to engage practically with the principles and challenges of Linked Open Data (LOD). By contributing to an open knowledge graph, the task aimed to connect Liao Huanxing's story to a wider web of historical data, thereby supporting the findability, accessibility, and reusability of decolonial knowledge resources beyond their original, potentially ephemeral, online presence.</p>
 
-                <figure>
-                    <img src="images/liao-wikidata-page.jpg" alt="Liao Huanxing’s new page in Wikidata">
-                    <figcaption>Fig. 1: Liao Huanxing’s new page in Wikidata, Source: Wikimedia/Wikidata, CC BY-SA 4.0.</figcaption>
-                </figure>
-            </section>
+                <div class="image-placeholder">
+                    <p>📷 Image Placeholder: Liao Huanxing's Wikidata Page</p>
+                    <p><em>Liao Huanxing's new page in Wikidata - Source: Wikimedia/Wikidata, CC BY-SA 4.0</em></p>
+                </div>
+            </div>
 
-            <section>
+            <div class="section">
                 <h2>Personal Role and Responsibilities</h2>
                 <p>My primary contribution to the group work was the extensive research and data enrichment of the Wikidata item for Liao Huanxing (Q136450200). Initially, the item did not exist on Wikidata, Wikimedia nor Wikipedia. I was responsible for a comprehensive review of his biography from the Dekoloniale website to identify key entities and properties that could be structured.</p>
 
-                <figure>
-                    <img src="images/liao-dekoloniale.jpg" alt="Liao Huanxing on the Dekoloniale project website">
-                    <figcaption>Fig. 2: Liao Huanxing on the Dekoloniale project website, Source: Dekoloniale.de, CC BY 4.0.</figcaption>
-                </figure>
+                <div class="image-placeholder">
+                    <p>📷 Image Placeholder: Dekoloniale Project Website</p>
+                    <p><em>Liao Huanxing on the Dekoloniale project website - Source: Dekoloniale.de, CC BY 4.0</em></p>
+                </div>
 
                 <p>I executed the creation and population of numerous statements on his Wikidata item. My contributions included adding details such as his residences in Berlin and Moscow, education at Wuhan University, fluency in multiple languages, membership in political organizations, and alternative name (Liao Renheng). I also ensured that every statement had a verifiable reference to the Dekoloniale source.</p>
 
-                <figure>
-                    <img src="images/liao-contributions.jpg" alt="Overview of contributions to Liao Huanxing’s Wikidata item">
-                    <figcaption>Fig. 3: Overview of my own contributions to Liao Huanxing’s Wikidata item. Source: Wikimedia/Wikidata, CC BY-SA 4.0.</figcaption>
-                </figure>
-            </section>
+                <div class="image-placeholder">
+                    <p>📷 Image Placeholder: Wikidata Contributions</p>
+                    <p><em>Overview of contributions to Liao Huanxing's Wikidata item - Source: Wikimedia/Wikidata, CC BY-SA 4.0</em></p>
+                </div>
+            </div>
 
-            <section>
+            <div class="section">
                 <h2>Methodological Approach</h2>
-                <p>My methodological approach began with a close reading of the Dekoloniale biography to extract factual elements that could be mapped onto Wikidata’s ontological framework. I developed a simple data model categorizing information into person-centric entities: identifiers (names, aliases), vital statistics (birth, death), affiliations (political parties, organizations), locations (residences, education), and skills (languages). The process of structuring this data was guided by the principles of Linked Open Data (LOD), using semantic triples (subject–predicate–object).</p>
+                <p>My methodological approach began with a close reading of the Dekoloniale biography to extract factual elements that could be mapped onto Wikidata's ontological framework. I developed a simple data model categorizing information into person-centric entities: identifiers (names, aliases), vital statistics (birth, death), affiliations (political parties, organizations), locations (residences, education), and skills (languages). The process of structuring this data was guided by the principles of Linked Open Data (LOD), using semantic triples (subject–predicate–object).</p>
 
-                <figure>
-                    <img src="images/liao-sparql.jpg" alt="Visualization of Liao Huanxing’s data connections in SPARQL">
-                    <figcaption>Fig. 4: Visualization of Liao Huanxing’s data connections in the Wikidata Query Service (SPARQL query). Source: Wikimedia/Wikidata, CC BY-SA 4.0.</figcaption>
-                </figure>
+                <div class="image-placeholder">
+                    <p>📷 Image Placeholder: SPARQL Visualization</p>
+                    <p><em>Visualization of Liao Huanxing's data connections in the Wikidata Query Service (SPARQL query) - Source: Wikimedia/Wikidata, CC BY-SA 4.0</em></p>
+                </div>
 
                 <p>For example, the subject <em>Liao Huanxing</em> (Q136450200) was linked via the predicate <em>educated at</em> (P69) to the object <em>Wuhan University</em> (Q461313). This ensured interlinking within the knowledge graph and contextual accuracy through qualifiers such as start dates for memberships.</p>
 
-                <figure>
-                    <img src="images/liao-add-statement.jpg" alt="Adding a statement to Liao Huanxing’s Wikidata">
-                    <figcaption>Fig. 5: Adding a statement to Liao Huanxing’s Wikidata. Source: Wikimedia/Wikidata, CC BY-SA 4.0.</figcaption>
-                </figure>
-            </section>
+                <div class="image-placeholder">
+                    <p>📷 Image Placeholder: Adding Statement</p>
+                    <p><em>Adding a statement to Liao Huanxing's Wikidata - Source: Wikimedia/Wikidata, CC BY-SA 4.0</em></p>
+                </div>
+            </div>
 
-            <section>
+            <div class="section">
                 <h2>Challenges and Considerations</h2>
                 <p>The process posed challenges, particularly the tension between narrative nuance and the rigid structure of a database. Wikidata required reduction of rich biography into discrete properties. Ambiguities in dates and places created further complexity, while ethical questions arose about categorization, such as labeling ethnicity or political roles. To mitigate bias, I grounded all statements in the Dekoloniale source, recognizing that classification is not a neutral act (Bowker & Star, 2000).</p>
-            </section>
+            </div>
 
-            <section>
+            <div class="section">
                 <h2>Critical Reflection</h2>
-                <p>This process underscored that “raw data is an oxymoron” (Gitelman & Jackson, 2013). The data I curated was interpretive, constrained by Wikidata’s ontology, and shaped by sociotechnical contexts—what Kitchin (2022) calls “data assemblages.” As Ford & Illadis (2023) highlight, Wikidata embodies Western epistemic structures that can both empower and flatten marginalized histories. Thus, while my work enhanced digital visibility, it also risked decontextualizing the narrative richness of Liao Huanxing’s story.</p>
-            </section>
+                <p>This process underscored that "raw data is an oxymoron" (Gitelman & Jackson, 2013). The data I curated was interpretive, constrained by Wikidata's ontology, and shaped by sociotechnical contexts—what Kitchin (2022) calls "data assemblages." As Ford & Illadis (2023) highlight, Wikidata embodies Western epistemic structures that can both empower and flatten marginalized histories. Thus, while my work enhanced digital visibility, it also risked decontextualizing the narrative richness of Liao Huanxing's story.</p>
+            </div>
 
-            <section>
+            <div class="section">
                 <h2>Conclusion</h2>
-                <p>This exercise revealed that making marginalized histories visible through Linked Open Data requires critical awareness and ethical modeling. LOD can connect diverse knowledge but often at the expense of narrative depth. Structured data should complement, not replace, narrative sources like Dekoloniale’s biographies. Curating data is ultimately an act of interpretation—balancing the database’s logic with the complexity of human experience.</p>
-            </section>
+                <p>This exercise revealed that making marginalized histories visible through Linked Open Data requires critical awareness and ethical modeling. LOD can connect diverse knowledge but often at the expense of narrative depth. Structured data should complement, not replace, narrative sources like Dekoloniale's biographies. Curating data is ultimately an act of interpretation—balancing the database's logic with the complexity of human experience.</p>
+            </div>
 
-            <section>
+            <div class="section">
                 <h2>References</h2>
-                <ul class="references">
-                    <li>Bowker, G. C., & Star, S. L. (2000). <em>Sorting Things Out: Classification and Its Consequences</em>. MIT Press.</li>
-                    <li>boyd, d., & Crawford, K. (2012). Critical questions for Big Data. <em>Information, Communication & Society, 15</em>(5), 662–679.</li>
-                    <li>Ford, H., & Illadis, A. (2023). Wikidata as semantic infrastructure. <em>Social Media + Society, 9</em>(3).</li>
-                    <li>Gitelman, L., & Jackson, V. (2013). “Raw Data” Is an Oxymoron. MIT Press.</li>
-                    <li>Illadis, A., & Russo, F. (2016). Critical Data Studies: An introduction. <em>Big Data & Society, 3</em>(2).</li>
-                    <li>Kitchin, R. (2022). <em>The Data Revolution</em>. SAGE Publications Ltd.</li>
-                    <li><a href="https://www.wikidata.org/wiki/Q136450200">Wikidata: Liao Huanxing (Q136450200)</a></li>
-                    <li><a href="https://dekoloniale.de/">Dekoloniale Memory Culture in the City</a></li>
-                    <li><a href="https://w.wiki/FpKs">Wikidata Query Service Visualization</a></li>
-                    <li><a href="https://commons.wikimedia.org/">Wikimedia Commons</a></li>
-                </ul>
-            </section>
+                <div class="reference-list">
+                    <ul>
+                        <li>Bowker, G. C., & Star, S. L. (2000). <em>Sorting Things Out: Classification and Its Consequences</em>. MIT Press.</li>
+                        <li>boyd, d., & Crawford, K. (2012). Critical questions for Big Data. <em>Information, Communication & Society, 15</em>(5), 662–679.</li>
+                        <li>Ford, H., & Illadis, A. (2023). Wikidata as semantic infrastructure. <em>Social Media + Society, 9</em>(3).</li>
+                        <li>Gitelman, L., & Jackson, V. (2013). "Raw Data" Is an Oxymoron. MIT Press.</li>
+                        <li>Illadis, A., & Russo, F. (2016). Critical Data Studies: An introduction. <em>Big Data & Society, 3</em>(2).</li>
+                        <li>Kitchin, R. (2022). <em>The Data Revolution</em>. SAGE Publications Ltd.</li>
+                        <li><a href="https://www.wikidata.org/wiki/Q136450200">Wikidata: Liao Huanxing (Q136450200)</a></li>
+                        <li><a href="https://dekoloniale.de/">Dekoloniale Memory Culture in the City</a></li>
+                        <li><a href="https://w.wiki/FpKs">Wikidata Query Service Visualization</a></li>
+                        <li><a href="https://commons.wikimedia.org/">Wikimedia Commons</a></li>
+                    </ul>
+                </div>
+            </div>
         </article>
     </main>
 
     <footer>
-        <p>&copy; 2025 Curating Data Exhibition | Aarhus University</p>
+        <p>&copy; 2024 Curating Data Exhibition</p>
     </footer>
 </body>
 </html>
