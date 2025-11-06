@@ -442,7 +442,7 @@
     <div class="top-bar">
       <button class="back-button" onclick="goToMenu()">
         <i class="fas fa-arrow-left"></i>
-        Back to Minigames
+        Back to Menu
       </button>
       <h1>Flashcards Master</h1>
       <div class="score" id="scoreDisplay">Score: 0 / 0</div>
@@ -568,8 +568,8 @@
         ]
     };
     
-    const allTerms = originalCards.map(c => c.term);
-    const allDefs = originalCards.map(c => c.definition);
+    const allTerms = originalCards.cards.map(c => c.term);
+    const allDefs = originalCards.cards.map(c => c.definition);
 
     let terms = [...allTerms];
     let answers = [...allDefs];
@@ -774,7 +774,7 @@
     }
 
     function goToMenu() {
-      location.href = "{{ url_for('minigames') }}?deck_id={{ deck['id'] if deck else 'test' }}";
+      window.location.href = 'pages/games.html';
     }
 
     // Touch and click events

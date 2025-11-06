@@ -3,37 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - Curating Data Exhibition</title>
-    <link rel="stylesheet" href="../styles/main.css">
+    <title>Data Curator Games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4ecca3;
+            --secondary-color: #ff6b6b;
+            --bg-dark: #1a1a2e;
+            --bg-light: #16213e;
+            --text-light: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 18px;
+            opacity: 0.85;
+            max-width: 400px;
+            margin-bottom: 40px;
+        }
+
+        .game-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .game-btn {
+            background: linear-gradient(to right, var(--primary-color), #2a9d8f);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(78, 204, 163, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(78, 204, 163, 0.6);
+        }
+
+        .game-btn i {
+            font-size: 22px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 30px; }
+            p { font-size: 16px; }
+            .game-btn { font-size: 18px; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Curating Data</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pages/curatorial-statement.html">Curatorial Statement</a></li>
-                <li><a href="pages/assignments.html">Assignments</a></li>
-                <li><a href="pages/notes.html">Notes</a></li>
-                <li><a href="pages/games.html">Games</a></li>
-                <li><a href="pages/datasets.html">Datasets</a></li>
-                <li><a href="pages/about.html">About</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h1>Data Curator Games</h1>
+    <p>Choose your challenge below! Learn, play, and test your understanding of data concepts.</p>
 
-    <main>
-        <section class="games-section">
-            <h1>Games</h1>
-            <p>Explore interactive games that illustrate data curation concepts.</p>
-            <!-- Add game content here -->
-        </section>
-    </main>
+    <div class="game-buttons">
+        <button class="game-btn" onclick="window.location.href='swipe.html'">
+            <i class="fas fa-arrows-alt"></i> Word Match Challenge
+        </button>
+        <button class="game-btn" onclick="window.location.href='flashcards.html'">
+            <i class="fas fa-clone"></i> Flashcards
+        </button>
+    </div>
 
-    <footer>
-        <p>&copy; 2024 Curating Data Exhibition</p>
-    </footer>
-
-    <script src="../scripts/main.js"></script>
+    <div class="footer">Created by Clara Holst, 2025</div>
 </body>
 </html>

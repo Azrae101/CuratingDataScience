@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon1.png') }}">
+    <title>Word Match Challenge 2.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        :root {
+            --primary-color: #4ecca3;
+            --secondary-color: #ff6b6b;
+            --bg-dark: #1a1a2e;
+            --bg-light: #16213e;
+            --text-light: #ffffff;
+            --text-dark: #222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-light);
+            /* Prevent pull-to-refresh and other touch actions on the body */
+            overscroll-behavior-y: contain;
+            position: relative;
+        }
+
+        /* Prevent text selection */
+        body, .card {
+            user-select: none;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 500px;
+            height: 95vh;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .start-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .start-instructions {
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            max-width: 80%;
+        }
+
+        .difficulty-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 80%;
+        }
+
+        .difficulty-btn {
+            background: linear-gradient(to right, var(--primary-color), #2a9d8f);
+            border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(78, 204, 163, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(78, 204, 163, 0.6);
+        }
+        
+        .high-score-start {
+             margin-top: 40px;
+             font-size: 20px;
+             font-weight: 600;
+        }
+
+        /* Game Container */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            display: none; /* Initially hidden */
+        }
+
+        .header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .stats {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        #timerStat.hidden {
+            display: none;
+        }
+        
+        .lives-container {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 24px;
+        }
+        
+        .heart {
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .heart.lost {
+            transform: scale(0);
+            color: rgba(255, 107, 107, 0.5);
+        }
+        
+        .cards-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 24px;
+            min-height: 0;
+            perspective: 1000px;
+        }
+        
+        .card {
+            position: absolute;
+            width: 90%;
+            max-width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            cursor: grab;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            color: var(--text-dark);
+            border: 4px solid transparent;
+            touch-action: none; /* Important for preventing default touch behaviors on the card */
+        }
+
+        .card.correct-flash {
+            border-color: var(--primary-color);
+        }
+
+        .card.incorrect-flash {
+            border-color: var(--secondary-color);
+        }
+
+        .card.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+        
+        .card-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+        
+        .term {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 15px 0;
+            color: #111;
+        }
+        
+        .divider {
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            margin: 15px 0;
+        }
+        
+        .definition {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .action-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 32px;
+            transition: all 0.2s ease;
+        }
+        
+        .dislike { color: var(--secondary-color); }
+        .like { color: var(--primary-color); }
+        
+        .action-button:hover { transform: scale(1.1); }
+        .action-button:active { transform: scale(0.95); }
+        
+        .feedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 60px;
+            font-weight: 800;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 20;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease;
+            border: 5px solid white;
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+        
+        .feedback.correct { color: var(--primary-color); border-color: var(--primary-color);}
+        .feedback.incorrect { color: var(--secondary-color); border-color: var(--secondary-color); }
+        
+        .end-screen {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+            padding: 30px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .end-screen.show { opacity: 1; pointer-events: all; }
+        
+        .end-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .score-summary {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .score-display {
+            font-size: 80px;
+            font-weight: 800;
+            margin: 10px 0;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(78, 204, 163, 0.5);
+        }
+
+        .high-score-display {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+        
+        .restart-button {
+            background: linear-gradient(to right, var(--primary-color), #2a9d8f);
+            border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 15px 50px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(78, 204, 163, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .restart-button:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(78, 204, 163, 0.6); }
+
+        .correct-answer-feedback {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .correct-answer-feedback.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            .card { height: 350px; }
+            .term { font-size: 22px; }
+            .definition { font-size: 16px; }
+        }
+
+        /* Back Button in Top Left Corner */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(90deg, #42a5f5 0%, #80d6ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 8px 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(90deg, #1976D2 0%, #4FC3F7 100%);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .back-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Make sure the button is visible on all screens */
+        @media (max-width: 500px) {
+            .back-button {
+                font-size: 13px;
+                padding: 7px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Minigames button fixed at top left -->
+    <button class="back-button" onclick="window.location.href='index.html';">
+        <i class="fas fa-arrow-left"></i>
+        Back to Menu
+    </button>
+
+    <style>
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            background: linear-gradient(135deg, #4f46e5, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            padding: 0.6rem 1.2rem;
+            
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .back-button i {
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+        }
+
+        .back-button:active {
+            transform: scale(0.96);
+        }
+    </style>
+
+    <!-- Center the main-wrapper vertically and horizontally -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+        .main-wrapper {
+            margin: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            border-radius: 25px;
+            background: rgba(255,255,255,0.07);
+        }
+        @media (max-width: 600px) {
+            .main-wrapper {
+                max-width: 98vw;
+                height: 98vh;
+                border-radius: 12px;
+                padding: 0;
+            }
+        }
+    </style>
+    <div class="main-wrapper">
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+            <h1 class="start-title">Word Match Challenge</h1>
+            <p class="start-instructions">Swipe right if the term and definition match, swipe left if they don't. Choose your difficulty to begin!</p>
+            <div class="difficulty-selection">
+                <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard (10s Timer)</button>
+            </div>
+            <div class="high-score-start">High Score: <span id="highScoreStart">0</span></div>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="game-container" id="gameContainer">
+            <div class="header">
+                <div class="lives-container" id="heartsContainer"></div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value" id="score">0</div>
+                        <div class="stat-label">SCORE</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="streak">0</div>
+                        <div class="stat-label">STREAK</div>
+                    </div>
+                    <div class="stat hidden" id="timerStat">
+                        <div class="stat-value" id="timer">10</div>
+                        <div class="stat-label">TIMER</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cards-container" id="cardsContainer">
+                 <div class="feedback" id="feedback"></div>
+                 <div class="correct-answer-feedback" id="correctAnswerFeedback"></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-button dislike" id="dislikeButton"><i class="fas fa-times"></i></button>
+                <button class="action-button like" id="likeButton"><i class="fas fa-check"></i></button>
+            </div>
+        </div>
+        
+        <!-- End Screen -->
+        <div class="end-screen" id="endScreen">
+            <div class="end-title">Game Over!</div>
+            <p class="score-summary">Your final score is:</p>
+            <div class="score-display" id="finalScore">0</div>
+            <div class="high-score-display">High Score: <span id="highScoreEnd">0</span></div>
+            <button class="restart-button" id="restartButton">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        function goToMenu() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Use the hardcoded deck of terms and definitions
+            const originalCards = {
+                "title": "Curating Data Readings",
+                "creator": "DataCurator",
+                "cards": [
+                    {"term": "Critical Data Studies", "definition": "A field that examines the cultural, ethical, and political dimensions of data. It rejects the view of data as neutral and instead investigates how data is generated, curated, and exerts power within sociotechnical systems."},
+                    {"term": "Data Assemblage", "definition": "The complex, interconnected sociotechnical system that produces and gives meaning to data. It includes thought, knowledge, finance, politics, materiality, practices, organizations, and laws."},
+                    {"term": "Raw Data is an Oxymoron", "definition": "The concept that data is never truly raw or untouched. It is always cooked/shaped, framed, and interpreted by human choices, tools, and disciplinary norms before it can function as data."},
+                    {"term": "Technological Determinism", "definition": "The flawed belief that technology (like Big Data) autonomously drives social change. CDS argues that technology is a product of society that in turn shapes it."},
+                    {"term": "Apophenia", "definition": "The human tendency to perceive meaningful patterns or connections in random or meaningless data. A significant risk when analyzing large datasets (Check: spurious correlations website)."},
+                    {"term": "Big Data", "definition": "Datasets that are too large or complex to be processed by traditional software. Characterized by volume, velocity, and variety, and generated continuously."},
+                    {"term": "Small Data", "definition": "Data that is only generated infrequently (e.g., a national census every 10 years) using inflexible methods."},
+                    {"term": "Data Holding", "definition": "Informal, often personal storage of data (e.g., backups, personal files). Lacks metadata, standards, and long-term preservation planning."},
+                    {"term": "Data Archive", "definition": "A formal, curated, and documented collection of data intended for long-term preservation and reuse. Includes data, metadata, and context, and is managed by specialists."},
+                    {"term": "Trusted Digital Repository (TDR)", "definition": "A certified digital repository that ensures long-term access to data, complying with standards like the Open Archival Information System (OAIS) model."},
+                    {"term": "Cyber-infrastructure", "definition": "Large-scale, standardized, and interoperable data infrastructures that are cross-institutional (e.g., for genomics or climate data)."},
+                    {"term": "Data Friction", "definition": "The costs, resistances, and challenges involved in the collection, integration, and sharing of data."},
+                    {"term": "DIKW Hierarchy", "definition": "A model representing a hierarchy of understanding: Data → Information → Knowledge → Wisdom. Each higher level adds context, meaning, and value."},
+                    {"term": "Data (in DIKW)", "definition": "Discrete, objective symbols or facts without context or meaning (e.g., the number 72)."},
+                    {"term": "Information", "definition": "Data that has been processed and organized to be meaningful and relevant for a purpose (e.g., The temperature is 72°F)."},
+                    {"term": "Knowledge", "definition": "Information that has been understood and internalized through experience and context. It is actionable information that answers how questions."},
+                    {"term": "Wisdom", "definition": "The evaluated understanding of knowledge. It involves judgment, ethics, values, and understanding long-term consequences. It answers why and cannot be automated."},
+                    {"term": "Efficiency", "definition": "Doing things right; the use of resources relative to an objective. Can be automated."},
+                    {"term": "Effectiveness", "definition": "Doing the right things; efficiency multiplied by value. Requires human wisdom and judgment."},
+                    {"term": "Curating (Data)", "definition": "The practice of selecting, managing, and preserving data. It is not a neutral act but a practice of knowledge creation and power."},
+                    {"term": "Posthuman Curating", "definition": "A concept where curating is no longer performed solely by humans but is a distributed process involving nonhuman agents like algorithms, software, and platforms."},
+                    {"term": "Content Curation", "definition": "The mundane, massive-scale practice of selecting and managing online content (e.g., reblogging on Tumblr). Users perform curation while simultaneously becoming data for algorithms."},
+                    {"term": "The Curatorial", "definition": "A philosophy or distinct field of discourse and thought about the practice and theory of curating."},
+                    {"term": "Metadata", "definition": "Data about data. It provides crucial context for other data, such as how, when, and by whom it was created. It is not neutral and enacts particular worldviews."},
+                    {"term": "Quantification", "definition": "The process of turning qualities into quantities. It is not a neutral, descriptive act but a situated, creative, and agential practice deeply entangled with power and world-making."},
+                    {"term": "Surveillance Capitalism", "definition": "An economic system centered on the commodification of personal data for profit and behavioral prediction and modification."},
+                    {"term": "Synthetic Data", "definition": "Artificially generated data that mimics the statistical properties of real-world data. Used to address privacy concerns or data scarcity but raises questions about fidelity."},
+                    {"term": "Data Justice", "definition": "An ethical framework concerned with fairness in the way data is used, highlighting how data-driven systems can reinforce existing inequalities and power structures."},
+                    {"term": "Metadata Justice", "definition": "The ongoing struggle to resist harmful classifications and update biased metadata standards (e.g., changing illegal aliens to undocumented immigrants in library systems)."},
+                    {"term": "Digital Divide (in Big Data)", "definition": "The inequality in access to large-scale data resources, creating a divide between Big Data rich institutions (e.g., corporations, well-funded universities) and Big Data poor ones."}
+                ]
+            };
+
+            // Use this deck
+            const flashcards = originalCards.cards;
+
+            // If your cards don't have a 'category', add a fallback:
+            flashcards.forEach(card => {
+                if (!card.category) card.category = "General";
+            });
+
+            // DOM Elements
+            const startScreen = document.getElementById('startScreen');
+            const gameContainer = document.getElementById('gameContainer');
+            const cardsContainer = document.getElementById('cardsContainer');
+            const scoreDisplay = document.getElementById('score');
+            const streakDisplay = document.getElementById('streak');
+            const heartsContainer = document.getElementById('heartsContainer');
+            const dislikeButton = document.getElementById('dislikeButton');
+            const likeButton = document.getElementById('likeButton');
+            const feedback = document.getElementById('feedback');
+            const correctAnswerFeedback = document.getElementById('correctAnswerFeedback');
+            const endScreen = document.getElementById('endScreen');
+            const finalScore = document.getElementById('finalScore');
+            const restartButton = document.getElementById('restartButton');
+            const timerStat = document.getElementById('timerStat');
+            const timerDisplay = document.getElementById('timer');
+            const highScoreStartDisplay = document.getElementById('highScoreStart');
+            const highScoreEndDisplay = document.getElementById('highScoreEnd');
+            
+            // Game State
+            let score = 0, streak = 0, lives = 3, highScore = 0;
+            let gameActive = false, processing = false;
+            let currentCorrectCard, currentMatch, difficulty, cardTimer;
+            
+            // Sound Effects using Tone.js
+            // FIX: Use PolySynth to prevent error on rapid triggers.
+            const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+            synth.volume.value = -8; // Lower volume to prevent clipping
+
+            const playSound = (note, duration = '8n') => {
+                 if(Tone.context.state !== 'running') {
+                    Tone.start();
+                 }
+                synth.triggerAttackRelease(note, duration);
+            }
+            const correctSound = () => playSound('C5');
+            const incorrectSound = () => playSound('C3');
+            const swipeSound = () => playSound('C4', '16n');
+
+            // --- Game Setup ---
+            
+            function showStartScreen() {
+                endScreen.classList.remove('show');
+                gameContainer.style.display = 'none';
+                startScreen.style.display = 'flex';
+                highScore = localStorage.getItem('wordMatchHighScore') || 0;
+                highScoreStartDisplay.textContent = highScore;
+            }
+
+            document.querySelectorAll('.difficulty-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    difficulty = button.dataset.difficulty;
+                    startGame();
+                });
+            });
+
+            function startGame() {
+                startScreen.style.display = 'none';
+                gameContainer.style.display = 'flex';
+                initGame();
+            }
+            
+            function initGame() {
+                score = 0;
+                streak = 0;
+                lives = 3;
+                gameActive = true;
+                
+                scoreDisplay.textContent = score;
+                streakDisplay.textContent = streak;
+                endScreen.classList.remove('show');
+                
+                updateHearts();
+                
+                if (difficulty === 'hard') {
+                    timerStat.classList.remove('hidden');
+                } else {
+                    timerStat.classList.add('hidden');
+                }
+                
+                createCard();
+            }
+
+            // --- Card Logic ---
+
+            function createCard() {
+                if (!gameActive) return;
+                while (cardsContainer.firstChild) {
+                    cardsContainer.removeChild(cardsContainer.firstChild);
+                }
+
+                cardsContainer.appendChild(feedback);
+                cardsContainer.appendChild(correctAnswerFeedback);
+
+                const matchProbabilities = { easy: 0.6, medium: 0.5, hard: 0.4 };
+                currentMatch = Math.random() < matchProbabilities[difficulty];
+                
+                const correctIndex = Math.floor(Math.random() * flashcards.length);
+                currentCorrectCard = flashcards[correctIndex];
+
+                let term = currentCorrectCard.term;
+                let definition = currentCorrectCard.definition;
+                
+                if (!currentMatch) {
+                    let wrongIndex;
+                    const sameCategoryCards = flashcards.filter(c => c.category === currentCorrectCard.category && c.term !== currentCorrectCard.term);
+                    if (sameCategoryCards.length > 0 && Math.random() < 0.7) {
+                        wrongIndex = flashcards.indexOf(sameCategoryCards[Math.floor(Math.random() * sameCategoryCards.length)]);
+                    } else {
+                        do {
+                            wrongIndex = Math.floor(Math.random() * flashcards.length);
+                        } while (wrongIndex === correctIndex);
+                    }
+                    definition = flashcards[wrongIndex].definition;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">Term</div>
+                    <div class="term">${term}</div>
+                    <div class="divider"></div>
+                    <div class="card-header">Definition</div>
+                    <div class="definition">${definition}</div>
+                `;
+                cardsContainer.insertBefore(card, feedback);
+                setupCardDrag(card);
+                
+                if (difficulty === 'hard') startCardTimer();
+                processing = false;
+            }
+            
+            function setupCardDrag(card) {
+                let startX, moveX = 0, isDragging = false;
+                
+                function onDragStart(e) {
+                    if (processing) return;
+                    isDragging = true;
+                    startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                    card.classList.add('dragging');
+                }
+                
+                function onDragMove(e) {
+                    if (!isDragging) return;
+                    // Prevent default scrolling behavior on touch devices during a drag
+                    if (e.type === 'touchmove') {
+                        e.preventDefault();
+                    }
+                    moveX = (e.type === 'mousemove' ? e.clientX : e.touches[0].clientX) - startX;
+                    const rotate = moveX * 0.1;
+                    card.style.transform = `translate(${moveX}px) rotate(${rotate}deg)`;
+                }
+
+                function onDragEnd() {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    card.classList.remove('dragging');
+                    if (Math.abs(moveX) > 100) {
+                        swipeSound();
+                        checkAnswer(moveX > 0, card);
+                    } else {
+                        card.style.transform = '';
+                    }
+                    moveX = 0;
+                }
+
+                // Mouse Events
+                card.addEventListener('mousedown', onDragStart);
+                document.addEventListener('mousemove', onDragMove);
+                document.addEventListener('mouseup', onDragEnd);
+                
+                // Touch Events
+                card.addEventListener('touchstart', onDragStart, { passive: false });
+                document.addEventListener('touchmove', onDragMove, { passive: false });
+                document.addEventListener('touchend', onDragEnd);
+            }
+            
+            // --- Game Flow ---
+
+            function checkAnswer(decision, card) {
+                if (!gameActive || processing) return;
+                processing = true;
+                if (difficulty === 'hard') clearInterval(cardTimer);
+                
+                const isCorrect = decision === currentMatch;
+
+                feedback.textContent = isCorrect ? 'Correct!' : 'Wrong!';
+                feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                card.classList.add(isCorrect ? 'correct-flash' : 'incorrect-flash');
+
+                if (isCorrect) {
+                    correctSound();
+                    score += 10 + Math.min(streak, 5) * 5;
+                    streak++;
+                } else {
+                    incorrectSound();
+                    streak = 0;
+                    lives--;
+                    updateHearts();
+                    showCorrectAnswerFeedback();
+                }
+
+                scoreDisplay.textContent = score;
+                streakDisplay.textContent = streak;
+
+                feedback.style.opacity = '1';
+                setTimeout(() => { feedback.style.opacity = '0'; }, 600);
+                
+                card.style.transform = `translate(${decision ? 800 : -800}px) rotate(${decision ? 45 : -45}deg)`;
+                card.style.opacity = '0';
+
+                // FIX: Increased delay to prevent feedback overlap
+                setTimeout(() => {
+                    if (lives <= 0) {
+                        endGame();
+                    } else {
+                        createCard();
+                    }
+                }, 700);
+            }
+
+            function showCorrectAnswerFeedback() {
+                correctAnswerFeedback.innerHTML = `The correct definition for <strong>${currentCorrectCard.term}</strong> is: <br>"${currentCorrectCard.definition}"`;
+                correctAnswerFeedback.classList.add('show');
+                setTimeout(() => {
+                    correctAnswerFeedback.classList.remove('show');
+                }, 2500);
+            }
+            
+            function updateHearts() {
+                heartsContainer.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const heart = document.createElement('i');
+                    heart.className = i < lives ? 'fas fa-heart heart' : 'fas fa-heart heart lost';
+                    heartsContainer.appendChild(heart);
+                }
+            }
+
+            function startCardTimer() {
+                let timeLeft = 10;
+                timerDisplay.textContent = timeLeft;
+                clearInterval(cardTimer);
+                cardTimer = setInterval(() => {
+                    timeLeft--;
+                    timerDisplay.textContent = timeLeft;
+                    if (timeLeft <= 0) {
+                        clearInterval(cardTimer);
+                        const card = document.querySelector('.card');
+                        if (card) checkAnswer(false, card);
+                    }
+                }, 1000);
+            }
+            
+            function endGame() {
+                gameActive = false;
+                finalScore.textContent = score;
+                highScore = localStorage.getItem('wordMatchHighScore') || 0;
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('wordMatchHighScore', highScore);
+                }
+                highScoreEndDisplay.textContent = highScore;
+                
+                setTimeout(() => {
+                    endScreen.classList.add('show');
+                }, 500);
+            }
+            
+            // Button Event Listeners
+            dislikeButton.addEventListener('click', () => {
+                const card = document.querySelector('.card');
+                if (card) checkAnswer(false, card);
+            });
+            
+            likeButton.addEventListener('click', () => {
+                const card = document.querySelector('.card');
+                if (card) checkAnswer(true, card);
+            });
+            
+            restartButton.addEventListener('click', showStartScreen);
+            
+            // Initial Load
+            showStartScreen();
+        });
+    </script>
+</body>
+</html>
