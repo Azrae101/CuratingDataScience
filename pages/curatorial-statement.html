@@ -5,6 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curatorial Statement - Curating Data Exhibition</title>
     <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #e9ecef;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .curatorial-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .statement-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .statement-header:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .statement-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .statement-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .statement-metadata {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .metadata-item i {
+            color: var(--secondary);
+        }
+        
+        .statement-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+        
+        .statement-main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .statement-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .statement-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .statement-section h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        .statement-section p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+        
+        .key-concepts {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        .key-concepts h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .concept-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+        
+        .concept-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .concept-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        .statement-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .sidebar-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .sidebar-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sidebar-card h3:before {
+            content: "";
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+        
+        .themes-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .themes-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        
+        .themes-list li:before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        
+        .themes-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .reflection-quote {
+            background: linear-gradient(135deg, #f8f0ff 0%, #f0e6ff 100%);
+            padding: 1.8rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .reflection-quote p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.8rem;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .exhibition-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .nav-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .nav-button.next {
+            margin-left: auto;
+        }
+        
+        @media (max-width: 900px) {
+            .statement-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .statement-sidebar {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .statement-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .statement-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .statement-section {
+                padding: 1.8rem;
+            }
+            
+            .concepts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .exhibition-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,7 +321,7 @@
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
-                <li><a href="assignments/assignment1.html">Assignments</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
                 <li><a href="notes.html">Notes</a></li>
                 <li><a href="games.html">Games</a></li>
                 <li><a href="datasets.html">Datasets</a></li>
@@ -22,44 +330,147 @@
         </nav>
     </header>
 
-    <main>
-        <article class="curatorial-statement">
+    <main class="curatorial-container">
+        <div class="statement-header">
             <h1>Curatorial Statement</h1>
-            
-            <section class="introduction">
-                <h2>Introduction</h2>
-                <p>This exhibition represents my journey through the Curating Data course, where I've explored the complex relationship between data, knowledge, and curation practices...</p>
-            </section>
+            <p class="statement-subtitle">Making Sense of a Semester in Data Curation</p>
+            <div class="statement-metadata">
+                <div class="metadata-item">
+                    <i>📅</i> <span>Curating Data Course, Fall 2025</span>
+                </div>
+                <div class="metadata-item">
+                    <i>👤</i> <span>Clara Holst, Cognitive Science Student</span>
+                </div>
+                <div class="metadata-item">
+                    <i>🏛️</i> <span>Aarhus University</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="statement-content">
+            <div class="statement-main">
+                <section class="statement-section">
+                    <h2>Introduction</h2>
+                    <p>This digital exhibition represents my semester-long journey through the Curating Data course, where I've explored the complex relationship between data, knowledge, and curation practices. As a Cognitive Science student, I approached this course with a particular interest in how humans process, organize, and make sense of information.</p>
+                    <p>Throughout this semester, I've engaged with various forms of data—from structured datasets to personal notes and creative assignments—transforming them into a cohesive exhibition that reflects my learning trajectory. This statement serves as both a guide to the exhibition and a reflection on my curatorial process.</p>
+                </section>
 
-            <section class="theoretical-framework">
-                <h2>Theoretical Framework</h2>
-                <p>Drawing from critical data studies (Dalton & Thatcher, 2014; Kitchin, 2022), this exhibition challenges the notion of "raw data" and explores how curation shapes knowledge...</p>
-                
-                <div class="key-concepts">
-                    <h3>Key Concepts</h3>
-                    <ul>
-                        <li>Data Assemblages (Kitchin)</li>
-                        <li>DIKW Hierarchy (Ackoff, Rowley)</li>
-                        <li>Posthuman Curating (Tyzlik-Carver)</li>
-                        <li>Datastructuring (Flyverbom & Murray)</li>
+                <section class="statement-section">
+                    <h2>Theoretical Framework</h2>
+                    <p>Drawing from critical data studies (Dalton & Thatcher, 2014; Kitchin, 2022), this exhibition challenges the notion of "raw data" and explores how curation shapes knowledge. My approach is informed by several key theoretical perspectives that have guided my curatorial decisions.</p>
+                    
+                    <div class="key-concepts">
+                        <h3>Key Theoretical Concepts</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <h4>Data Assemblages</h4>
+                                <p>Kitchin's concept of data as complex systems rather than simple collections</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>DIKW Hierarchy</h4>
+                                <p>Ackoff and Rowley's framework for understanding data-to-knowledge transformation</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Posthuman Curating</h4>
+                                <p>Tyzlik-Carver's perspective on curation beyond human-centered approaches</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Datastructuring</h4>
+                                <p>Flyverbom & Murray's concept of how data shapes organizational structures</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="statement-section">
+                    <h2>Exhibition Structure</h2>
+                    <p>The exhibition is organized around four main themes that emerged from my semester's work, each representing a different facet of the data curation process:</p>
+                    
+                    <div class="key-concepts">
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <h4>Collecting</h4>
+                                <p>Exploring how real-world phenomena become data through selective capture and representation</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Categorizing</h4>
+                                <p>Examining classification systems as forms of knowledge-making rather than neutral organization</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Visualizing</h4>
+                                <p>Investigating how visual representations shape our understanding of data</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Archiving</h4>
+                                <p>Considering preservation practices and their implications for future access</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>Each section of the exhibition contains assignments, notes, and reflections that demonstrate my engagement with these themes, creating a multi-layered exploration of data curation practices.</p>
+                </section>
+
+                <section class="statement-section">
+                    <h2>Critical Reflection</h2>
+                    <p>Reflecting on Okwui Enwezor's definition of curating as "participating and witnessing histories unfold," this exhibition documents my own unfolding understanding of data curation. The process of curating my semester's work has itself been an act of knowledge creation, forcing me to make explicit the connections between disparate elements of my learning.</p>
+                    
+                    <div class="reflection-quote">
+                        <p>"Curating is not just about selecting and arranging objects, but about creating relationships between them that generate new meanings and insights."</p>
+                        <div class="quote-author">— My interpretation of Enwezor's approach</div>
+                    </div>
+                    
+                    <p>Through this exhibition, I've come to understand curation as an active, interpretive practice that shapes how knowledge is encountered and understood. The decisions I've made about what to include, how to categorize items, and what connections to highlight are not neutral—they reflect my particular perspective as a Cognitive Science student interested in human-information interaction.</p>
+                </section>
+            </div>
+            
+            <div class="statement-sidebar">
+                <div class="sidebar-card">
+                    <h3>Exhibition Themes</h3>
+                    <ul class="themes-list">
+                        <li>Data Collection & Representation</li>
+                        <li>Classification & Knowledge Making</li>
+                        <li>Visualization & Interpretation</li>
+                        <li>Preservation & Access</li>
+                        <li>Ethics of Data Curation</li>
                     </ul>
                 </div>
-            </section>
-
-            <section class="exhibition-structure">
-                <h2>Exhibition Structure</h2>
-                <p>The exhibition is organized around four main themes that emerged from my semester's work...</p>
-            </section>
-
-            <section class="critical-reflection">
-                <h2>Critical Reflection</h2>
-                <p>Reflecting on Okwui Enwezor's definition of curating as "participating and witnessing histories unfold," this exhibition documents my own unfolding understanding of data curation...</p>
-            </section>
-        </article>
+                
+                <div class="sidebar-card">
+                    <h3>Featured Elements</h3>
+                    <ul class="themes-list">
+                        <li>Assignment Portfolio</li>
+                        <li>Obsidian Notes Archive</li>
+                        <li>Data Visualization Projects</li>
+                        <li>Critical Reflections</li>
+                        <li>Interactive Elements</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Course Connections</h3>
+                    <ul class="themes-list">
+                        <li>Theory Readings</li>
+                        <li>Practical Exercises</li>
+                        <li>Peer Collaborations</li>
+                        <li>Instructor Feedback</li>
+                        <li>Personal Extensions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exhibition-navigation">
+            <a href="../index.html" class="nav-button">
+                <span>←</span> Back to Home
+            </a>
+            <a href="assignments.html" class="nav-button next">
+                View Assignments <span>→</span>
+            </a>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Curating Data Exhibition</p>
+        <p>&copy; 2025 Curating Data Exhibition | Clara Holst</p>
     </footer>
 </body>
 </html>
