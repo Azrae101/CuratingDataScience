@@ -135,51 +135,90 @@
             color: #555;
         }
         
-        .coin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        /* Wheel Container */
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
         }
         
-        .coin-item {
+        .wheel-wrapper {
             position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            background: white;
-            cursor: pointer;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
         }
         
-        .coin-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .coin-image {
+        .wheel {
+            position: relative;
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
+            height: 100%;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 3px solid #3498db;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
         }
         
-        .coin-info {
-            padding: 1rem;
+        .coin-slot {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
             background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            transform-origin: center;
+        }
+        
+        .coin-slot:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+        
+        .coin-slot-content {
+            text-align: center;
+            padding: 5px;
         }
         
         .coin-id {
             font-weight: 600;
+            font-size: 0.8rem;
             color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
         }
         
-        .coin-year, .coin-country {
-            font-size: 0.8rem;
+        .coin-year {
+            font-size: 0.7rem;
             color: #666;
-            margin-bottom: 0.25rem;
+        }
+        
+        .wheel-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .wheel-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .wheel-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
         }
         
         /* Modal styles */
@@ -271,28 +310,65 @@
             color: #2c3e50;
         }
         
-        /* Filter controls */
-        .filter-controls {
+        /* Spreadsheet View */
+        .spreadsheet-view {
+            margin-top: 3rem;
+        }
+        
+        .spreadsheet-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            margin-top: 1rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        
+        .data-table th {
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+        }
+        
+        .data-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .data-table tr:hover {
+            background: #e9ecef;
+        }
+        
+        .view-toggle {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
         
-        .filter-select {
-            padding: 8px 12px;
-            border-radius: 5px;
+        .toggle-btn {
+            background: #f8f9fa;
             border: 1px solid #ddd;
-            background: white;
-            min-width: 150px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
-        .search-input {
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            flex-grow: 1;
-            min-width: 200px;
+        .toggle-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
         }
         
         @media (max-width: 768px) {
@@ -319,17 +395,26 @@
                 padding: 1.5rem;
             }
             
-            .coin-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 1rem;
+            .wheel-wrapper {
+                width: 300px;
+                height: 300px;
             }
             
-            .filter-controls {
-                flex-direction: column;
+            .coin-slot {
+                width: 60px;
+                height: 60px;
             }
             
-            .search-input {
-                min-width: 100%;
+            .coin-id {
+                font-size: 0.7rem;
+            }
+            
+            .coin-year {
+                font-size: 0.6rem;
+            }
+            
+            .modal-details {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -392,41 +477,55 @@
             <div class="section coin-gallery">
                 <h2>Coin Collection Gallery</h2>
                 <p class="gallery-description">
-                    Below is a visual representation of the Holst Family Coin Collection. Each coin has been systematically photographed and catalogued as part of the data curation process. Click on any coin to view more details.
+                    Explore the Holst Family Coin Collection through an interactive visualization. Each coin in the wheel represents a data point in the collection, illustrating the transformation of physical objects into structured digital data. Click on any coin to view its details.
                 </p>
                 
-                <!-- Filter Controls -->
-                <div class="filter-controls">
-                    <select class="filter-select" id="country-filter">
-                        <option value="all">All Countries</option>
-                        <option value="denmark">Denmark</option>
-                        <option value="norway">Norway</option>
-                        <option value="sweden">Sweden</option>
-                        <option value="germany">Germany</option>
-                    </select>
-                    
-                    <select class="filter-select" id="year-filter">
-                        <option value="all">All Years</option>
-                        <option value="1800-1850">1800-1850</option>
-                        <option value="1851-1900">1851-1900</option>
-                        <option value="1901-1950">1901-1950</option>
-                        <option value="1951-2000">1951-2000</option>
-                        <option value="2001-present">2001-present</option>
-                    </select>
-                    
-                    <input type="text" class="search-input" id="coin-search" placeholder="Search coins...">
+                <div class="view-toggle">
+                    <button class="toggle-btn active" id="wheel-view-btn">Wheel View</button>
+                    <button class="toggle-btn" id="table-view-btn">Table View</button>
                 </div>
                 
-                <!-- Coin Grid -->
-                <div class="coin-grid" id="coin-grid">
-                    <!-- Coin items will be dynamically inserted here by JavaScript -->
+                <!-- Wheel View -->
+                <div class="wheel-container" id="wheel-view">
+                    <div class="wheel-wrapper">
+                        <div class="wheel" id="coin-wheel">
+                            <!-- Coin slots will be dynamically inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="wheel-controls">
+                        <button class="wheel-btn" id="spin-btn">Spin Wheel</button>
+                        <button class="wheel-btn" id="reset-btn">Reset</button>
+                    </div>
                 </div>
                 
-                <p class="gallery-description">
-                    The gallery above demonstrates the transformation of physical objects into a structured digital archive. Each coin image represents not just a numismatic artifact, but also a data point in the broader collection, illustrating the process of datafication discussed in the assignment.
-                </p>
+                <!-- Table View -->
+                <div class="spreadsheet-view" id="table-view" style="display: none;">
+                    <div class="spreadsheet-container">
+                        <table class="data-table" id="coin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Year</th>
+                                    <th>Country</th>
+                                    <th>Monarch</th>
+                                    <th>Value</th>
+                                    <th>Material</th>
+                                    <th>Weight</th>
+                                    <th>Diameter</th>
+                                    <th>Condition</th>
+                                    <th>Rarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table rows will be dynamically inserted by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
+            <!-- Rest of your content sections remain the same -->
             <div class="section">
                 <h2>1. Process of Collecting, Digitising, and Datafying</h2>
                 <p>The project began with the Holst Family Coin Collection of 75 coins. Each coin was systematically photographed on both sides with a OnePlus 8T and measured (weight, diameter) using digital tools. These physical and contextual details (monarch, mint, catalog reference) were entered into Google Sheets. Later on, 6 duplicates of existing coins in the collection were excluded.</p>
@@ -476,9 +575,8 @@
     <div class="modal-overlay" id="coin-modal">
         <div class="modal-content">
             <div class="modal-close" id="modal-close">&times;</div>
-            <img src="" alt="" class="modal-image" id="modal-image">
             <div class="modal-info">
-                <h2 class="modal-title" id="modal-title">Coin Title</h2>
+                <h2 class="modal-title" id="modal-title">Coin Details</h2>
                 <div class="modal-details" id="modal-details">
                     <!-- Details will be populated by JavaScript -->
                 </div>
@@ -491,139 +589,171 @@
     </footer>
 
     <script>
-        // Sample coin data - you would replace this with actual data from your collection
+        // Coin data extracted from your CSV
         const coinData = [
-            {
-                id: "CH001",
-                image: "assets/images/coins_output/IMG_20250921_204539.jpg",
-                country: "Denmark",
-                year: 1874,
-                monarch: "Christian IX",
-                material: "Silver",
-                weight: "15.6g",
-                diameter: "33mm",
-                condition: "Fine",
-                rarity: "25/100",
-                currentWorth: "75 DKK"
-            },
-            {
-                id: "CH002",
-                image: "assets/images/coins_output/IMG_20250921_204540.jpg",
-                country: "Denmark",
-                year: 1912,
-                monarch: "Frederik VIII",
-                material: "Silver",
-                weight: "7.5g",
-                diameter: "25mm",
-                condition: "Very Fine",
-                rarity: "40/100",
-                currentWorth: "120 DKK"
-            },
-            {
-                id: "CH003",
-                image: "assets/images/coins_output/IMG_20250921_204541.jpg",
-                country: "Norway",
-                year: 1907,
-                monarch: "Haakon VII",
-                material: "Silver",
-                weight: "12.0g",
-                diameter: "30mm",
-                condition: "Good",
-                rarity: "35/100",
-                currentWorth: "95 DKK"
-            },
-            {
-                id: "CH004",
-                image: "assets/images/coins_output/IMG_20250921_204542.jpg",
-                country: "Sweden",
-                year: 1897,
-                monarch: "Oscar II",
-                material: "Silver",
-                weight: "7.5g",
-                diameter: "25mm",
-                condition: "Very Fine",
-                rarity: "30/100",
-                currentWorth: "85 DKK"
-            },
-            {
-                id: "CH005",
-                image: "assets/images/coins_output/IMG_20250921_204543.jpg",
-                country: "Germany",
-                year: 1901,
-                monarch: "Wilhelm II",
-                material: "Silver",
-                weight: "5.5g",
-                diameter: "23mm",
-                condition: "Fine",
-                rarity: "20/100",
-                currentWorth: "60 DKK"
-            },
-            {
-                id: "CH006",
-                image: "assets/images/coins_output/IMG_20250921_204544.jpg",
-                country: "Denmark",
-                year: 1973,
-                monarch: "Margrethe II",
-                material: "Copper-Nickel",
-                weight: "9.2g",
-                diameter: "27mm",
-                condition: "Extremely Fine",
-                rarity: "10/100",
-                currentWorth: "25 DKK"
-            },
-            // Add more coins as needed
+            {id: "1", year: "1915", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)", material: "Silver (.800)", weight: "15 g", diameter: "31 mm", condition: "Good", rarity: "23", currentWorth: "348 - 388 USD"},
+            {id: "2", year: "1925", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)", material: "Aluminium bronze", weight: "13 g", diameter: "31 mm", condition: "Good", rarity: "8", currentWorth: "15 - 200 USD"},
+            {id: "3", year: "1934", country: "Denmark", monarch: "Christian X", value: "1 krone (dkk)", material: "Aluminium bronze", weight: "6.5 g", diameter: "25.5 mm", condition: "Good", rarity: "7", currentWorth: "3 - 60 USD"},
+            {id: "4", year: "1947", country: "Norway", monarch: "Haakon VII", value: "10 øre (nkk)", material: "Copper-nickel", weight: "1.50 g", diameter: "15 mm", condition: "Good", rarity: "5", currentWorth: "2 - 39 USD"},
+            {id: "5", year: "1955", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "4 - 15 USD"},
+            {id: "6", year: "1961", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 35 USD"},
+            {id: "7", year: "1962", country: "Norway", monarch: "Olav V R", value: "1 krone (nkk)", material: "Copper-nickel", weight: "7 g", diameter: "25 mm", condition: "Good", rarity: "4", currentWorth: "2 - 44 USD"},
+            {id: "8", year: "1963", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)", material: "Bronze", weight: "6 g", diameter: "24 mm", condition: "Bad", rarity: "3", currentWorth: "1 - 51 USD"},
+            {id: "9", year: "1970", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)", material: "Nickel", weight: "1.5 g", diameter: "15 mm", condition: "Good", rarity: "2", currentWorth: "3 - 90 USD"},
+            {id: "10", year: "1970", country: "Japan", monarch: "Emperor Hirohito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "1 - 15 USD"},
+            {id: "11", year: "1970", country: "The Netherlands", monarch: "Juliana", value: "10 cent (nlg)", material: "Bronze", weight: "6 g", diameter: "24 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 24 USD"},
+            {id: "12", year: "1971", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)", material: "Copper-nickel", weight: "15 g", diameter: "33 mm", condition: "Good", rarity: "5", currentWorth: "4 - 33 USD"},
+            {id: "13", year: "1971", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)", material: "Aluminium", weight: "1 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "7 USD"},
+            {id: "14", year: "1972", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)", material: "Copper-nickel", weight: "15 g", diameter: "33 mm", condition: "Good", rarity: "5", currentWorth: "2 - 20 USD"},
+            {id: "15", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Bad", rarity: "3", currentWorth: "1 - 25 USD"},
+            {id: "16", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "1 - 25 USD"},
+            {id: "17", year: "1977", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Horrible", rarity: "3", currentWorth: "1 - 10 USD"},
+            {id: "18", year: "1977", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)", material: "Aluminium", weight: "1 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "14 USD"},
+            {id: "19", year: "1979", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "3 - 250 USD"},
+            {id: "20", year: "1980", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)", material: "Aluminium", weight: "1 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "15 USD"},
+            {id: "21", year: "1980", country: "USA", monarch: "Thomas Jefferson", value: "5 cent (usd)", material: "Copper-nickel", weight: "5 g", diameter: "21.2 mm", condition: "Good", rarity: "2", currentWorth: "1 - 4 USD"},
+            {id: "22", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 35 USD"},
+            {id: "23", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 25 USD"},
+            {id: "24", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 25 USD"},
+            {id: "25", year: "1982", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)", material: "Copper-nickel", weight: "4.3 g", diameter: "23 mm", condition: "Good", rarity: "4", currentWorth: "1 - 26 USD"},
+            {id: "26", year: "1983", country: "Jugoslavia", monarch: "Socialist Federal Republic", value: "50 Paras", material: "Manganese brass", weight: "2.85 g", diameter: "19 mm", condition: "Good", rarity: "5", currentWorth: "7 - 12 USD"},
+            {id: "27", year: "1984", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "1 - 10 USD"},
+            {id: "28", year: "1984", country: "Italy", monarch: "Republic", value: "500 lire", material: "Bi-metallic", weight: "6.8 g", diameter: "25.8 mm", condition: "Good", rarity: "27", currentWorth: "0.5 - 25 USD"},
+            {id: "29", year: "1986", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "2 - 6 USD"},
+            {id: "30", year: "1987", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 15 USD"},
+            {id: "31", year: "1987", country: "Spain", monarch: "King Juan Carlos I", value: "1 peseta", material: "Aluminium", weight: "1.2 g", diameter: "21 mm", condition: "Good", rarity: "32", currentWorth: "1 - 180 USD"},
+            {id: "32", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)", material: "Copper-nickel", weight: "6.8 g", diameter: "25.5 mm", condition: "Good", rarity: "4", currentWorth: "2 - 12 USD"},
+            {id: "33", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "2 - 30 USD"},
+            {id: "34", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)", material: "Copper-nickel", weight: "4.3 g", diameter: "23 mm", condition: "Good", rarity: "4", currentWorth: "4 - 9 USD"},
+            {id: "35", year: "1989", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23.25 mm", condition: "Good", rarity: "5", currentWorth: "1 - 26 USD"},
+            {id: "36", year: "1990", country: "BRD Germany", monarch: "Federal Republic of Germany", value: "5 Pfennig", material: "Brass clad steel", weight: "3 g", diameter: "18.5 mm", condition: "Good", rarity: "2", currentWorth: "4 - 5 USD"},
+            {id: "37", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23.25 mm", condition: "Good", rarity: "5", currentWorth: "2 - 300 USD"},
+            {id: "38", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "9.3 g", diameter: "27 mm", condition: "Good", rarity: "5", currentWorth: "2 - 200 USD"},
+            {id: "39", year: "1991", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "1 - 15 USD"},
+            {id: "40", year: "1992", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)", material: "Copper-nickel", weight: "6 g", diameter: "24.5 mm", condition: "Good", rarity: "3", currentWorth: "1 - 28 USD"},
+            {id: "41", year: "1994", country: "Denmark", monarch: "Margrethe II", value: "50 øre (dkk)", material: "Bronze", weight: "4.3 g", diameter: "21.5 mm", condition: "Good", rarity: "3", currentWorth: "1 - 6 USD"},
+            {id: "42", year: "1998", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "9.3 g", diameter: "27 mm", condition: "Good", rarity: "7", currentWorth: "3 - 14 USD"},
+            {id: "43", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)", material: "Copper-nickel", weight: "6 g", diameter: "24.5 mm", condition: "Good", rarity: "3", currentWorth: "5 - 15 USD"},
+            {id: "44", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)", material: "Copper-nickel", weight: "9.2 g", diameter: "28.5 mm", condition: "Good", rarity: "4", currentWorth: "9 - 30 USD"},
+            {id: "45", year: "2002", country: "Austria", monarch: "Second Republic", value: "1 euro", material: "Bimetallic", weight: "7.5 g", diameter: "23.25 mm", condition: "Good", rarity: "4", currentWorth: "3 - 696 USD"},
+            {id: "46", year: "2002", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
+            {id: "47", year: "2002", country: "Germany", monarch: "Federal Republic of Germany", value: "0.10 euro", material: "Nordic gold", weight: "4 g", diameter: "20 mm", condition: "Good", rarity: "3", currentWorth: "1 - 575 USD"},
+            {id: "48", year: "2002", country: "Greece", monarch: "Third Hellenic Republic", value: "50 Cent (euro)", material: "Nordic gold", weight: "7.8 g", diameter: "24 mm", condition: "Good", rarity: "4", currentWorth: "3 - 250 USD"},
+            {id: "49", year: "2003", country: "Austria", monarch: "Second Republic", value: "5 cent (euro)", material: "Copper plated steel", weight: "4 g", diameter: "21 mm", condition: "Good", rarity: "3", currentWorth: "2 - 4 USD"},
+            {id: "50", year: "2003", country: "Italy", monarch: "Republic", value: "2 euro", material: "Bimetallic", weight: "8.5 g", diameter: "26 mm", condition: "Good", rarity: "3", currentWorth: "4 - 452 USD"},
+            {id: "51", year: "2004", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
+            {id: "52", year: "2004", country: "Germany", monarch: "Federal Republic", value: "50 cent (euro)", material: "Nordic gold", weight: "8 g", diameter: "24 mm", condition: "Good", rarity: "3", currentWorth: "1 - 3 USD"},
+            {id: "53", year: "2004", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "100 - 128 USD"},
+            {id: "54", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium-Bronze", weight: "8.7 g", diameter: "22 mm", condition: "Good", rarity: "17", currentWorth: "2.5 - 15 USD"},
+            {id: "55", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium-Bronze", weight: "8.7 g", diameter: "22 mm", condition: "Good", rarity: "17", currentWorth: "2.5 - 15 USD"},
+            {id: "56", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium-Bronze", weight: "9.3 g", diameter: "26.8 mm", condition: "Good", rarity: "20", currentWorth: "3 - 5 USD"},
+            {id: "57", year: "2007", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
+            {id: "58", year: "2008", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
+            {id: "59", year: "2013", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "9.3 g", diameter: "27 mm", condition: "Very Good", rarity: "24", currentWorth: "8 - 75 USD"},
+            {id: "60", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)", material: "Copper-nickel", weight: "3.6 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "1 - 2 USD"},
+            {id: "61", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Very Good", rarity: "9", currentWorth: "3 - 12 USD"},
+            {id: "62", year: "2017", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
+            {id: "63", year: "2017", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "1 - 128 USD"},
+            {id: "64", year: "2019", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)", material: "Copper-nickel", weight: "9 g", diameter: "28 mm", condition: "Good", rarity: "4", currentWorth: "1 - 2 USD"},
+            {id: "65", year: "2020", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "10 g", diameter: "27 mm", condition: "Very Good", rarity: "23", currentWorth: "6 - 108 USD"},
+            {id: "66", year: "2020", country: "Japan", monarch: "Emperor Naruhito", value: "¥100 Yen (JPY)", material: "Copper, Nickel", weight: "5 g", diameter: "23 mm", condition: "Very Good", rarity: "14", currentWorth: "4 - 71 USD"},
+            {id: "67", year: "2023", country: "Poland", monarch: "Third Republic", value: "5 Groszy (zł)", material: "Brass plated steel", weight: "3 g", diameter: "19.6 mm", condition: "Good", rarity: "5", currentWorth: "0.20 - 1.50 USD"},
+            {id: "68", year: "1948-1972", country: "Denmark", monarch: "Frederik IX", value: "2 øre (dkk)", material: "Zinc", weight: "3 g", diameter: "20 mm", condition: "Horrible", rarity: "4", currentWorth: "1 - 180 USD"},
+            {id: "69", year: "1960-1970", country: "Denmark", monarch: "King Frederick IX", value: "No currency value", material: "Brass", weight: "3 g", diameter: "20.5 mm", condition: "Good", rarity: "41", currentWorth: "5 - 31 USD"}
         ];
 
         // DOM elements
-        const coinGrid = document.getElementById('coin-grid');
+        const coinWheel = document.getElementById('coin-wheel');
+        const spinBtn = document.getElementById('spin-btn');
+        const resetBtn = document.getElementById('reset-btn');
         const coinModal = document.getElementById('coin-modal');
         const modalClose = document.getElementById('modal-close');
-        const modalImage = document.getElementById('modal-image');
         const modalTitle = document.getElementById('modal-title');
         const modalDetails = document.getElementById('modal-details');
-        const countryFilter = document.getElementById('country-filter');
-        const yearFilter = document.getElementById('year-filter');
-        const coinSearch = document.getElementById('coin-search');
+        const wheelViewBtn = document.getElementById('wheel-view-btn');
+        const tableViewBtn = document.getElementById('table-view-btn');
+        const wheelView = document.getElementById('wheel-view');
+        const tableView = document.getElementById('table-view');
+        const coinTable = document.querySelector('#coin-table tbody');
 
-        // Render coins in the grid
-        function renderCoins(coins) {
-            coinGrid.innerHTML = '';
+        let currentRotation = 0;
+        let isSpinning = false;
+
+        // Initialize the wheel
+        function initWheel() {
+            coinWheel.innerHTML = '';
             
-            coins.forEach(coin => {
-                const coinItem = document.createElement('div');
-                coinItem.className = 'coin-item';
-                coinItem.innerHTML = `
-                    <img src="${coin.image}" alt="${coin.id}" class="coin-image">
-                    <div class="coin-info">
+            const totalCoins = coinData.length;
+            const radius = 200; // radius of the wheel
+            
+            coinData.forEach((coin, index) => {
+                const angle = (index / totalCoins) * 2 * Math.PI;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                const coinSlot = document.createElement('div');
+                coinSlot.className = 'coin-slot';
+                coinSlot.style.left = `calc(50% + ${x}px)`;
+                coinSlot.style.top = `calc(50% + ${y}px)`;
+                coinSlot.style.transform = `translate(-50%, -50%)`;
+                
+                coinSlot.innerHTML = `
+                    <div class="coin-slot-content">
                         <div class="coin-id">${coin.id}</div>
-                        <div class="coin-country">${coin.country}</div>
                         <div class="coin-year">${coin.year}</div>
                     </div>
                 `;
                 
-                coinItem.addEventListener('click', () => openModal(coin));
-                coinGrid.appendChild(coinItem);
+                coinSlot.addEventListener('click', () => openModal(coin));
+                coinWheel.appendChild(coinSlot);
             });
+        }
+
+        // Spin the wheel
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            const spinAmount = 1800 + Math.random() * 1800; // Random spin between 1800-3600 degrees
+            currentRotation += spinAmount;
+            
+            coinWheel.style.transform = `rotate(${currentRotation}deg)`;
+            
+            setTimeout(() => {
+                isSpinning = false;
+            }, 4000); // Match with CSS transition duration
+        }
+
+        // Reset the wheel
+        function resetWheel() {
+            currentRotation = 0;
+            coinWheel.style.transform = `rotate(${currentRotation}deg)`;
         }
 
         // Open modal with coin details
         function openModal(coin) {
-            modalImage.src = coin.image;
-            modalImage.alt = coin.id;
-            modalTitle.textContent = `${coin.id} - ${coin.country} ${coin.year}`;
+            modalTitle.textContent = `Coin ${coin.id} - ${coin.country} ${coin.year}`;
             
             modalDetails.innerHTML = `
                 <div class="detail-item">
-                    <span class="detail-label">Country:</span>
-                    <span class="detail-value">${coin.country}</span>
+                    <span class="detail-label">ID:</span>
+                    <span class="detail-value">${coin.id}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Year:</span>
                     <span class="detail-value">${coin.year}</span>
                 </div>
                 <div class="detail-item">
+                    <span class="detail-label">Country:</span>
+                    <span class="detail-value">${coin.country}</span>
+                </div>
+                <div class="detail-item">
                     <span class="detail-label">Monarch:</span>
                     <span class="detail-value">${coin.monarch}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Value:</span>
+                    <span class="detail-value">${coin.value}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Material:</span>
@@ -643,7 +773,7 @@
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Rarity:</span>
-                    <span class="detail-value">${coin.rarity}</span>
+                    <span class="detail-value">${coin.rarity}/100</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Current Worth:</span>
@@ -659,49 +789,49 @@
             coinModal.classList.remove('active');
         }
 
-        // Filter coins based on selected criteria
-        function filterCoins() {
-            const countryValue = countryFilter.value;
-            const yearValue = yearFilter.value;
-            const searchValue = coinSearch.value.toLowerCase();
+        // Initialize table view
+        function initTableView() {
+            coinTable.innerHTML = '';
             
-            let filteredCoins = coinData.filter(coin => {
-                // Country filter
-                if (countryValue !== 'all' && coin.country.toLowerCase() !== countryValue) {
-                    return false;
-                }
+            coinData.forEach(coin => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${coin.id}</td>
+                    <td>${coin.year}</td>
+                    <td>${coin.country}</td>
+                    <td>${coin.monarch}</td>
+                    <td>${coin.value}</td>
+                    <td>${coin.material}</td>
+                    <td>${coin.weight}</td>
+                    <td>${coin.diameter}</td>
+                    <td>${coin.condition}</td>
+                    <td>${coin.rarity}/100</td>
+                `;
                 
-                // Year filter
-                if (yearValue !== 'all') {
-                    const yearRanges = {
-                        '1800-1850': coin.year >= 1800 && coin.year <= 1850,
-                        '1851-1900': coin.year >= 1851 && coin.year <= 1900,
-                        '1901-1950': coin.year >= 1901 && coin.year <= 1950,
-                        '1951-2000': coin.year >= 1951 && coin.year <= 2000,
-                        '2001-present': coin.year >= 2001
-                    };
-                    
-                    if (!yearRanges[yearValue]) {
-                        return false;
-                    }
-                }
-                
-                // Search filter
-                if (searchValue && 
-                    !coin.id.toLowerCase().includes(searchValue) &&
-                    !coin.country.toLowerCase().includes(searchValue) &&
-                    !coin.monarch.toLowerCase().includes(searchValue) &&
-                    !coin.material.toLowerCase().includes(searchValue)) {
-                    return false;
-                }
-                
-                return true;
+                row.addEventListener('click', () => openModal(coin));
+                coinTable.appendChild(row);
             });
-            
-            renderCoins(filteredCoins);
+        }
+
+        // Switch to wheel view
+        function showWheelView() {
+            wheelView.style.display = 'block';
+            tableView.style.display = 'none';
+            wheelViewBtn.classList.add('active');
+            tableViewBtn.classList.remove('active');
+        }
+
+        // Switch to table view
+        function showTableView() {
+            wheelView.style.display = 'none';
+            tableView.style.display = 'block';
+            wheelViewBtn.classList.remove('active');
+            tableViewBtn.classList.add('active');
         }
 
         // Event listeners
+        spinBtn.addEventListener('click', spinWheel);
+        resetBtn.addEventListener('click', resetWheel);
         modalClose.addEventListener('click', closeModal);
         coinModal.addEventListener('click', (e) => {
             if (e.target === coinModal) {
@@ -709,13 +839,13 @@
             }
         });
         
-        countryFilter.addEventListener('change', filterCoins);
-        yearFilter.addEventListener('change', filterCoins);
-        coinSearch.addEventListener('input', filterCoins);
+        wheelViewBtn.addEventListener('click', showWheelView);
+        tableViewBtn.addEventListener('click', showTableView);
 
         // Initialize the gallery
         document.addEventListener('DOMContentLoaded', () => {
-            renderCoins(coinData);
+            initWheel();
+            initTableView();
         });
     </script>
 </body>

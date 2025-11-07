@@ -256,16 +256,12 @@
     <link rel="icon" href="{{ url_for('static', filename='icon.png') }}">
 </head>
 <body>
-    <!-- Music Control -->
-    <div class="music-control" id="musicControl">
-        <i class="fas fa-music"></i>
-    </div>
 
     <div class="containertitle">
         <h1>CogCards Quiz</h1>
-        <p class="subtitle">Test your knowledge of the {{ deck_title }} terms!</p>
+        <p class="subtitle">Test your knowledge of the Critical Data Studies terms!</p>
         <div class="deck-info">
-            <i class="fas fa-layer-group"></i> Deck: {{ deck_title }}
+            <i class="fas fa-layer-group"></i> Deck: Curating Data
         </div>
     </div>
 
@@ -284,8 +280,8 @@
             </div>
         </div>
         
-        <button class="back-btn" onclick="window.location.href='{{ url_for('minigames') }}?deck_id={{ deck.id if deck else deck_id if deck_id else 'test' }}'">
-            <i class="fas fa-arrow-left"></i> Back to Minigames
+        <button class="back-btn" onclick="window.location.href='games.html'">
+            <i class="fas fa-arrow-left"></i> Back to Menu
         </button>
 
         <button class="replay-btn" id="replayButton" style="display: none;">
@@ -297,137 +293,142 @@
         <source src="/static/music.mp3" type="audio/mpeg">
     </audio>
     <script>
-        const originalCards = {{ cards | tojson | safe }};
-        const allTerms = originalCards.map(c => c.term);
-        const allDefs = originalCards.map(c => c.definition);
+        const originalCards = {
+            "title": "Curating Data Readings",
+            "creator": "DataCurator",
+            "cards": [
+                {"term": "Critical Data Studies", "definition": "A field that examines the cultural, ethical, and political dimensions of data. It rejects the view of data as neutral and instead investigates how data is generated, curated, and exerts power within sociotechnical systems."},
+                {"term": "Data Assemblage", "definition": "The complex, interconnected sociotechnical system that produces and gives meaning to data. It includes thought, knowledge, finance, politics, materiality, practices, organizations, and laws."},
+                {"term": "Raw Data is an Oxymoron", "definition": "The concept that data is never truly raw or untouched. It is always cooked/shaped, framed, and interpreted by human choices, tools, and disciplinary norms before it can function as data."},
+                {"term": "Technological Determinism", "definition": "The flawed belief that technology (like Big Data) autonomously drives social change. CDS argues that technology is a product of society that in turn shapes it."},
+                {"term": "Apophenia", "definition": "The human tendency to perceive meaningful patterns or connections in random or meaningless data. A significant risk when analyzing large datasets (Check: spurious correlations website)."},
+                {"term": "Big Data", "definition": "Datasets that are too large or complex to be processed by traditional software. Characterized by volume, velocity, and variety, and generated continuously."},
+                {"term": "Small Data", "definition": "Data that is only generated infrequently (e.g., a national census every 10 years) using inflexible methods."},
+                {"term": "Data Holding", "definition": "Informal, often personal storage of data (e.g., backups, personal files). Lacks metadata, standards, and long-term preservation planning."},
+                {"term": "Data Archive", "definition": "A formal, curated, and documented collection of data intended for long-term preservation and reuse. Includes data, metadata, and context, and is managed by specialists."},
+                {"term": "Trusted Digital Repository (TDR)", "definition": "A certified digital repository that ensures long-term access to data, complying with standards like the Open Archival Information System (OAIS) model."},
+                {"term": "Cyber-infrastructure", "definition": "Large-scale, standardized, and interoperable data infrastructures that are cross-institutional (e.g., for genomics or climate data)."},
+                {"term": "Data Friction", "definition": "The costs, resistances, and challenges involved in the collection, integration, and sharing of data."},
+                {"term": "DIKW Hierarchy", "definition": "A model representing a hierarchy of understanding: Data → Information → Knowledge → Wisdom. Each higher level adds context, meaning, and value."},
+                {"term": "Data (in DIKW)", "definition": "Discrete, objective symbols or facts without context or meaning (e.g., the number 72)."},
+                {"term": "Information", "definition": "Data that has been processed and organized to be meaningful and relevant for a purpose (e.g., The temperature is 72°F)."},
+                {"term": "Knowledge", "definition": "Information that has been understood and internalized through experience and context. It is actionable information that answers how questions."},
+                {"term": "Wisdom", "definition": "The evaluated understanding of knowledge. It involves judgment, ethics, values, and understanding long-term consequences. It answers why and cannot be automated."},
+                {"term": "Efficiency", "definition": "Doing things right; the use of resources relative to an objective. Can be automated."},
+                {"term": "Effectiveness", "definition": "Doing the right things; efficiency multiplied by value. Requires human wisdom and judgment."},
+                {"term": "Curating (Data)", "definition": "The practice of selecting, managing, and preserving data. It is not a neutral act but a practice of knowledge creation and power."},
+                {"term": "Posthuman Curating", "definition": "A concept where curating is no longer performed solely by humans but is a distributed process involving nonhuman agents like algorithms, software, and platforms."},
+                {"term": "Content Curation", "definition": "The mundane, massive-scale practice of selecting and managing online content (e.g., reblogging on Tumblr). Users perform curation while simultaneously becoming data for algorithms."},
+                {"term": "The Curatorial", "definition": "A philosophy or distinct field of discourse and thought about the practice and theory of curating."},
+                {"term": "Metadata", "definition": "Data about data. It provides crucial context for other data, such as how, when, and by whom it was created. It is not neutral and enacts particular worldviews."},
+                {"term": "Quantification", "definition": "The process of turning qualities into quantities. It is not a neutral, descriptive act but a situated, creative, and agential practice deeply entangled with power and world-making."},
+                {"term": "Surveillance Capitalism", "definition": "An economic system centered on the commodification of personal data for profit and behavioral prediction and modification."},
+                {"term": "Synthetic Data", "definition": "Artificially generated data that mimics the statistical properties of real-world data. Used to address privacy concerns or data scarcity but raises questions about fidelity."},
+                {"term": "Data Justice", "definition": "An ethical framework concerned with fairness in the way data is used, highlighting how data-driven systems can reinforce existing inequalities and power structures."},
+                {"term": "Metadata Justice", "definition": "The ongoing struggle to resist harmful classifications and update biased metadata standards (e.g., changing illegal aliens to undocumented immigrants in library systems)."},
+                {"term": "Digital Divide (in Big Data)", "definition": "The inequality in access to large-scale data resources, creating a divide between Big Data rich institutions (e.g., corporations, well-funded universities) and Big Data poor ones."},
+            ]
+        };
+// ✅ Use the hardcoded array directly
+    const allTerms = originalCards.cards.map(c => c.term);
+    const allDefs = originalCards.cards.map(c => c.definition);
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function generateQuizData(cards) {
+        const quizData = [];
+        for (const card of cards) {
+            const correct = card.term;
+            const question = card.definition;
+
+            // Get 3 random incorrect answers
+            let distractors = allTerms.filter(term => term !== correct);
+            shuffle(distractors);
+            const options = [correct, ...distractors.slice(0, 3)];
+            shuffle(options);
+
+            quizData.push({ question, correct, options });
+        }
+        shuffle(quizData);
+        return quizData;
+    }
+
+    const quizData = generateQuizData(originalCards.cards);
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    const scoreElement = document.getElementById("score");
+    const progressElement = document.getElementById("progress");
+    const musicControl = document.getElementById("musicControl");
+    const replayButton = document.getElementById('replayButton');
+
+    let musicPlaying = true;
+
+    function loadQuestion() {
+        const current = quizData[currentQuestionIndex];
+        document.getElementById("question").textContent = current.question;
+
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
+
+        current.options.forEach(option => {
+            const btn = document.createElement("button");
+            btn.textContent = option;
+            btn.onclick = () => checkAnswer(btn, option, current.correct);
+            optionsContainer.appendChild(btn);
+        });
+
+        progressElement.textContent = `${currentQuestionIndex + 1}/${quizData.length}`;
+    }
+
+    function checkAnswer(button, selected, correct) {
+        const buttons = document.querySelectorAll(".options button");
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.classList.add("correct");
             }
-        }
-
-        function generateQuizData(cards) {
-            const quizData = [];
-            for (const card of cards) {
-                const correct = card.term;
-                const question = card.definition;
-
-                // Get 3 random incorrect answers
-                let distractors = allTerms.filter(term => term !== correct);
-                shuffle(distractors);
-                const options = [correct, ...distractors.slice(0, 3)];
-                shuffle(options);
-
-                quizData.push({ question, correct, options });
+            if (btn.textContent === selected && selected !== correct) {
+                btn.classList.add("wrong");
             }
-            shuffle(quizData);
-            return quizData;
+        });
+
+        if (selected === correct) {
+            score++;
+            scoreElement.textContent = score;
+            scoreElement.classList.add("pulse");
+            setTimeout(() => scoreElement.classList.remove("pulse"), 300);
         }
 
-        const quizData = generateQuizData(originalCards);
-
-        let currentQuestionIndex = 0;
-        let score = 0;
-        const scoreElement = document.getElementById("score");
-        const progressElement = document.getElementById("progress");
-        const musicControl = document.getElementById("musicControl");
-        const replayButton = document.getElementById('replayButton');
-
-        let musicPlaying = true;
-
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function loadQuestion() {
-            const current = quizData[currentQuestionIndex];
-            document.getElementById("question").textContent = current.question;
-
-            const shuffledOptions = [...current.options];
-            shuffle(shuffledOptions);
-
-            const optionsContainer = document.getElementById("options");
-            optionsContainer.innerHTML = "";
-
-            shuffledOptions.forEach(option => {
-                const btn = document.createElement("button");
-                btn.textContent = option;
-                btn.onclick = () => checkAnswer(btn, option, current.correct);
-                optionsContainer.appendChild(btn);
-            });
-
-            // Update progress
-            progressElement.textContent = `${currentQuestionIndex + 1}/${quizData.length}`;
-        }
-
-        function checkAnswer(button, selected, correct) {
-          const buttons = document.querySelectorAll(".options button");
-          buttons.forEach(btn => {
-              btn.disabled = true;
-              if (btn.textContent === correct) {
-                  btn.classList.add("correct");
-              }
-              if (btn.textContent === selected && selected !== correct) {
-                  btn.classList.add("wrong");
-              }
-          });
-
-          if (selected === correct) {
-              score++;
-              scoreElement.textContent = score;
-              scoreElement.classList.add("pulse");
-              setTimeout(() => scoreElement.classList.remove("pulse"), 300);
-          }
-
-          setTimeout(() => {
-              currentQuestionIndex++;
-              if (currentQuestionIndex < quizData.length) {
-                  loadQuestion();
-              } else {
-                  document.getElementById("question").textContent = "Quiz completed! 🎉";
-                  document.getElementById("options").innerHTML = "";
-                  progressElement.textContent = `Score: ${score}/${quizData.length}`;
-                  replayButton.style.display = 'block'; // Show replay button
-              }
-          }, 1200);
-        }
-
-        function replayGame() {
-          // Reset game state
-          currentQuestionIndex = 0;
-          score = 0;
-          
-          // Update UI
-          scoreElement.textContent = '0';
-          replayButton.style.display = 'none';
-          
-          // Shuffle questions and restart quiz
-          quizData.forEach(q => shuffle(q.options));
-          loadQuestion();
-        }
-
-        replayButton.addEventListener('click', replayGame);
-
-        // Music control
-        function toggleMusic() {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
             } else {
-                bgMusic.play();
-                musicControl.innerHTML = '<i class="fas fa-music"></i>';
+                document.getElementById("question").textContent = "Quiz completed! 🎉";
+                document.getElementById("options").innerHTML = "";
+                progressElement.textContent = `Score: ${score}/${quizData.length}`;
+                replayButton.style.display = 'block';
             }
-            musicPlaying = !musicPlaying;
-        }
+        }, 1200);
+    }
 
-        musicControl.addEventListener("click", toggleMusic);
-        window.onload = loadQuestion;
+    function replayGame() {
+        currentQuestionIndex = 0;
+        score = 0;
+        scoreElement.textContent = '0';
+        replayButton.style.display = 'none';
+        loadQuestion();
+    }
 
+    replayButton.addEventListener('click', replayGame);
+
+    window.onload = loadQuestion;
     </script>
 </body>
 </html>
