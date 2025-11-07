@@ -6,6 +6,7 @@
     <title>Assignment 1: Coin Collection - Curating Data Exhibition</title>
     <link rel="stylesheet" href="../../styles/main.css">
     <style>
+        /* Previous styles remain the same */
         .assignment-header {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
@@ -122,6 +123,177 @@
             background: #d4edda;
             color: #155724;
         }
+
+        /* New Coin Gallery Styles */
+        .coin-gallery {
+            margin-top: 2rem;
+        }
+        
+        .gallery-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .coin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .coin-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .coin-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .coin-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .coin-info {
+            padding: 1rem;
+            background: white;
+        }
+        
+        .coin-id {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .coin-year, .coin-country {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .modal-info {
+            padding: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .modal-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .detail-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .detail-value {
+            color: #2c3e50;
+        }
+        
+        /* Filter controls */
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: white;
+            min-width: 150px;
+        }
+        
+        .search-input {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            flex-grow: 1;
+            min-width: 200px;
+        }
         
         @media (max-width: 768px) {
             .download-buttons {
@@ -145,6 +317,19 @@
             
             .section, .author-info, .download-section {
                 padding: 1.5rem;
+            }
+            
+            .coin-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                min-width: 100%;
             }
         }
     </style>
@@ -203,6 +388,45 @@
                 </p>
             </div>
 
+            <!-- Coin Gallery Section -->
+            <div class="section coin-gallery">
+                <h2>Coin Collection Gallery</h2>
+                <p class="gallery-description">
+                    Below is a visual representation of the Holst Family Coin Collection. Each coin has been systematically photographed and catalogued as part of the data curation process. Click on any coin to view more details.
+                </p>
+                
+                <!-- Filter Controls -->
+                <div class="filter-controls">
+                    <select class="filter-select" id="country-filter">
+                        <option value="all">All Countries</option>
+                        <option value="denmark">Denmark</option>
+                        <option value="norway">Norway</option>
+                        <option value="sweden">Sweden</option>
+                        <option value="germany">Germany</option>
+                    </select>
+                    
+                    <select class="filter-select" id="year-filter">
+                        <option value="all">All Years</option>
+                        <option value="1800-1850">1800-1850</option>
+                        <option value="1851-1900">1851-1900</option>
+                        <option value="1901-1950">1901-1950</option>
+                        <option value="1951-2000">1951-2000</option>
+                        <option value="2001-present">2001-present</option>
+                    </select>
+                    
+                    <input type="text" class="search-input" id="coin-search" placeholder="Search coins...">
+                </div>
+                
+                <!-- Coin Grid -->
+                <div class="coin-grid" id="coin-grid">
+                    <!-- Coin items will be dynamically inserted here by JavaScript -->
+                </div>
+                
+                <p class="gallery-description">
+                    The gallery above demonstrates the transformation of physical objects into a structured digital archive. Each coin image represents not just a numismatic artifact, but also a data point in the broader collection, illustrating the process of datafication discussed in the assignment.
+                </p>
+            </div>
+
             <div class="section">
                 <h2>1. Process of Collecting, Digitising, and Datafying</h2>
                 <p>The project began with the Holst Family Coin Collection of 75 coins. Each coin was systematically photographed on both sides with a OnePlus 8T and measured (weight, diameter) using digital tools. These physical and contextual details (monarch, mint, catalog reference) were entered into Google Sheets. Later on, 6 duplicates of existing coins in the collection were excluded.</p>
@@ -248,8 +472,251 @@
         </article>
     </main>
 
+    <!-- Modal for coin details -->
+    <div class="modal-overlay" id="coin-modal">
+        <div class="modal-content">
+            <div class="modal-close" id="modal-close">&times;</div>
+            <img src="" alt="" class="modal-image" id="modal-image">
+            <div class="modal-info">
+                <h2 class="modal-title" id="modal-title">Coin Title</h2>
+                <div class="modal-details" id="modal-details">
+                    <!-- Details will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 Curating Data Exhibition</p>
     </footer>
+
+    <script>
+        // Sample coin data - you would replace this with actual data from your collection
+        const coinData = [
+            {
+                id: "CH001",
+                image: "assets/images/coins_output/IMG_20250921_204539.jpg",
+                country: "Denmark",
+                year: 1874,
+                monarch: "Christian IX",
+                material: "Silver",
+                weight: "15.6g",
+                diameter: "33mm",
+                condition: "Fine",
+                rarity: "25/100",
+                currentWorth: "75 DKK"
+            },
+            {
+                id: "CH002",
+                image: "assets/images/coins_output/IMG_20250921_204540.jpg",
+                country: "Denmark",
+                year: 1912,
+                monarch: "Frederik VIII",
+                material: "Silver",
+                weight: "7.5g",
+                diameter: "25mm",
+                condition: "Very Fine",
+                rarity: "40/100",
+                currentWorth: "120 DKK"
+            },
+            {
+                id: "CH003",
+                image: "assets/images/coins_output/IMG_20250921_204541.jpg",
+                country: "Norway",
+                year: 1907,
+                monarch: "Haakon VII",
+                material: "Silver",
+                weight: "12.0g",
+                diameter: "30mm",
+                condition: "Good",
+                rarity: "35/100",
+                currentWorth: "95 DKK"
+            },
+            {
+                id: "CH004",
+                image: "assets/images/coins_output/IMG_20250921_204542.jpg",
+                country: "Sweden",
+                year: 1897,
+                monarch: "Oscar II",
+                material: "Silver",
+                weight: "7.5g",
+                diameter: "25mm",
+                condition: "Very Fine",
+                rarity: "30/100",
+                currentWorth: "85 DKK"
+            },
+            {
+                id: "CH005",
+                image: "assets/images/coins_output/IMG_20250921_204543.jpg",
+                country: "Germany",
+                year: 1901,
+                monarch: "Wilhelm II",
+                material: "Silver",
+                weight: "5.5g",
+                diameter: "23mm",
+                condition: "Fine",
+                rarity: "20/100",
+                currentWorth: "60 DKK"
+            },
+            {
+                id: "CH006",
+                image: "assets/images/coins_output/IMG_20250921_204544.jpg",
+                country: "Denmark",
+                year: 1973,
+                monarch: "Margrethe II",
+                material: "Copper-Nickel",
+                weight: "9.2g",
+                diameter: "27mm",
+                condition: "Extremely Fine",
+                rarity: "10/100",
+                currentWorth: "25 DKK"
+            },
+            // Add more coins as needed
+        ];
+
+        // DOM elements
+        const coinGrid = document.getElementById('coin-grid');
+        const coinModal = document.getElementById('coin-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDetails = document.getElementById('modal-details');
+        const countryFilter = document.getElementById('country-filter');
+        const yearFilter = document.getElementById('year-filter');
+        const coinSearch = document.getElementById('coin-search');
+
+        // Render coins in the grid
+        function renderCoins(coins) {
+            coinGrid.innerHTML = '';
+            
+            coins.forEach(coin => {
+                const coinItem = document.createElement('div');
+                coinItem.className = 'coin-item';
+                coinItem.innerHTML = `
+                    <img src="${coin.image}" alt="${coin.id}" class="coin-image">
+                    <div class="coin-info">
+                        <div class="coin-id">${coin.id}</div>
+                        <div class="coin-country">${coin.country}</div>
+                        <div class="coin-year">${coin.year}</div>
+                    </div>
+                `;
+                
+                coinItem.addEventListener('click', () => openModal(coin));
+                coinGrid.appendChild(coinItem);
+            });
+        }
+
+        // Open modal with coin details
+        function openModal(coin) {
+            modalImage.src = coin.image;
+            modalImage.alt = coin.id;
+            modalTitle.textContent = `${coin.id} - ${coin.country} ${coin.year}`;
+            
+            modalDetails.innerHTML = `
+                <div class="detail-item">
+                    <span class="detail-label">Country:</span>
+                    <span class="detail-value">${coin.country}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Year:</span>
+                    <span class="detail-value">${coin.year}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Monarch:</span>
+                    <span class="detail-value">${coin.monarch}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Material:</span>
+                    <span class="detail-value">${coin.material}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Weight:</span>
+                    <span class="detail-value">${coin.weight}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Diameter:</span>
+                    <span class="detail-value">${coin.diameter}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Condition:</span>
+                    <span class="detail-value">${coin.condition}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Rarity:</span>
+                    <span class="detail-value">${coin.rarity}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Current Worth:</span>
+                    <span class="detail-value">${coin.currentWorth}</span>
+                </div>
+            `;
+            
+            coinModal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            coinModal.classList.remove('active');
+        }
+
+        // Filter coins based on selected criteria
+        function filterCoins() {
+            const countryValue = countryFilter.value;
+            const yearValue = yearFilter.value;
+            const searchValue = coinSearch.value.toLowerCase();
+            
+            let filteredCoins = coinData.filter(coin => {
+                // Country filter
+                if (countryValue !== 'all' && coin.country.toLowerCase() !== countryValue) {
+                    return false;
+                }
+                
+                // Year filter
+                if (yearValue !== 'all') {
+                    const yearRanges = {
+                        '1800-1850': coin.year >= 1800 && coin.year <= 1850,
+                        '1851-1900': coin.year >= 1851 && coin.year <= 1900,
+                        '1901-1950': coin.year >= 1901 && coin.year <= 1950,
+                        '1951-2000': coin.year >= 1951 && coin.year <= 2000,
+                        '2001-present': coin.year >= 2001
+                    };
+                    
+                    if (!yearRanges[yearValue]) {
+                        return false;
+                    }
+                }
+                
+                // Search filter
+                if (searchValue && 
+                    !coin.id.toLowerCase().includes(searchValue) &&
+                    !coin.country.toLowerCase().includes(searchValue) &&
+                    !coin.monarch.toLowerCase().includes(searchValue) &&
+                    !coin.material.toLowerCase().includes(searchValue)) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            renderCoins(filteredCoins);
+        }
+
+        // Event listeners
+        modalClose.addEventListener('click', closeModal);
+        coinModal.addEventListener('click', (e) => {
+            if (e.target === coinModal) {
+                closeModal();
+            }
+        });
+        
+        countryFilter.addEventListener('change', filterCoins);
+        yearFilter.addEventListener('change', filterCoins);
+        coinSearch.addEventListener('input', filterCoins);
+
+        // Initialize the gallery
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCoins(coinData);
+        });
+    </script>
 </body>
 </html>
