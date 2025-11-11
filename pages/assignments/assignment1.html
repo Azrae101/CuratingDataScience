@@ -590,77 +590,1053 @@
 
     <script>
         // Coin data extracted from your CSV
+        // Coin data extracted from your CSV
         const coinData = [
-            {id: "1", year: "1915", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)", material: "Silver (.800)", weight: "15 g", diameter: "31 mm", condition: "Good", rarity: "23", currentWorth: "348 - 388 USD"},
-            {id: "2", year: "1925", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)", material: "Aluminium bronze", weight: "13 g", diameter: "31 mm", condition: "Good", rarity: "8", currentWorth: "15 - 200 USD"},
-            {id: "3", year: "1934", country: "Denmark", monarch: "Christian X", value: "1 krone (dkk)", material: "Aluminium bronze", weight: "6.5 g", diameter: "25.5 mm", condition: "Good", rarity: "7", currentWorth: "3 - 60 USD"},
-            {id: "4", year: "1947", country: "Norway", monarch: "Haakon VII", value: "10 øre (nkk)", material: "Copper-nickel", weight: "1.50 g", diameter: "15 mm", condition: "Good", rarity: "5", currentWorth: "2 - 39 USD"},
-            {id: "5", year: "1955", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "4 - 15 USD"},
-            {id: "6", year: "1961", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 35 USD"},
-            {id: "7", year: "1962", country: "Norway", monarch: "Olav V R", value: "1 krone (nkk)", material: "Copper-nickel", weight: "7 g", diameter: "25 mm", condition: "Good", rarity: "4", currentWorth: "2 - 44 USD"},
-            {id: "8", year: "1963", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)", material: "Bronze", weight: "6 g", diameter: "24 mm", condition: "Bad", rarity: "3", currentWorth: "1 - 51 USD"},
-            {id: "9", year: "1970", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)", material: "Nickel", weight: "1.5 g", diameter: "15 mm", condition: "Good", rarity: "2", currentWorth: "3 - 90 USD"},
-            {id: "10", year: "1970", country: "Japan", monarch: "Emperor Hirohito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "1 - 15 USD"},
-            {id: "11", year: "1970", country: "The Netherlands", monarch: "Juliana", value: "10 cent (nlg)", material: "Bronze", weight: "6 g", diameter: "24 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 24 USD"},
-            {id: "12", year: "1971", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)", material: "Copper-nickel", weight: "15 g", diameter: "33 mm", condition: "Good", rarity: "5", currentWorth: "4 - 33 USD"},
-            {id: "13", year: "1971", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)", material: "Aluminium", weight: "1 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "7 USD"},
-            {id: "14", year: "1972", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)", material: "Copper-nickel", weight: "15 g", diameter: "33 mm", condition: "Good", rarity: "5", currentWorth: "2 - 20 USD"},
-            {id: "15", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Bad", rarity: "3", currentWorth: "1 - 25 USD"},
-            {id: "16", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "1 - 25 USD"},
-            {id: "17", year: "1977", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Horrible", rarity: "3", currentWorth: "1 - 10 USD"},
-            {id: "18", year: "1977", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)", material: "Aluminium", weight: "1 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "14 USD"},
-            {id: "19", year: "1979", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "3 - 250 USD"},
-            {id: "20", year: "1980", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)", material: "Aluminium", weight: "1 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "15 USD"},
-            {id: "21", year: "1980", country: "USA", monarch: "Thomas Jefferson", value: "5 cent (usd)", material: "Copper-nickel", weight: "5 g", diameter: "21.2 mm", condition: "Good", rarity: "2", currentWorth: "1 - 4 USD"},
-            {id: "22", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 35 USD"},
-            {id: "23", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 25 USD"},
-            {id: "24", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 25 USD"},
-            {id: "25", year: "1982", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)", material: "Copper-nickel", weight: "4.3 g", diameter: "23 mm", condition: "Good", rarity: "4", currentWorth: "1 - 26 USD"},
-            {id: "26", year: "1983", country: "Jugoslavia", monarch: "Socialist Federal Republic", value: "50 Paras", material: "Manganese brass", weight: "2.85 g", diameter: "19 mm", condition: "Good", rarity: "5", currentWorth: "7 - 12 USD"},
-            {id: "27", year: "1984", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "1 - 10 USD"},
-            {id: "28", year: "1984", country: "Italy", monarch: "Republic", value: "500 lire", material: "Bi-metallic", weight: "6.8 g", diameter: "25.8 mm", condition: "Good", rarity: "27", currentWorth: "0.5 - 25 USD"},
-            {id: "29", year: "1986", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "2 - 6 USD"},
-            {id: "30", year: "1987", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)", material: "Copper clad iron", weight: "1.6 g", diameter: "15.5 mm", condition: "Medium", rarity: "3", currentWorth: "1 - 15 USD"},
-            {id: "31", year: "1987", country: "Spain", monarch: "King Juan Carlos I", value: "1 peseta", material: "Aluminium", weight: "1.2 g", diameter: "21 mm", condition: "Good", rarity: "32", currentWorth: "1 - 180 USD"},
-            {id: "32", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)", material: "Copper-nickel", weight: "6.8 g", diameter: "25.5 mm", condition: "Good", rarity: "4", currentWorth: "2 - 12 USD"},
-            {id: "33", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)", material: "Copper-nickel", weight: "3 g", diameter: "18 mm", condition: "Good", rarity: "3", currentWorth: "2 - 30 USD"},
-            {id: "34", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)", material: "Copper-nickel", weight: "4.3 g", diameter: "23 mm", condition: "Good", rarity: "4", currentWorth: "4 - 9 USD"},
-            {id: "35", year: "1989", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23.25 mm", condition: "Good", rarity: "5", currentWorth: "1 - 26 USD"},
-            {id: "36", year: "1990", country: "BRD Germany", monarch: "Federal Republic of Germany", value: "5 Pfennig", material: "Brass clad steel", weight: "3 g", diameter: "18.5 mm", condition: "Good", rarity: "2", currentWorth: "4 - 5 USD"},
-            {id: "37", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23.25 mm", condition: "Good", rarity: "5", currentWorth: "2 - 300 USD"},
-            {id: "38", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "9.3 g", diameter: "27 mm", condition: "Good", rarity: "5", currentWorth: "2 - 200 USD"},
-            {id: "39", year: "1991", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "1 - 15 USD"},
-            {id: "40", year: "1992", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)", material: "Copper-nickel", weight: "6 g", diameter: "24.5 mm", condition: "Good", rarity: "3", currentWorth: "1 - 28 USD"},
-            {id: "41", year: "1994", country: "Denmark", monarch: "Margrethe II", value: "50 øre (dkk)", material: "Bronze", weight: "4.3 g", diameter: "21.5 mm", condition: "Good", rarity: "3", currentWorth: "1 - 6 USD"},
-            {id: "42", year: "1998", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "9.3 g", diameter: "27 mm", condition: "Good", rarity: "7", currentWorth: "3 - 14 USD"},
-            {id: "43", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)", material: "Copper-nickel", weight: "6 g", diameter: "24.5 mm", condition: "Good", rarity: "3", currentWorth: "5 - 15 USD"},
-            {id: "44", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)", material: "Copper-nickel", weight: "9.2 g", diameter: "28.5 mm", condition: "Good", rarity: "4", currentWorth: "9 - 30 USD"},
-            {id: "45", year: "2002", country: "Austria", monarch: "Second Republic", value: "1 euro", material: "Bimetallic", weight: "7.5 g", diameter: "23.25 mm", condition: "Good", rarity: "4", currentWorth: "3 - 696 USD"},
-            {id: "46", year: "2002", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
-            {id: "47", year: "2002", country: "Germany", monarch: "Federal Republic of Germany", value: "0.10 euro", material: "Nordic gold", weight: "4 g", diameter: "20 mm", condition: "Good", rarity: "3", currentWorth: "1 - 575 USD"},
-            {id: "48", year: "2002", country: "Greece", monarch: "Third Hellenic Republic", value: "50 Cent (euro)", material: "Nordic gold", weight: "7.8 g", diameter: "24 mm", condition: "Good", rarity: "4", currentWorth: "3 - 250 USD"},
-            {id: "49", year: "2003", country: "Austria", monarch: "Second Republic", value: "5 cent (euro)", material: "Copper plated steel", weight: "4 g", diameter: "21 mm", condition: "Good", rarity: "3", currentWorth: "2 - 4 USD"},
-            {id: "50", year: "2003", country: "Italy", monarch: "Republic", value: "2 euro", material: "Bimetallic", weight: "8.5 g", diameter: "26 mm", condition: "Good", rarity: "3", currentWorth: "4 - 452 USD"},
-            {id: "51", year: "2004", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
-            {id: "52", year: "2004", country: "Germany", monarch: "Federal Republic", value: "50 cent (euro)", material: "Nordic gold", weight: "8 g", diameter: "24 mm", condition: "Good", rarity: "3", currentWorth: "1 - 3 USD"},
-            {id: "53", year: "2004", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "100 - 128 USD"},
-            {id: "54", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium-Bronze", weight: "8.7 g", diameter: "22 mm", condition: "Good", rarity: "17", currentWorth: "2.5 - 15 USD"},
-            {id: "55", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium-Bronze", weight: "8.7 g", diameter: "22 mm", condition: "Good", rarity: "17", currentWorth: "2.5 - 15 USD"},
-            {id: "56", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium-Bronze", weight: "9.3 g", diameter: "26.8 mm", condition: "Good", rarity: "20", currentWorth: "3 - 5 USD"},
-            {id: "57", year: "2007", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
-            {id: "58", year: "2008", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
-            {id: "59", year: "2013", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "9.3 g", diameter: "27 mm", condition: "Very Good", rarity: "24", currentWorth: "8 - 75 USD"},
-            {id: "60", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)", material: "Copper-nickel", weight: "3.6 g", diameter: "20 mm", condition: "Very Good", rarity: "3", currentWorth: "1 - 2 USD"},
-            {id: "61", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Very Good", rarity: "9", currentWorth: "3 - 12 USD"},
-            {id: "62", year: "2017", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)", material: "Aluminium bronze", weight: "7 g", diameter: "23 mm", condition: "Good", rarity: "9", currentWorth: "3 - 12 USD"},
-            {id: "63", year: "2017", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)", material: "Brass & Zinc", weight: "4 g", diameter: "22 mm", condition: "Good", rarity: "4", currentWorth: "1 - 128 USD"},
-            {id: "64", year: "2019", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)", material: "Copper-nickel", weight: "9 g", diameter: "28 mm", condition: "Good", rarity: "4", currentWorth: "1 - 2 USD"},
-            {id: "65", year: "2020", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)", material: "Aluminium bronze", weight: "10 g", diameter: "27 mm", condition: "Very Good", rarity: "23", currentWorth: "6 - 108 USD"},
-            {id: "66", year: "2020", country: "Japan", monarch: "Emperor Naruhito", value: "¥100 Yen (JPY)", material: "Copper, Nickel", weight: "5 g", diameter: "23 mm", condition: "Very Good", rarity: "14", currentWorth: "4 - 71 USD"},
-            {id: "67", year: "2023", country: "Poland", monarch: "Third Republic", value: "5 Groszy (zł)", material: "Brass plated steel", weight: "3 g", diameter: "19.6 mm", condition: "Good", rarity: "5", currentWorth: "0.20 - 1.50 USD"},
-            {id: "68", year: "1948-1972", country: "Denmark", monarch: "Frederik IX", value: "2 øre (dkk)", material: "Zinc", weight: "3 g", diameter: "20 mm", condition: "Horrible", rarity: "4", currentWorth: "1 - 180 USD"},
-            {id: "69", year: "1960-1970", country: "Denmark", monarch: "King Frederick IX", value: "No currency value", material: "Brass", weight: "3 g", diameter: "20.5 mm", condition: "Good", rarity: "41", currentWorth: "5 - 31 USD"}
+            {
+                // 1) Identification
+                id: "1", year: "1915", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)",
+                frontImage: "front_1.png", backImage: "back_1.png", translation: "CHRISTIAN X\nKING OF DENMARK\n1915 VEP",
+                inscribedText: "CHRISTIAN X\nKONGE AF DANMARK\n1915 VEP",
+                designFront: "Coat of arms in the center, porpoise left, barley ear right, denomination bottom.",
+                designBack: "Dolphin",
+                // 2) Physical Characteristics
+                material: "Silver (.800)", color: "Silver", weight: "15 g", diameter: "31 mm", thickness: "NA",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "23", condition: "Good", currentWorth: "348 - 388 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 820"
+            },
+            {
+                // 1) Identification
+                id: "2", year: "1925", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)",
+                frontImage: "front_2.png", backImage: "back_2.png", translation: "KING OF DENMARK\nHCN ♡ GJ",
+                inscribedText: "KONGE AF DANMARK\nHCN ♡ GJ",
+                designFront: "Christian X royal sign",
+                designBack: "Crown",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "13 g", diameter: "31 mm", thickness: "NA",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "8", condition: "Good", currentWorth: "15 - 200 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 825,\nSchön# 42"
+            },
+            {
+                // 1) Identification
+                id: "3", year: "1934", country: "Denmark", monarch: "Christian X", value: "1 krone (dkk)",
+                frontImage: "front_3.png", backImage: "back_3.png", translation: "KING OF DENMARK",
+                inscribedText: "KONGE AF DANMARK",
+                designFront: "Christian X royal sign",
+                designBack: "Crown",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "6.5 g", diameter: "25.5 mm", thickness: "1,8 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "7", condition: "Good", currentWorth: "3 - 60 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 824,\nSchön# 41"
+            },
+            {
+                // 1) Identification
+                id: "4", year: "1947", country: "Norway", monarch: "Haakon VII", value: "10 øre (nkk)",
+                frontImage: "front_4.png", backImage: "back_4.png", translation: "EVERYTHING FOR NORWAY",
+                inscribedText: "ALT FOR NORGE\n19 ⚒ 46",
+                designFront: "Value in two lines, with a hole in the middle. A triskelion on each side of the hole. Beaded ring on the rim.",
+                designBack: "Crown",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "1.50 g", diameter: "15 mm", thickness: "1.25 mm",
+                edgeType: "Plain", shape: "Round with a\nround hole",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "2 - 39 USD",
+                mint: "Norwegian Mint (Norske Myntverk), Kongsberg, Norway (1686-date)",
+                catalogueRef: "KM# 383,\nSchön# 32,\nRønning# 273,\nBrekke# 121-135"
+            },
+            {
+                // 1) Identification
+                id: "5", year: "1948-1972", country: "Denmark", monarch: "Frederik IX", value: "2 øre (dkk)",
+                frontImage: "front_5.png", backImage: "back_5.png", translation: "Denmark",
+                inscribedText: "19 ??\nFR IX\n2\nØRE\nDANMARK",
+                designFront: "Crowned Frederik IX monogram",
+                designBack: "Value above\n\"Denmark\"",
+                // 2) Physical Characteristics
+                material: "Zinc", color: "Silver / Brown (rusty)", weight: "3 g", diameter: "20 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Horrible", currentWorth: "1 - 180 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 840,\nSchön# 56"
+            },
+            {
+                // 1) Identification
+                id: "6", year: "1955", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)",
+                frontImage: "front_6.png", backImage: "back_6.png", translation: "DENMARK 10 ØRE",
+                inscribedText: "DANMARK 10 ØRE",
+                designFront: "Denomination in the center,",
+                designBack: "The royal sign above oak branches.",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1.52 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "4 - 15 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 849,\nSchön# 68"
+            },
+            {
+                // 1) Identification
+                id: "7", year: "1960-1970", country: "Denmark", monarch: "King Frederick IX", value: "No currency value",
+                frontImage: "front_7.png", backImage: "back_7.png", translation: "Copenhagen Tramways\nDiscount Token",
+                inscribedText: "KØBENHAVNS SPORVEJE\nRABATPOLET",
+                designFront: "Letters in the middle stating: \"KS\", sourrounded with the text:\nKØBENHAVNS SPORVEJE\nRABATPOLET",
+                designBack: "Engraving of the mermaid statue\nin the Copenhagen Harbor.",
+                // 2) Physical Characteristics
+                material: "Brass", color: "Silver", weight: "3 g", diameter: "20.5 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "41", condition: "Good", currentWorth: "5 - 31 USD",
+                mint: "Københavns Sporveje (Copenhagen)",
+                catalogueRef: "N#34866"
+            },
+            {
+                // 1) Identification
+                id: "8", year: "1961", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)",
+                frontImage: "front_8.png", backImage: "back_8.png", translation: "DENMARK 10 ØRE",
+                inscribedText: "DANMARK 10 ØRE",
+                designFront: "Denomination in the center, the number above oak branches.",
+                designBack: "the royal sign",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1.52 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Medium", currentWorth: "1 - 35 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 849,\nSchön# 68"
+            },
+            {
+                // 1) Identification
+                id: "9", year: "1962", country: "Norway", monarch: "Olav V R", value: "1 krone (nkk)",
+                frontImage: "front_9.png", backImage: "back_9.png", translation: "OLAV V R\n1962\n1 KRONE\nNORWAY",
+                inscribedText: "OLAV V R\n1962\n1 KRONE\nNORGE",
+                designFront: "Bust of king Olav V facing left. Inscription to the right of the bust. Solid ring on the rim.",
+                designBack: "Horse facing left. Date and mintmark above horse's mane. Value and inscription below the horse. Solid ring on the rim.",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "7 g", diameter: "25 mm", thickness: "1,77 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "2 - 44 USD",
+                mint: "Norwegian Mint (Norske Myntverk), Kongsberg, Norway (1686-date)",
+                catalogueRef: "KM# 409,\nSchön# 62,\nRønning# 293,\nBrekke# 18-33"
+            },
+            {
+                // 1) Identification
+                id: "10", year: "1963", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)",
+                frontImage: "front_10.png", backImage: "back_10.png", translation: "DENMARK 5 ØRE",
+                inscribedText: "DANMARK 5 ØRE",
+                designFront: "Crowned monogram of Frederik IX\ndividing the date on both sides",
+                designBack: "The value above ears of wheat\nand the country name at the top",
+                // 2) Physical Characteristics
+                material: "Bronze", color: "Bronze", weight: "6 g", diameter: "24 mm", thickness: "1,8 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Bad", currentWorth: "1 - 51 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 848,\nSchön# 67"
+            },
+            {
+                // 1) Identification
+                id: "11", year: "1970", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)",
+                frontImage: "front_11.png", backImage: "back_11.png", translation: "DENMARK 5 ØRE",
+                inscribedText: "DANMARK 5 ØRE",
+                designFront: "Crowned monogram of Frederik IX\ndividing the date on both sides",
+                designBack: "The value above ears of wheat\nand the country name at the top",
+                // 2) Physical Characteristics
+                material: "Bronze", color: "Bronze", weight: "6 g", diameter: "24 mm", thickness: "1,8 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Medium", currentWorth: "1 - 24 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 848,\nSchön# 67"
+            },
+            {
+                // 1) Identification
+                id: "12", year: "1970", country: "The Netherlands", monarch: "Juliana", value: "10 cent (nlg)",
+                frontImage: "front_12.png", backImage: "back_12.png", translation: "Juliana, Queen of the Netherlands",
+                inscribedText: "JULIANA KONINGIN\nDER NEDERLANDEN",
+                designFront: "Portrait of Queen Juliana facing right",
+                designBack: "Denomination, divided date at sides, crown at the top",
+                // 2) Physical Characteristics
+                material: "Nickel", color: "Silver", weight: "1.5 g", diameter: "15 mm", thickness: "1,21 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "2", condition: "Good", currentWorth: "3 - 90 USD",
+                mint: "Royal Dutch Mint (Koninklijke Nederlandse Munt), Utrecht, Netherlands (1010-date)Royal Mint, Llantrisant, United Kingdom (1968-date)",
+                catalogueRef: "KM# 182,\nSchön# 66,\nScholt I# 1165-1189"
+            },
+            {
+                // 1) Identification
+                id: "13", year: "1970", country: "Japan", monarch: "Emperor Hirohito", value: "¥5 Yen (JPY)",
+                frontImage: "front_13.png", backImage: "back_13.png", translation: "🌱Japan🌱\nShōwa 45 (1970)\n5 yen",
+                inscribedText: "🌱日本国🌱\n昭和四十五年\n五円",
+                designFront: "Hole in center flanked by seed leaf, authority on top and date below",
+                designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
+                // 2) Physical Characteristics
+                material: "Brass & Zinc", color: "Golden", weight: "4 g", diameter: "22 mm", thickness: "1,5 mm",
+                edgeType: "Plain", shape: "Round with a round hole",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "1 - 15 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 96,\nJNDA# 02-12,\nSchön# 73"
+            },
+            {
+                // 1) Identification
+                id: "14", year: "1971", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)",
+                frontImage: "front_14.png", backImage: "back_14.png", translation: "Frederik IX King of Denmark",
+                inscribedText: "FREDERIK IX\nKONGE AF DANMARK",
+                designFront: "Portrait Frederik IX facing right, titles, mintmark, and initials C♥S or S♥S below",
+                designBack: "Crowned and quartered arms of Denmark divide date within two oak branches, value above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "15 g", diameter: "33 mm", thickness: "2,35 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "4 - 33 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 853,\nSchön# 71"
+            },
+            {
+                // 1) Identification
+                id: "15", year: "1971", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)",
+                frontImage: "front_15.png", backImage: "back_15.png", translation: "1\nShōwa 46 (1971)\nJapan\n1 yen",
+                inscribedText: "1\n昭和四十六年\n日本国\n一 円",
+                designFront: "Sprouting bamboo branch in center, authority on top, value and denomination on bottom",
+                designBack: "Big value within two inner circles, date below",
+                // 2) Physical Characteristics
+                material: "Aluminium", color: "Silver", weight: "1 g", diameter: "20 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Very Good", currentWorth: "7 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 74,\nJNDA# 02-13,\nSchön# 48"
+            },
+            {
+                // 1) Identification
+                id: "16", year: "1972", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)",
+                frontImage: "front_16.png", backImage: "back_16.png", translation: "Frederik IX King of Denmark",
+                inscribedText: "FREDERIK IX\nKONGE AF DANMARK",
+                designFront: "Portrait Frederik IX facing right, titles, mintmark, and initials C♥S or S♥S below",
+                designBack: "Crowned and quartered arms of Denmark divide date within two oak branches, value above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "15 g", diameter: "33 mm", thickness: "2,35 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "2 - 20 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 853,\nSchön# 71"
+            },
+            {
+                // 1) Identification
+                id: "17", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
+                frontImage: "front_17.png", backImage: "back_17.png", translation: "Denmark",
+                inscribedText: "1973\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
+                // 2) Physical Characteristics
+                material: "Copper clad iron", color: "Brown / rusty", weight: "1.6 g", diameter: "15.5 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Bad", currentWorth: "1 - 25 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 859,\nSchön# 77"
+            },
+            {
+                // 1) Identification
+                id: "18", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
+                frontImage: "front_18.png", backImage: "back_18.png", translation: "Denmark",
+                inscribedText: "1973\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "Value with oaktree-leaves\nand the country name above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1,58 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "1 - 25 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 860,\nSchön# 78"
+            },
+            {
+                // 1) Identification
+                id: "19", year: "1977", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
+                frontImage: "front_19.png", backImage: "back_19.png", translation: "Denmark",
+                inscribedText: "1977\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "5\n[The rest is unreadable]",
+                // 2) Physical Characteristics
+                material: "Copper clad iron", color: "Brown / rusty\nGreen", weight: "1.6 g", diameter: "15.5 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Horrible", currentWorth: "1 - 10 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 859,\nSchön# 77"
+            },
+            {
+                // 1) Identification
+                id: "20", year: "1977", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)",
+                frontImage: "NA", backImage: "NA", translation: "1\nShōwa 52 (1977)\nJapan\n1 yen",
+                inscribedText: "1\n昭和五十二年\n日本国\n一 円",
+                designFront: "Sprouting bamboo branch in center, authority on top, value and denomination on bottom",
+                designBack: "Big value within two inner circles, date below",
+                // 2) Physical Characteristics
+                material: "Aluminium", color: "Silver", weight: "1 g", diameter: "20 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Very Good", currentWorth: "14 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 74,\nJNDA# 02-13,\nSchön# 48"
+            },
+            {
+                // 1) Identification
+                id: "21", year: "1979", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1979\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "Value with oaktree-leaves\nand the country name above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1,58 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "3 - 250 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 860,\nSchön# 78"
+            },
+            {
+                // 1) Identification
+                id: "22", year: "1980", country: "USA", monarch: "Thomas Jefferson", value: "5 cent (usd)",
+                frontImage: "NA", backImage: "NA", translation: "Out of Many, One",
+                inscribedText: "E PLURIBUS UNUM\nMONTICELLO\nFIVE CENTS\nUNITED STATES OF AMERICA",
+                designFront: "The portrait of Thomas Jefferson, the 3rd president of the U.S. from 1801 to 1809.",
+                designBack: "A representation of Monticello, President Thomas Jefferson's Virginia home.",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "5 g", diameter: "21.2 mm", thickness: "1,75 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "2", condition: "Good", currentWorth: "1 - 4 USD",
+                mint: "United States Mint of Denver, United States (1906-date)",
+                catalogueRef: "KM# 192, A192, Schön# 196, PCGS# 4000-4015, 4028-4133, etc., Greysheet# 3162-3237, 3266-3352, etc."
+            },
+            {
+                // 1) Identification
+                id: "23", year: "1980", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)",
+                frontImage: "NA", backImage: "NA", translation: "1\nShōwa 55 (1980)\nJapan\n1 yen",
+                inscribedText: "1\n昭和五十五年\n日本国\n一 円",
+                designFront: "Sprouting bamboo branch in center, authority on top, value and denomination on bottom",
+                designBack: "Big value within two inner circles, date below",
+                // 2) Physical Characteristics
+                material: "Aluminium", color: "Silver", weight: "1 g", diameter: "20 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Very Good", currentWorth: "15 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 74,\nJNDA# 02-13,\nSchön# 48"
+            },
+            {
+                // 1) Identification
+                id: "24", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1981\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "Value with oaktree-leaves\nand the country name above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1,58 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Medium", currentWorth: "1 - 35 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 860,\nSchön# 78"
+            },
+            {
+                // 1) Identification
+                id: "25", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1981\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
+                // 2) Physical Characteristics
+                material: "Copper clad iron", color: "Brown / rusty\nGreen", weight: "1.6 g", diameter: "15.5 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Medium", currentWorth: "1 - 25 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 859,\nSchön# 77"
+            },
+            {
+                // 1) Identification
+                id: "26", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1981\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
+                // 2) Physical Characteristics
+                material: "Copper clad iron", color: "Brown / rusty\nTurquoise", weight: "1.6 g", diameter: "15.5 mm", thickness: "2 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Medium", currentWorth: "1 - 25 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 859,\nSchön# 77"
+            },
+            {
+                // 1) Identification
+                id: "27", year: "1982", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1982\nM 2R\nR ♥ B\n25 ØRE DANMARK",
+                designFront: "Crowned Margrethe II monogram\non the left with oak branch\non the right",
+                designBack: "Value and lines representing\nthe barley ears from\nthe Frederik IX coin",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver/Bronze", weight: "4.3 g", diameter: "23 mm", thickness: "1.25 mm",
+                edgeType: "Plain", shape: "Round with a round hole",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "1 - 26 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 861,\nSchön# 79"
+            },
+            {
+                // 1) Identification
+                id: "28", year: "1983", country: "Jugoslavia", monarch: "Socialist Federal Republic", value: "50 Paras",
+                frontImage: "NA", backImage: "NA", translation: "Socialist Federal Republic\nof Yugoslavia",
+                inscribedText: "СФР JУГОСЛАВИJА\nSFR JUGOSLAVIJA\n29·XI·1943\n50 ПАРА·PARA·PAR·ПАРИ·1983",
+                designFront: "50\nCyrillic, Latin letters\n1983",
+                designBack: "Name of the Socialist Federal Republic\nof Yugoslavia in Cyrillic and Latin alphabets.\nCoat of arms of the SFRY\nproclaimed on November 29, 1943",
+                // 2) Physical Characteristics
+                material: "Manganese brass", color: "Golden", weight: "2.85 g", diameter: "19 mm", thickness: "1.65 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "7 - 12 USD",
+                mint: "Yugoslavia - Belgrade",
+                catalogueRef: "KM# 85,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "29", year: "1984", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1984\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "Value with oaktree-leaves\nand the country name above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1,58 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "1 - 10 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 860,\nSchön# 78"
+            },
+            {
+                // 1) Identification
+                id: "30", year: "1984", country: "Italy", monarch: "Republic", value: "500 lire",
+                frontImage: "NA", backImage: "NA", translation: "Italian Republic",
+                inscribedText: "REPVBBLICA ITALIANA\nR 1984 L.500",
+                designFront: "Head left within circle",
+                designBack: "Plaza within circle flanked by sprigs",
+                // 2) Physical Characteristics
+                material: "Bi-metallic\n(Aluminum-Bronze center\nin Stainless Steel ring)", color: "Silver and golden", weight: "6.8 g", diameter: "25.8 mm", thickness: "1,8 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "27", condition: "Good", currentWorth: "0.5 - 25 USD",
+                mint: "Istituto Poligrafico e Zecca dello Stato (IPZS)",
+                catalogueRef: "KM# 111"
+            },
+            {
+                // 1) Identification
+                id: "31", year: "1986", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1986\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "Value with oaktree-leaves\nand the country name above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1,58 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "2 - 6 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 860,\nSchön# 78"
+            },
+            {
+                // 1) Identification
+                id: "32", year: "1987", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1987\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
+                // 2) Physical Characteristics
+                material: "Copper clad iron", color: "Bronze, Brown", weight: "1.6 g", diameter: "15.5 mm", thickness: "1 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Medium", currentWorth: "1 - 15 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 859,\nSchön# 77"
+            },
+            {
+                // 1) Identification
+                id: "33", year: "1987", country: "Spain", monarch: "King Juan Carlos I", value: "1 peseta",
+                frontImage: "NA", backImage: "NA", translation: "Juan Carlos I\nthe Spainsh reign",
+                inscribedText: "JUAN CARLOS I\nREY DE ESPAÑA",
+                designFront: "Head of King Juan Carlos I facing left.",
+                designBack: "Crowned coat of arms of Spain\nwith Pillars of Hercules.",
+                // 2) Physical Characteristics
+                material: "Aluminium", color: "Silver", weight: "1.2 g", diameter: "21 mm", thickness: "1,3 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "32", condition: "Good", currentWorth: "1 - 180 USD",
+                mint: "Madrid (Real Casa de la Moneda\nFabrica Nacional de Moneda y Timbre)",
+                catalogueRef: "KM# 828,\nSchön# 51.2"
+            },
+            {
+                // 1) Identification
+                id: "34", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 88\n1 KRONE",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "6.8 g", diameter: "25.5 mm", thickness: "1,85 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "2 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 862,\nSchön# 80"
+            },
+            {
+                // 1) Identification
+                id: "35", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1988\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
+                designFront: "Crowned Margrethe II monogram\ndividing the date",
+                designBack: "Value with oaktree-leaves\nand the country name above",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3 g", diameter: "18 mm", thickness: "1,58 mm",
+                edgeType: "Plain", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "2 - 30 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 860,\nSchön# 78"
+            },
+            {
+                // 1) Identification
+                id: "36", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Denmark",
+                inscribedText: "1988\nM 2R\nR ♥ B\nDANMARK\n25\nØRE",
+                designFront: "Crowned Margrethe II monogram on the left\nwith oak branch on the right",
+                designBack: "Value and lines representing the barley ears\nfrom the Frederik IX coin",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "4.3 g", diameter: "23 mm", thickness: "1,25 mm",
+                edgeType: "Plain", shape: "Round with a round hole",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "4 - 9 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 861,\nSchön# 79"
+            },
+            {
+                // 1) Identification
+                id: "37", year: "1989", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 89\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23.25 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "1 - 26 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "38", year: "1990", country: "BRD Germany", monarch: "Federal Republic of Germany", value: "5 Pfennig",
+                frontImage: "NA", backImage: "NA", translation: "Federal Republic of Germany",
+                inscribedText: "BUNDESREPUBLIK DEUTSCHLAND\n5",
+                designFront: "Oak sprout with leaves and acorns",
+                designBack: "Eagle facing left",
+                // 2) Physical Characteristics
+                material: "Brass clad steel", color: "Golden", weight: "3 g", diameter: "18.5 mm", thickness: "1,7 mm",
+                edgeType: "Smooth", shape: "Round",
+                // 3) Numismatic details
+                rarity: "2", condition: "Good", currentWorth: "4 - 5 USD",
+                mint: "Staatliche Münze Karlsruhe (G, since 1871), Baden-Württemberg, Germany",
+                catalogueRef: "KM# 106,\nSchön# 105"
+            },
+            {
+                // 1) Identification
+                id: "39", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 90\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23.25 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "2 - 300 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "40", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 90\n20 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "9.3 g", diameter: "27 mm", thickness: "2.3 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "2 - 200 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 873,\nSchön# 89"
+            },
+            {
+                // 1) Identification
+                id: "41", year: "1991", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)",
+                frontImage: "NA", backImage: "NA", translation: "🌱Japan🌱\nHeisei 3 (1991)\n5 yen",
+                inscribedText: "🌱日本国🌱\n平成三年\n五円",
+                designFront: "Hole in center flanked by seed leaf, authority on top and date below",
+                designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
+                // 2) Physical Characteristics
+                material: "Brass & Zinc", color: "Golden", weight: "4 g", diameter: "22 mm", thickness: "1,5 mm",
+                edgeType: "Plain", shape: "Round with a round hole",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "1 - 15 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 96,\nJNDA# 02-12,\nSchön# 73"
+            },
+            {
+                // 1) Identification
+                id: "42", year: "1992", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 92\n2 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "6 g", diameter: "24.5 mm", thickness: "1,8 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "1 - 28 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 868,\nSchön# 85"
+            },
+            {
+                // 1) Identification
+                id: "43", year: "1994", country: "Denmark", monarch: "Margrethe II", value: "50 øre (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 94\n50 ØRE",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Bronze", color: "Bronze", weight: "4.3 g", diameter: "21.5 mm", thickness: "1.55 mm",
+                edgeType: "Smooth", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "1 - 6 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 872,\nSchön# 88"
+            },
+            {
+                // 1) Identification
+                id: "44", year: "1998", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 98\n20 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "9.3 g", diameter: "27 mm", thickness: "2.3 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "7", condition: "Good", currentWorth: "3 - 14 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 873,\nSchön# 89"
+            },
+            {
+                // 1) Identification
+                id: "45", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 01\n2 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "6 g", diameter: "24.5 mm", thickness: "1,8 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "5 - 15 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 868,\nSchön# 85"
+            },
+            {
+                // 1) Identification
+                id: "46", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 01\n5 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "9.2 g", diameter: "28.5 mm", thickness: "2.5 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "9 - 30 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 875,\nSchön# 91"
+            },
+            {
+                // 1) Identification
+                id: "47", year: "2002", country: "Austria", monarch: "Second Republic", value: "1 euro",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "2002 1 EURO",
+                designFront: "Portrait of Wolfgang Amadeus Mozart with his signature",
+                designBack: "European side with map and value",
+                // 2) Physical Characteristics
+                material: "Bimetallic", color: "Silver and Golden", weight: "7.5 g", diameter: "23.25 mm", thickness: "2,12 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "3 - 696 USD",
+                mint: "Austrian Mint (Münze Österreich), Vienna, Austria",
+                catalogueRef: "KM# 3085,\nSchön# 106"
+            },
+            {
+                // 1) Identification
+                id: "48", year: "2002", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 02\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "9", condition: "Good", currentWorth: "3 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "49", year: "2002", country: "Germany", monarch: "Federal Republic of Germany", value: "0.10 euro",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "2002",
+                designFront: "Oak branch surrounded by twelve stars, mintmark at the bottom",
+                designBack: "European map, value, and translation of \"euro\" into various languages",
+                // 2) Physical Characteristics
+                material: "Nordic gold", color: "Golden", weight: "4 g", diameter: "20 mm", thickness: "1.93 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "1 - 575 USD",
+                mint: "Bayerisches Hauptmünzamt, Munich, Germany",
+                catalogueRef: "KM# 207,\nSchön# 122"
+            },
+            {
+                // 1) Identification
+                id: "50", year: "2002", country: "Greece", monarch: "Third Hellenic Republic", value: "50 Cent (euro)",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "2002",
+                designFront: "The portrait of Eleftherios Venizelos, a prominent Cretan politician and one of the most significant figures in modern Greek history",
+                designBack: "European map, value, and translation of \"euro\" into various languages",
+                // 2) Physical Characteristics
+                material: "Nordic gold", color: "Golden", weight: "7.8 g", diameter: "24 mm", thickness: "2.14 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "3 - 250 USD",
+                mint: "Mint of Greece (Νομισματοκοπείο), Athens, Greece",
+                catalogueRef: "KM# 196,\nSchön# 97"
+            },
+            {
+                // 1) Identification
+                id: "51", year: "2003", country: "Austria", monarch: "Second Republic", value: "5 cent (euro)",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "2003",
+                designFront: "Edelweiss flower surrounded by a stylized laurel wreath",
+                designBack: "European side with map and value",
+                // 2) Physical Characteristics
+                material: "Copper plated steel", color: "Bronze", weight: "4 g", diameter: "21 mm", thickness: "1.67 mm",
+                edgeType: "Smooth", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "2 - 4 USD",
+                mint: "Austrian Mint (Münze Österreich), Vienna, Austria",
+                catalogueRef: "KM# 3081,\nSchön# 102"
+            },
+            {
+                // 1) Identification
+                id: "52", year: "2003", country: "Italy", monarch: "Republic", value: "2 euro",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "2003",
+                designFront: "Portrait of Dante Alighieri",
+                designBack: "European map, value, and translation of \"euro\" into various languages",
+                // 2) Physical Characteristics
+                material: "Bimetallic", color: "Silver and Golden", weight: "8.5 g", diameter: "26 mm", thickness: "2.2 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "4 - 452 USD",
+                mint: "Istituto Poligrafico e Zecca dello Stato (IPZS)",
+                catalogueRef: "KM# 223,\nSchön# 207"
+            },
+            {
+                // 1) Identification
+                id: "53", year: "2004", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 04\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "9", condition: "Good", currentWorth: "3 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "54", year: "2004", country: "Germany", monarch: "Federal Republic", value: "50 cent (euro)",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "2004",
+                designFront: "Eagle facing left surrounded by twelve stars, mintmark at the bottom",
+                designBack: "European map, value, and translation of \"euro\" into various languages",
+                // 2) Physical Characteristics
+                material: "Nordic gold", color: "Golden", weight: "8 g", diameter: "24 mm", thickness: "2.14 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Good", currentWorth: "1 - 3 USD",
+                mint: "Bayerisches Hauptmünzamt, Munich, Germany",
+                catalogueRef: "KM# 209,\nSchön# 124"
+            },
+            {
+                // 1) Identification
+                id: "55", year: "2004", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)",
+                frontImage: "NA", backImage: "NA", translation: "🌱Japan🌱\nHeisei 16 (2004)\n5 yen",
+                inscribedText: "🌱日本国🌱\n平成十六年\n五円",
+                designFront: "Hole in center flanked by seed leaf, authority on top and date below",
+                designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
+                // 2) Physical Characteristics
+                material: "Brass & Zinc", color: "Golden", weight: "4 g", diameter: "22 mm", thickness: "1,5 mm",
+                edgeType: "Plain", shape: "Round with a round hole",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "100 - 128 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 96,\nJNDA# 02-12,\nSchön# 73"
+            },
+            {
+                // 1) Identification
+                id: "56", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 05\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium-Bronze", color: "Golden", weight: "8.7 g", diameter: "22 mm", thickness: "2.2 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "17", condition: "Good", currentWorth: "2.5 - 15 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 905"
+            },
+            {
+                // 1) Identification
+                id: "57", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 05\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium-Bronze", color: "Golden", weight: "8.7 g", diameter: "22 mm", thickness: "2.2 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "17", condition: "Good", currentWorth: "2.5 - 15 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 905"
+            },
+            {
+                // 1) Identification
+                id: "58", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 05\n20 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium-Bronze", color: "Golden", weight: "9.3 g", diameter: "26.8 mm", thickness: "2.3 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "20", condition: "Good", currentWorth: "3 - 5 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 873,\nSchön# 89"
+            },
+            {
+                // 1) Identification
+                id: "59", year: "2007", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 07\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "9", condition: "Good", currentWorth: "3 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "60", year: "2008", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 08\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "9", condition: "Good", currentWorth: "3 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "61", year: "2013", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 13\n20 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "9.3 g", diameter: "27 mm", thickness: "2.3 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "24", condition: "Very Good", currentWorth: "8 - 75 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 873,\nSchön# 89"
+            },
+            {
+                // 1) Identification
+                id: "62", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 16\n1 KRONE",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "3.6 g", diameter: "20 mm", thickness: "1.85 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "3", condition: "Very Good", currentWorth: "1 - 2 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 904"
+            },
+            {
+                // 1) Identification
+                id: "63", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 16\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "9", condition: "Very Good", currentWorth: "3 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "64", year: "2017", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 17\n10 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "7 g", diameter: "23 mm", thickness: "2.5 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "9", condition: "Good", currentWorth: "3 - 12 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 865,\nSchön# 82"
+            },
+            {
+                // 1) Identification
+                id: "65", year: "2017", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)",
+                frontImage: "NA", backImage: "NA", translation: "🌱Japan🌱\nHeisei 29 (2017)\n5 yen",
+                inscribedText: "🌱日本国🌱\n平成二十九年\n五円",
+                designFront: "Hole in center flanked by seed leaf, authority on top and date below",
+                designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
+                // 2) Physical Characteristics
+                material: "Brass & Zinc", color: "Golden", weight: "4 g", diameter: "22 mm", thickness: "1,5 mm",
+                edgeType: "Plain", shape: "Round with a round hole",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "1 - 128 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 96,\nJNDA# 02-12,\nSchön# 73"
+            },
+            {
+                // 1) Identification
+                id: "66", year: "2019", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 19\n5 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Copper-nickel", color: "Silver", weight: "9 g", diameter: "28 mm", thickness: "2.5 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "4", condition: "Good", currentWorth: "1 - 2 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 906"
+            },
+            {
+                // 1) Identification
+                id: "67", year: "2020", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
+                frontImage: "NA", backImage: "NA", translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 20\n20 KRONER",
+                designFront: "Portrait of Margrethe II facing right",
+                designBack: "Value, crowned royal coat of arms",
+                // 2) Physical Characteristics
+                material: "Aluminium bronze", color: "Golden", weight: "10 g", diameter: "27 mm", thickness: "2.3 mm",
+                edgeType: "Segmented reeding", shape: "Round",
+                // 3) Numismatic details
+                rarity: "23", condition: "Very Good", currentWorth: "6 - 108 USD",
+                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
+                catalogueRef: "KM# 873,\nSchön# 89"
+            },
+            {
+                // 1) Identification
+                id: "68", year: "2020", country: "Japan", monarch: "Emperor Naruhito", value: "¥100 Yen (JPY)",
+                frontImage: "NA", backImage: "NA", translation: "NA",
+                inscribedText: "NA",
+                designFront: "NA",
+                designBack: "NA",
+                // 2) Physical Characteristics
+                material: "Copper, Nickel", color: "Silver", weight: "5 g", diameter: "23 mm", thickness: "1,7 mm",
+                edgeType: "Reeded with angled cutouts", shape: "Round",
+                // 3) Numismatic details
+                rarity: "14", condition: "Very Good", currentWorth: "4 - 71 USD",
+                mint: "Japan Mint (独立行政法人造幣局 / Dokuritsu Gyōsei Hōjin Zōheikyoku), Japan",
+                catalogueRef: "Y# 148"
+            },
+            {
+                // 1) Identification
+                id: "69", year: "2023", country: "Poland", monarch: "Third Republic", value: "5 Groszy (zł)",
+                frontImage: "NA", backImage: "NA", translation: "Republic of Poland",
+                inscribedText: "RZECZPOSPOLITA POLSKA",
+                designFront: "Eagle with a crown (national coat of arms) surrounded by the name of the Republic of Poland and the year of mintage.",
+                designBack: "Value and a stylized laurel wreath below.",
+                // 2) Physical Characteristics
+                material: "Brass plated steel", color: "Golden", weight: "3 g", diameter: "19.6 mm", thickness: "1.3 mm",
+                edgeType: "Reeded", shape: "Round",
+                // 3) Numismatic details
+                rarity: "5", condition: "Good", currentWorth: "0.20 - 1.50 USD",
+                mint: "Polish Mint (Mennica Polska), Warsaw, Poland",
+                catalogueRef: "KM# 738"
+            }
         ];
+
+// Example of how you could structure the columns for your three Table View pages:
+/*
+const pageColumns = {
+    "Identification": ["id", "year", "country", "monarch", "value", "inscribedText", "translation", "designFront", "designBack", "frontImage", "backImage"],
+    "Physical Characteristics": ["material", "color", "weight", "diameter", "thickness", "edgeType", "shape"],
+    "Numismatic Details": ["rarity", "condition", "currentWorth", "mint", "catalogueRef"]
+};
+*/
 
         // DOM elements
         const coinWheel = document.getElementById('coin-wheel');
