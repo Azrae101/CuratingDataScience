@@ -124,7 +124,7 @@
             color: #155724;
         }
 
-        /* New Coin Gallery Styles */
+        /* Enhanced Coin Gallery Styles */
         .coin-gallery {
             margin-top: 2rem;
         }
@@ -135,7 +135,7 @@
             color: #555;
         }
         
-        /* Wheel Container */
+        /* Enhanced Wheel Container */
         .wheel-container {
             display: flex;
             flex-direction: column;
@@ -145,8 +145,8 @@
         
         .wheel-wrapper {
             position: relative;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             margin: 0 auto;
         }
         
@@ -155,48 +155,57 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: #f8f9fa;
-            border: 3px solid #3498db;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 4px solid #3498db;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 2s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
         .coin-slot {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid #e9ecef;
+            border: 2px solid #dee2e6;
             transform-origin: center;
+            overflow: hidden;
         }
         
         .coin-slot:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             z-index: 10;
+            border-color: #3498db;
         }
         
         .coin-slot-content {
             text-align: center;
-            padding: 5px;
+            padding: 4px;
+            width: 100%;
         }
         
         .coin-id {
-            font-weight: 600;
-            font-size: 0.8rem;
+            font-weight: 700;
+            font-size: 0.75rem;
             color: #2c3e50;
         }
         
         .coin-year {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #666;
+        }
+        
+        .coin-country {
+            font-size: 0.6rem;
+            color: #888;
+            margin-top: 2px;
         }
         
         .wheel-controls {
@@ -209,26 +218,35 @@
             background: #3498db;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .wheel-btn:hover {
             background: #2980b9;
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
-        /* Modal styles */
+        .wheel-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Enhanced Modal styles */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -245,13 +263,14 @@
         
         .modal-content {
             background: white;
-            border-radius: 10px;
-            max-width: 90%;
-            max-height: 90%;
+            border-radius: 12px;
+            max-width: 95%;
+            max-height: 95%;
             overflow: auto;
             position: relative;
             transform: scale(0.9);
             transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         
         .modal-overlay.active .modal-content {
@@ -262,55 +281,111 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 10;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0,0,0,0.9);
+            transform: scale(1.1);
+        }
+        
+        .modal-images {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .modal-image-container {
+            flex: 1;
+            text-align: center;
         }
         
         .modal-image {
-            width: 100%;
-            height: auto;
-            display: block;
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .modal-image-label {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
         }
         
         .modal-info {
-            padding: 1.5rem;
+            padding: 2rem;
         }
         
         .modal-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
         }
         
         .modal-details {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .detail-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .detail-section h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-size: 1.1rem;
         }
         
         .detail-item {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
         }
         
         .detail-label {
             font-weight: 600;
             color: #555;
+            min-width: 140px;
+            margin-right: 10px;
         }
         
         .detail-value {
             color: #2c3e50;
+            flex: 1;
         }
         
-        /* Spreadsheet View */
+        .detail-value.inscribed {
+            white-space: pre-line;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+        
+        /* Enhanced Spreadsheet View */
         .spreadsheet-view {
             margin-top: 3rem;
         }
@@ -320,6 +395,7 @@
             border-radius: 8px;
             border: 1px solid #e9ecef;
             margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .data-table {
@@ -331,15 +407,26 @@
         .data-table th {
             background: #3498db;
             color: white;
-            padding: 10px;
+            padding: 12px 15px;
             text-align: left;
             position: sticky;
             top: 0;
+            font-weight: 600;
+            border-right: 1px solid #2980b9;
+        }
+        
+        .data-table th:last-child {
+            border-right: none;
         }
         
         .data-table td {
-            padding: 8px 10px;
+            padding: 10px 15px;
             border-bottom: 1px solid #e9ecef;
+            border-right: 1px solid #f1f3f4;
+        }
+        
+        .data-table td:last-child {
+            border-right: none;
         }
         
         .data-table tr:nth-child(even) {
@@ -347,28 +434,112 @@
         }
         
         .data-table tr:hover {
-            background: #e9ecef;
+            background: #e3f2fd;
+            cursor: pointer;
         }
         
         .view-toggle {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .toggle-btn {
             background: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 8px 16px;
-            border-radius: 5px;
+            border: 2px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 600;
+            color: #555;
         }
         
         .toggle-btn.active {
             background: #3498db;
             color: white;
             border-color: #3498db;
+        }
+        
+        .toggle-btn:hover:not(.active) {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        /* Statistics Panel */
+        .statistics-panel {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
         }
         
         @media (max-width: 768px) {
@@ -396,27 +567,508 @@
             }
             
             .wheel-wrapper {
-                width: 300px;
-                height: 300px;
+                width: 350px;
+                height: 350px;
             }
             
             .coin-slot {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
             }
             
             .coin-id {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
             
-            .coin-year {
-                font-size: 0.6rem;
+            .coin-year, .coin-country {
+                font-size: 0.55rem;
+            }
+            
+            .modal-images {
+                flex-direction: column;
             }
             
             .modal-details {
                 grid-template-columns: 1fr;
             }
+            
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
+        @media (max-width: 480px) {
+            .wheel-wrapper {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .coin-slot {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .coin-id {
+                font-size: 0.6rem;
+            }
+            
+            .coin-year, .coin-country {
+                display: none;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .page-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 1rem;
+        }
+
+        .data-table img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            transition: transform 0.2s ease;
+        }
+
+        .data-table img:hover {
+            transform: scale(1.5);
+            z-index: 10;
+            position: relative;
+        }
+
+        .data-table td {
+            vertical-align: middle;
+        }
+
+        /* Ensure the table is responsive */
+        .spreadsheet-container {
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .data-table img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .page-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+            .page-tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .data-table img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        transition: transform 0.2s ease;
+    }
+
+    .data-table img:hover {
+        transform: scale(2);
+        z-index: 10;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .data-table td {
+        vertical-align: middle;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Ensure the table is responsive */
+    .spreadsheet-container {
+        overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+        .data-table img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .page-tabs {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .data-table td {
+            max-width: 120px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .data-table img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .data-table td {
+            max-width: 80px;
+            font-size: 0.7rem;
+            padding: 6px 8px;
+        }
+    }
+    .page-tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .data-table img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        transition: transform 0.2s ease;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .data-table img:hover {
+        transform: scale(1.5);
+        z-index: 10;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .data-table td {
+        vertical-align: middle;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    /* Coin wheel image styles */
+    .coin-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .coin-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 3px;
+        text-align: center;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+
+    .coin-slot-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .coin-slot {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid #dee2e6;
+        transform-origin: center;
+        overflow: hidden;
+    }
+
+    .coin-slot:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        z-index: 10;
+        border-color: #3498db;
+    }
+
+    .coin-id {
+        font-weight: 700;
+        font-size: 0.75rem;
+        color: white;
+        line-height: 1;
+    }
+
+    .coin-year {
+        font-size: 0.65rem;
+        color: #ccc;
+        line-height: 1;
+    }
+
+    /* Ensure the table is responsive */
+    .spreadsheet-container {
+        overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+        .data-table img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .page-tabs {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .data-table td {
+            max-width: 120px;
+            font-size: 0.8rem;
+        }
+
+        .coin-slot {
+            width: 50px;
+            height: 50px;
+        }
+
+        .coin-id {
+            font-size: 0.65rem;
+        }
+
+        .coin-year {
+            font-size: 0.55rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .data-table img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .data-table td {
+            max-width: 80px;
+            font-size: 0.7rem;
+            padding: 6px 8px;
+        }
+
+        .coin-slot {
+            width: 40px;
+            height: 40px;
+        }
+
+        .coin-id {
+            font-size: 0.6rem;
+        }
+
+        .coin-year {
+            display: none;
+        }
+    }
+        .page-tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .data-table img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        transition: transform 0.2s ease;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .data-table img:hover {
+        transform: scale(1.5);
+        z-index: 10;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .data-table td {
+        vertical-align: middle;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    /* Pixelated coin styles for wheel */
+    .pixel-coin {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+        border: 2px solid #333;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .coin-id-wheel {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        background: rgba(0,0,0,0.5);
+        padding: 2px 6px;
+        border-radius: 10px;
+    }
+
+    .coin-slot-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .coin-slot {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid #dee2e6;
+        transform-origin: center;
+        overflow: hidden;
+    }
+
+    .coin-slot:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        z-index: 10;
+        border-color: #3498db;
+    }
+
+    /* See More button styles */
+    .see-more-btn {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 24px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .see-more-btn:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Ensure the table is responsive */
+    .spreadsheet-container {
+        overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+        .data-table img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .page-tabs {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .data-table td {
+            max-width: 120px;
+            font-size: 0.8rem;
+        }
+
+        .coin-slot {
+            width: 50px;
+            height: 50px;
+        }
+
+        .coin-id-wheel {
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .data-table img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .data-table td {
+            max-width: 80px;
+            font-size: 0.7rem;
+            padding: 6px 8px;
+        }
+
+        .coin-slot {
+            width: 40px;
+            height: 40px;
+        }
+
+        .coin-id-wheel {
+            font-size: 0.7rem;
+            padding: 1px 4px;
+        }
+    }
     </style>
 </head>
 <body>
@@ -480,9 +1132,31 @@
                     Explore the Holst Family Coin Collection through an interactive visualization. Each coin in the wheel represents a data point in the collection, illustrating the transformation of physical objects into structured digital data. Click on any coin to view its details.
                 </p>
                 
+                <!-- Statistics Panel -->
+                <div class="statistics-panel">
+                    <h3>Collection Statistics</h3>
+                    <div class="stats-grid" id="stats-grid">
+                        <!-- Statistics will be populated by JavaScript -->
+                    </div>
+                </div>
+                
                 <div class="view-toggle">
                     <button class="toggle-btn active" id="wheel-view-btn">Wheel View</button>
                     <button class="toggle-btn" id="table-view-btn">Table View</button>
+                </div>
+                
+                <!-- Search and Filter -->
+                <div class="search-filter" id="table-controls" style="display: none;">
+                    <input type="text" class="search-box" id="search-box" placeholder="Search coins...">
+                    <select class="filter-select" id="country-filter">
+                        <option value="">All Countries</option>
+                    </select>
+                    <select class="filter-select" id="material-filter">
+                        <option value="">All Materials</option>
+                    </select>
+                    <select class="filter-select" id="monarch-filter">
+                        <option value="">All Monarchs</option>
+                    </select>
                 </div>
                 
                 <!-- Wheel View -->
@@ -496,9 +1170,9 @@
                     <div class="wheel-controls">
                         <button class="wheel-btn" id="spin-btn">Spin Wheel</button>
                         <button class="wheel-btn" id="reset-btn">Reset</button>
+                        <button class="wheel-btn" id="shuffle-btn">Shuffle</button>
                     </div>
                 </div>
-                
                 <!-- Table View -->
                 <div class="spreadsheet-view" id="table-view" style="display: none;">
                     <div class="spreadsheet-container">
@@ -575,6 +1249,9 @@
     <div class="modal-overlay" id="coin-modal">
         <div class="modal-content">
             <div class="modal-close" id="modal-close">&times;</div>
+            <div class="modal-images" id="modal-images">
+                <!-- Images will be populated by JavaScript -->
+            </div>
             <div class="modal-info">
                 <h2 class="modal-title" id="modal-title">Coin Details</h2>
                 <div class="modal-details" id="modal-details">
@@ -593,7 +1270,7 @@
             {
                 // 1) Identification
                 id: "1", year: "1915", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)",
-                frontImage: "front_1.png", backImage: "back_1.png", translation: "CHRISTIAN X\nKING OF DENMARK\n1915 VEP",
+                frontImage: "/assets/images/coins_output/front_1.png", backImage: "/assets/images/coins_output/back_1.png", translation: "CHRISTIAN X\nKING OF DENMARK\n1915 VEP",
                 inscribedText: "CHRISTIAN X\nKONGE AF DANMARK\n1915 VEP",
                 designFront: "Coat of arms in the center, porpoise left, barley ear right, denomination bottom.",
                 designBack: "Dolphin",
@@ -608,7 +1285,7 @@
             {
                 // 1) Identification
                 id: "2", year: "1925", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)",
-                frontImage: "front_2.png", backImage: "back_2.png", translation: "KING OF DENMARK\nHCN ♡ GJ",
+                frontImage: "/assets/images/coins_output/front_2.png", backImage: "/assets/images/coins_output/back_2.png", translation: "KING OF DENMARK\nHCN ♡ GJ",
                 inscribedText: "KONGE AF DANMARK\nHCN ♡ GJ",
                 designFront: "Christian X royal sign",
                 designBack: "Crown",
@@ -623,7 +1300,7 @@
             {
                 // 1) Identification
                 id: "3", year: "1934", country: "Denmark", monarch: "Christian X", value: "1 krone (dkk)",
-                frontImage: "front_3.png", backImage: "back_3.png", translation: "KING OF DENMARK",
+                frontImage: "/assets/images/coins_output/front_3.png", backImage: "/assets/images/coins_output/back_3.png", translation: "KING OF DENMARK",
                 inscribedText: "KONGE AF DANMARK",
                 designFront: "Christian X royal sign",
                 designBack: "Crown",
@@ -638,7 +1315,7 @@
             {
                 // 1) Identification
                 id: "4", year: "1947", country: "Norway", monarch: "Haakon VII", value: "10 øre (nkk)",
-                frontImage: "front_4.png", backImage: "back_4.png", translation: "EVERYTHING FOR NORWAY",
+                frontImage: "/assets/images/coins_output/front_4.png", backImage: "/assets/images/coins_output/back_4.png", translation: "EVERYTHING FOR NORWAY",
                 inscribedText: "ALT FOR NORGE\n19 ⚒ 46",
                 designFront: "Value in two lines, with a hole in the middle. A triskelion on each side of the hole. Beaded ring on the rim.",
                 designBack: "Crown",
@@ -653,7 +1330,7 @@
             {
                 // 1) Identification
                 id: "5", year: "1948-1972", country: "Denmark", monarch: "Frederik IX", value: "2 øre (dkk)",
-                frontImage: "front_5.png", backImage: "back_5.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_5.png", backImage: "/assets/images/coins_output/back_5.png", translation: "Denmark",
                 inscribedText: "19 ??\nFR IX\n2\nØRE\nDANMARK",
                 designFront: "Crowned Frederik IX monogram",
                 designBack: "Value above\n\"Denmark\"",
@@ -668,7 +1345,7 @@
             {
                 // 1) Identification
                 id: "6", year: "1955", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)",
-                frontImage: "front_6.png", backImage: "back_6.png", translation: "DENMARK 10 ØRE",
+                frontImage: "/assets/images/coins_output/front_6.png", backImage: "/assets/images/coins_output/back_6.png", translation: "DENMARK 10 ØRE",
                 inscribedText: "DANMARK 10 ØRE",
                 designFront: "Denomination in the center,",
                 designBack: "The royal sign above oak branches.",
@@ -683,7 +1360,7 @@
             {
                 // 1) Identification
                 id: "7", year: "1960-1970", country: "Denmark", monarch: "King Frederick IX", value: "No currency value",
-                frontImage: "front_7.png", backImage: "back_7.png", translation: "Copenhagen Tramways\nDiscount Token",
+                frontImage: "/assets/images/coins_output/front_7.png", backImage: "/assets/images/coins_output/back_7.png", translation: "Copenhagen Tramways\nDiscount Token",
                 inscribedText: "KØBENHAVNS SPORVEJE\nRABATPOLET",
                 designFront: "Letters in the middle stating: \"KS\", sourrounded with the text:\nKØBENHAVNS SPORVEJE\nRABATPOLET",
                 designBack: "Engraving of the mermaid statue\nin the Copenhagen Harbor.",
@@ -698,7 +1375,7 @@
             {
                 // 1) Identification
                 id: "8", year: "1961", country: "Denmark", monarch: "Frederick IX", value: "10 øre (dkk)",
-                frontImage: "front_8.png", backImage: "back_8.png", translation: "DENMARK 10 ØRE",
+                frontImage: "/assets/images/coins_output/front_8.png", backImage: "/assets/images/coins_output/back_8.png", translation: "DENMARK 10 ØRE",
                 inscribedText: "DANMARK 10 ØRE",
                 designFront: "Denomination in the center, the number above oak branches.",
                 designBack: "the royal sign",
@@ -713,7 +1390,7 @@
             {
                 // 1) Identification
                 id: "9", year: "1962", country: "Norway", monarch: "Olav V R", value: "1 krone (nkk)",
-                frontImage: "front_9.png", backImage: "back_9.png", translation: "OLAV V R\n1962\n1 KRONE\nNORWAY",
+                frontImage: "/assets/images/coins_output/front_9.png", backImage: "/assets/images/coins_output/back_9.png", translation: "OLAV V R\n1962\n1 KRONE\nNORWAY",
                 inscribedText: "OLAV V R\n1962\n1 KRONE\nNORGE",
                 designFront: "Bust of king Olav V facing left. Inscription to the right of the bust. Solid ring on the rim.",
                 designBack: "Horse facing left. Date and mintmark above horse's mane. Value and inscription below the horse. Solid ring on the rim.",
@@ -728,7 +1405,7 @@
             {
                 // 1) Identification
                 id: "10", year: "1963", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)",
-                frontImage: "front_10.png", backImage: "back_10.png", translation: "DENMARK 5 ØRE",
+                frontImage: "/assets/images/coins_output/front_10.png", backImage: "/assets/images/coins_output/back_10.png", translation: "DENMARK 5 ØRE",
                 inscribedText: "DANMARK 5 ØRE",
                 designFront: "Crowned monogram of Frederik IX\ndividing the date on both sides",
                 designBack: "The value above ears of wheat\nand the country name at the top",
@@ -743,7 +1420,7 @@
             {
                 // 1) Identification
                 id: "11", year: "1970", country: "Denmark", monarch: "Frederick IX", value: "5 øre (dkk)",
-                frontImage: "front_11.png", backImage: "back_11.png", translation: "DENMARK 5 ØRE",
+                frontImage: "/assets/images/coins_output/front_11.png", backImage: "/assets/images/coins_output/back_11.png", translation: "DENMARK 5 ØRE",
                 inscribedText: "DANMARK 5 ØRE",
                 designFront: "Crowned monogram of Frederik IX\ndividing the date on both sides",
                 designBack: "The value above ears of wheat\nand the country name at the top",
@@ -758,7 +1435,7 @@
             {
                 // 1) Identification
                 id: "12", year: "1970", country: "The Netherlands", monarch: "Juliana", value: "10 cent (nlg)",
-                frontImage: "front_12.png", backImage: "back_12.png", translation: "Juliana, Queen of the Netherlands",
+                frontImage: "/assets/images/coins_output/front_12.png", backImage: "/assets/images/coins_output/back_12.png", translation: "Juliana, Queen of the Netherlands",
                 inscribedText: "JULIANA KONINGIN\nDER NEDERLANDEN",
                 designFront: "Portrait of Queen Juliana facing right",
                 designBack: "Denomination, divided date at sides, crown at the top",
@@ -773,7 +1450,7 @@
             {
                 // 1) Identification
                 id: "13", year: "1970", country: "Japan", monarch: "Emperor Hirohito", value: "¥5 Yen (JPY)",
-                frontImage: "front_13.png", backImage: "back_13.png", translation: "🌱Japan🌱\nShōwa 45 (1970)\n5 yen",
+                frontImage: "/assets/images/coins_output/front_13.png", backImage: "/assets/images/coins_output/back_13.png", translation: "🌱Japan🌱\nShōwa 45 (1970)\n5 yen",
                 inscribedText: "🌱日本国🌱\n昭和四十五年\n五円",
                 designFront: "Hole in center flanked by seed leaf, authority on top and date below",
                 designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
@@ -788,7 +1465,7 @@
             {
                 // 1) Identification
                 id: "14", year: "1971", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)",
-                frontImage: "front_14.png", backImage: "back_14.png", translation: "Frederik IX King of Denmark",
+                frontImage: "/assets/images/coins_output/front_14.png", backImage: "/assets/images/coins_output/back_14.png", translation: "Frederik IX King of Denmark",
                 inscribedText: "FREDERIK IX\nKONGE AF DANMARK",
                 designFront: "Portrait Frederik IX facing right, titles, mintmark, and initials C♥S or S♥S below",
                 designBack: "Crowned and quartered arms of Denmark divide date within two oak branches, value above",
@@ -803,7 +1480,7 @@
             {
                 // 1) Identification
                 id: "15", year: "1971", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)",
-                frontImage: "front_15.png", backImage: "back_15.png", translation: "1\nShōwa 46 (1971)\nJapan\n1 yen",
+                frontImage: "/assets/images/coins_output/front_15.png", backImage: "/assets/images/coins_output/back_15.png", translation: "1\nShōwa 46 (1971)\nJapan\n1 yen",
                 inscribedText: "1\n昭和四十六年\n日本国\n一 円",
                 designFront: "Sprouting bamboo branch in center, authority on top, value and denomination on bottom",
                 designBack: "Big value within two inner circles, date below",
@@ -818,7 +1495,7 @@
             {
                 // 1) Identification
                 id: "16", year: "1972", country: "Denmark", monarch: "Frederick IX", value: "5 kroner (dkk)",
-                frontImage: "front_16.png", backImage: "back_16.png", translation: "Frederik IX King of Denmark",
+                frontImage: "/assets/images/coins_output/front_16.png", backImage: "/assets/images/coins_output/back_16.png", translation: "Frederik IX King of Denmark",
                 inscribedText: "FREDERIK IX\nKONGE AF DANMARK",
                 designFront: "Portrait Frederik IX facing right, titles, mintmark, and initials C♥S or S♥S below",
                 designBack: "Crowned and quartered arms of Denmark divide date within two oak branches, value above",
@@ -833,7 +1510,7 @@
             {
                 // 1) Identification
                 id: "17", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
-                frontImage: "front_17.png", backImage: "back_17.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_17.png", backImage: "/assets/images/coins_output/back_17.png", translation: "Denmark",
                 inscribedText: "1973\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
@@ -848,7 +1525,7 @@
             {
                 // 1) Identification
                 id: "18", year: "1973", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
-                frontImage: "front_18.png", backImage: "back_18.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_18.png", backImage: "/assets/images/coins_output/back_18.png", translation: "Denmark",
                 inscribedText: "1973\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "Value with oaktree-leaves\nand the country name above",
@@ -863,7 +1540,7 @@
             {
                 // 1) Identification
                 id: "19", year: "1977", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
-                frontImage: "front_19.png", backImage: "back_19.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_19.png", backImage: "/assets/images/coins_output/back_19.png", translation: "Denmark",
                 inscribedText: "1977\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "5\n[The rest is unreadable]",
@@ -878,7 +1555,7 @@
             {
                 // 1) Identification
                 id: "20", year: "1977", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)",
-                frontImage: "front_20.png", backImage: "back_20.png", translation: "1\nShōwa 52 (1977)\nJapan\n1 yen",
+                frontImage: "/assets/images/coins_output/front_20.png", backImage: "/assets/images/coins_output/back_20.png", translation: "1\nShōwa 52 (1977)\nJapan\n1 yen",
                 inscribedText: "1\n昭和五十二年\n日本国\n一 円",
                 designFront: "Sprouting bamboo branch in center, authority on top, value and denomination on bottom",
                 designBack: "Big value within two inner circles, date below",
@@ -893,7 +1570,7 @@
             {
                 // 1) Identification
                 id: "21", year: "1979", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
-                frontImage: "front_21.png", backImage: "back_21.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_21.png", backImage: "/assets/images/coins_output/back_21.png", translation: "Denmark",
                 inscribedText: "1979\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "Value with oaktree-leaves\nand the country name above",
@@ -908,7 +1585,7 @@
             {
                 // 1) Identification
                 id: "22", year: "1980", country: "USA", monarch: "Thomas Jefferson", value: "5 cent (usd)",
-                frontImage: "front_22.png", backImage: "back_22.png", translation: "Out of Many, One",
+                frontImage: "/assets/images/coins_output/front_22.png", backImage: "/assets/images/coins_output/back_22.png", translation: "Out of Many, One",
                 inscribedText: "E PLURIBUS UNUM\nMONTICELLO\nFIVE CENTS\nUNITED STATES OF AMERICA",
                 designFront: "The portrait of Thomas Jefferson, the 3rd president of the U.S. from 1801 to 1809.",
                 designBack: "A representation of Monticello, President Thomas Jefferson's Virginia home.",
@@ -923,7 +1600,7 @@
             {
                 // 1) Identification
                 id: "23", year: "1980", country: "Japan", monarch: "Emperor Hirohito", value: "¥1 Yen (JPY)",
-                frontImage: "front_23.png", backImage: "back_23.png", translation: "1\nShōwa 55 (1980)\nJapan\n1 yen",
+                frontImage: "/assets/images/coins_output/front_23.png", backImage: "/assets/images/coins_output/back_23.png", translation: "1\nShōwa 55 (1980)\nJapan\n1 yen",
                 inscribedText: "1\n昭和五十五年\n日本国\n一 円",
                 designFront: "Sprouting bamboo branch in center, authority on top, value and denomination on bottom",
                 designBack: "Big value within two inner circles, date below",
@@ -938,7 +1615,7 @@
             {
                 // 1) Identification
                 id: "24", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
-                frontImage: "front_24.png", backImage: "back_24.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_24.png", backImage: "/assets/images/coins_output/back_24.png", translation: "Denmark",
                 inscribedText: "1981\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "Value with oaktree-leaves\nand the country name above",
@@ -953,7 +1630,7 @@
             {
                 // 1) Identification
                 id: "25", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
-                frontImage: "front_25.png", backImage: "back_25.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_25.png", backImage: "/assets/images/coins_output/back_25.png", translation: "Denmark",
                 inscribedText: "1981\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
@@ -968,7 +1645,7 @@
             {
                 // 1) Identification
                 id: "26", year: "1981", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
-                frontImage: "front_26.png", backImage: "back_26.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_26.png", backImage: "/assets/images/coins_output/back_26.png", translation: "Denmark",
                 inscribedText: "1981\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
@@ -983,7 +1660,7 @@
             {
                 // 1) Identification
                 id: "27", year: "1982", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)",
-                frontImage: "front_27.png", backImage: "back_27.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_27.png", backImage: "/assets/images/coins_output/back_27.png", translation: "Denmark",
                 inscribedText: "1982\nM 2R\nR ♥ B\n25 ØRE DANMARK",
                 designFront: "Crowned Margrethe II monogram\non the left with oak branch\non the right",
                 designBack: "Value and lines representing\nthe barley ears from\nthe Frederik IX coin",
@@ -998,7 +1675,7 @@
             {
                 // 1) Identification
                 id: "28", year: "1983", country: "Jugoslavia", monarch: "Socialist Federal Republic", value: "50 Paras",
-                frontImage: "front_28.png", backImage: "back_28.png", translation: "Socialist Federal Republic\nof Yugoslavia",
+                frontImage: "/assets/images/coins_output/front_28.png", backImage: "/assets/images/coins_output/back_28.png", translation: "Socialist Federal Republic\nof Yugoslavia",
                 inscribedText: "СФР JУГОСЛАВИJА\nSFR JUGOSLAVIJA\n29·XI·1943\n50 ПАРА·PARA·PAR·ПАРИ·1983",
                 designFront: "50\nCyrillic, Latin letters\n1983",
                 designBack: "Name of the Socialist Federal Republic\nof Yugoslavia in Cyrillic and Latin alphabets.\nCoat of arms of the SFRY\nproclaimed on November 29, 1943",
@@ -1013,7 +1690,7 @@
             {
                 // 1) Identification
                 id: "29", year: "1984", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
-                frontImage: "front_29.png", backImage: "back_29.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_29.png", backImage: "/assets/images/coins_output/back_29.png", translation: "Denmark",
                 inscribedText: "1984\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "Value with oaktree-leaves\nand the country name above",
@@ -1028,12 +1705,12 @@
             {
                 // 1) Identification
                 id: "30", year: "1984", country: "Italy", monarch: "Republic", value: "500 lire",
-                frontImage: "front_30.png", backImage: "back_30.png", translation: "Italian Republic",
+                frontImage: "/assets/images/coins_output/front_30.png", backImage: "/assets/images/coins_output/back_30.png", translation: "Italian Republic",
                 inscribedText: "REPVBBLICA ITALIANA\nR 1984 L.500",
                 designFront: "Head left within circle",
                 designBack: "Plaza within circle flanked by sprigs",
                 // 2) Physical Characteristics
-                material: "Bi-metallic\n(Aluminum-Bronze center\nin Stainless Steel ring)", color: "Silver and golden", weight: "6.8 g", diameter: "25.8 mm", thickness: "1,8 mm",
+                material: "Bi-metallic", color: "Silver and golden", weight: "6.8 g", diameter: "25.8 mm", thickness: "1,8 mm",
                 edgeType: "Segmented reeding", shape: "Round",
                 // 3) Numismatic details
                 rarity: "27", condition: "Good", currentWorth: "0.5 - 25 USD",
@@ -1043,7 +1720,7 @@
             {
                 // 1) Identification
                 id: "31", year: "1986", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
-                frontImage: "front_31.png", backImage: "back_31.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_31.png", backImage: "/assets/images/coins_output/back_31.png", translation: "Denmark",
                 inscribedText: "1986\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "Value with oaktree-leaves\nand the country name above",
@@ -1058,7 +1735,7 @@
             {
                 // 1) Identification
                 id: "32", year: "1987", country: "Denmark", monarch: "Margrethe II", value: "5 øre (dkk)",
-                frontImage: "front_32.png", backImage: "back_32.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_32.png", backImage: "/assets/images/coins_output/back_32.png", translation: "Denmark",
                 inscribedText: "1987\nM 2R\nR ♥ B\nDANMARK\n5\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "5 vertical lines left and right\nof the denomination and the\ncountry name at the top",
@@ -1073,7 +1750,7 @@
             {
                 // 1) Identification
                 id: "33", year: "1987", country: "Spain", monarch: "King Juan Carlos I", value: "1 peseta",
-                frontImage: "front_33.png", backImage: "back_33.png", translation: "Juan Carlos I\nthe Spainsh reign",
+                frontImage: "/assets/images/coins_output/front_33.png", backImage: "/assets/images/coins_output/back_33.png", translation: "Juan Carlos I\nthe Spainsh reign",
                 inscribedText: "JUAN CARLOS I\nREY DE ESPAÑA",
                 designFront: "Head of King Juan Carlos I facing left.",
                 designBack: "Crowned coat of arms of Spain\nwith Pillars of Hercules.",
@@ -1088,7 +1765,7 @@
             {
                 // 1) Identification
                 id: "34", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)",
-                frontImage: "front_34.png", backImage: "back_34.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_34.png", backImage: "/assets/images/coins_output/back_34.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 88\n1 KRONE",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1103,7 +1780,7 @@
             {
                 // 1) Identification
                 id: "35", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "10 øre (dkk)",
-                frontImage: "front_35.png", backImage: "back_35.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_35.png", backImage: "/assets/images/coins_output/back_35.png", translation: "Denmark",
                 inscribedText: "1988\nM 2R\nR ♥ B\nDANMARK\n10\nØRE",
                 designFront: "Crowned Margrethe II monogram\ndividing the date",
                 designBack: "Value with oaktree-leaves\nand the country name above",
@@ -1118,7 +1795,7 @@
             {
                 // 1) Identification
                 id: "36", year: "1988", country: "Denmark", monarch: "Margrethe II", value: "25 øre (dkk)",
-                frontImage: "front_36.png", backImage: "back_36.png", translation: "Denmark",
+                frontImage: "/assets/images/coins_output/front_36.png", backImage: "/assets/images/coins_output/back_36.png", translation: "Denmark",
                 inscribedText: "1988\nM 2R\nR ♥ B\nDANMARK\n25\nØRE",
                 designFront: "Crowned Margrethe II monogram on the left\nwith oak branch on the right",
                 designBack: "Value and lines representing the barley ears\nfrom the Frederik IX coin",
@@ -1133,7 +1810,7 @@
             {
                 // 1) Identification
                 id: "37", year: "1989", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_37.png", backImage: "back_37.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_37.png", backImage: "/assets/images/coins_output/back_37.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 89\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1148,7 +1825,7 @@
             {
                 // 1) Identification
                 id: "38", year: "1990", country: "BRD Germany", monarch: "Federal Republic of Germany", value: "5 Pfennig",
-                frontImage: "front_38.png", backImage: "back_38.png", translation: "Federal Republic of Germany",
+                frontImage: "/assets/images/coins_output/front_38.png", backImage: "/assets/images/coins_output/back_38.png", translation: "Federal Republic of Germany",
                 inscribedText: "BUNDESREPUBLIK DEUTSCHLAND\n5",
                 designFront: "Oak sprout with leaves and acorns",
                 designBack: "Eagle facing left",
@@ -1163,7 +1840,7 @@
             {
                 // 1) Identification
                 id: "39", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_39.png", backImage: "back_39.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_39.png", backImage: "/assets/images/coins_output/back_39.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 90\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1178,7 +1855,7 @@
             {
                 // 1) Identification
                 id: "40", year: "1990", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
-                frontImage: "front_40.png", backImage: "back_40.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_40.png", backImage: "/assets/images/coins_output/back_40.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 90\n20 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1193,7 +1870,7 @@
             {
                 // 1) Identification
                 id: "41", year: "1991", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)",
-                frontImage: "front_41.png", backImage: "back_41.png", translation: "🌱Japan🌱\nHeisei 3 (1991)\n5 yen",
+                frontImage: "/assets/images/coins_output/front_41.png", backImage: "/assets/images/coins_output/back_41.png", translation: "🌱Japan🌱\nHeisei 3 (1991)\n5 yen",
                 inscribedText: "🌱日本国🌱\n平成三年\n五円",
                 designFront: "Hole in center flanked by seed leaf, authority on top and date below",
                 designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
@@ -1208,7 +1885,7 @@
             {
                 // 1) Identification
                 id: "42", year: "1992", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)",
-                frontImage: "front_42.png", backImage: "back_42.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_42.png", backImage: "/assets/images/coins_output/back_42.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 92\n2 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1223,7 +1900,7 @@
             {
                 // 1) Identification
                 id: "43", year: "1994", country: "Denmark", monarch: "Margrethe II", value: "50 øre (dkk)",
-                frontImage: "front_43.png", backImage: "back_43.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_43.png", backImage: "/assets/images/coins_output/back_43.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 94\n50 ØRE",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1238,7 +1915,7 @@
             {
                 // 1) Identification
                 id: "44", year: "1998", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
-                frontImage: "front_44.png", backImage: "back_44.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_44.png", backImage: "/assets/images/coins_output/back_44.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n19 98\n20 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1253,7 +1930,7 @@
             {
                 // 1) Identification
                 id: "45", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "2 krone (dkk)",
-                frontImage: "front_45.png", backImage: "back_45.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_45.png", backImage: "/assets/images/coins_output/back_45.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 01\n2 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1268,7 +1945,7 @@
             {
                 // 1) Identification
                 id: "46", year: "2001", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)",
-                frontImage: "front_46.png", backImage: "back_46.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_46.png", backImage: "/assets/images/coins_output/back_46.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 01\n5 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1283,7 +1960,7 @@
             {
                 // 1) Identification
                 id: "47", year: "2002", country: "Austria", monarch: "Second Republic", value: "1 euro",
-                frontImage: "front_47.png", backImage: "back_47.png", translation: "NA",
+                frontImage: "/assets/images/coins_output/front_47.png", backImage: "/assets/images/coins_output/back_47.png", translation: "NA",
                 inscribedText: "2002 1 EURO",
                 designFront: "Portrait of Wolfgang Amadeus Mozart with his signature",
                 designBack: "European side with map and value",
@@ -1298,7 +1975,7 @@
             {
                 // 1) Identification
                 id: "48", year: "2002", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_48.png", backImage: "back_48.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_48.png", backImage: "/assets/images/coins_output/back_48.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 02\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1313,7 +1990,7 @@
             {
                 // 1) Identification
                 id: "49", year: "2002", country: "Germany", monarch: "Federal Republic of Germany", value: "0.10 euro",
-                frontImage: "front_49.png", backImage: "back_49.png", translation: "NA",
+                frontImage: "/assets/images/coins_output/front_49.png", backImage: "/assets/images/coins_output/back_49.png", translation: "NA",
                 inscribedText: "2002",
                 designFront: "Oak branch surrounded by twelve stars, mintmark at the bottom",
                 designBack: "European map, value, and translation of \"euro\" into various languages",
@@ -1328,7 +2005,7 @@
             {
                 // 1) Identification
                 id: "50", year: "2002", country: "Greece", monarch: "Third Hellenic Republic", value: "50 Cent (euro)",
-                frontImage: "front_50.png", backImage: "back_50.png", translation: "NA",
+                frontImage: "/assets/images/coins_output/front_50.png", backImage: "/assets/images/coins_output/back_50.png", translation: "NA",
                 inscribedText: "2002",
                 designFront: "The portrait of Eleftherios Venizelos, a prominent Cretan politician and one of the most significant figures in modern Greek history",
                 designBack: "European map, value, and translation of \"euro\" into various languages",
@@ -1343,7 +2020,7 @@
             {
                 // 1) Identification
                 id: "51", year: "2003", country: "Austria", monarch: "Second Republic", value: "5 cent (euro)",
-                frontImage: "front_51.png", backImage: "back_51.png", translation: "NA",
+                frontImage: "/assets/images/coins_output/front_51.png", backImage: "/assets/images/coins_output/back_51.png", translation: "NA",
                 inscribedText: "2003",
                 designFront: "Edelweiss flower surrounded by a stylized laurel wreath",
                 designBack: "European side with map and value",
@@ -1358,7 +2035,7 @@
             {
                 // 1) Identification
                 id: "52", year: "2003", country: "Italy", monarch: "Republic", value: "2 euro",
-                frontImage: "front_52.png", backImage: "back_52.png", translation: "NA",
+                frontImage: "/assets/images/coins_output/front_52.png", backImage: "/assets/images/coins_output/back_52.png", translation: "NA",
                 inscribedText: "2003",
                 designFront: "Portrait of Dante Alighieri",
                 designBack: "European map, value, and translation of \"euro\" into various languages",
@@ -1373,7 +2050,7 @@
             {
                 // 1) Identification
                 id: "53", year: "2004", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_53.png", backImage: "back_53.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_53.png", backImage: "/assets/images/coins_output/back_53.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 04\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1388,7 +2065,7 @@
             {
                 // 1) Identification
                 id: "54", year: "2004", country: "Germany", monarch: "Federal Republic", value: "50 cent (euro)",
-                frontImage: "front_54.png", backImage: "back_54.png", translation: "NA",
+                frontImage: "/assets/images/coins_output/front_54.png", backImage: "/assets/images/coins_output/back_54.png", translation: "NA",
                 inscribedText: "2004",
                 designFront: "Eagle facing left surrounded by twelve stars, mintmark at the bottom",
                 designBack: "European map, value, and translation of \"euro\" into various languages",
@@ -1403,7 +2080,7 @@
             {
                 // 1) Identification
                 id: "55", year: "2004", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)",
-                frontImage: "front_55.png", backImage: "back_55.png", translation: "🌱Japan🌱\nHeisei 16 (2004)\n5 yen",
+                frontImage: "/assets/images/coins_output/front_55.png", backImage: "/assets/images/coins_output/back_55.png", translation: "🌱Japan🌱\nHeisei 16 (2004)\n5 yen",
                 inscribedText: "🌱日本国🌱\n平成十六年\n五円",
                 designFront: "Hole in center flanked by seed leaf, authority on top and date below",
                 designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
@@ -1418,7 +2095,7 @@
             {
                 // 1) Identification
                 id: "56", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_56.png", backImage: "back_56.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_56.png", backImage: "/assets/images/coins_output/back_56.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 05\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1433,7 +2110,7 @@
             {
                 // 1) Identification
                 id: "57", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_57.png", backImage: "back_57.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_57.png", backImage: "/assets/images/coins_output/back_57.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 05\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1448,7 +2125,7 @@
             {
                 // 1) Identification
                 id: "58", year: "2005", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
-                frontImage: "front_58.png", backImage: "back_58.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_58.png", backImage: "/assets/images/coins_output/back_58.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 05\n20 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1463,7 +2140,7 @@
             {
                 // 1) Identification
                 id: "59", year: "2007", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_59.png", backImage: "back_59.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_59.png", backImage: "/assets/images/coins_output/back_59.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 07\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1478,7 +2155,7 @@
             {
                 // 1) Identification
                 id: "60", year: "2008", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_60.png", backImage: "back_60.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_60.png", backImage: "/assets/images/coins_output/back_60.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 08\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1493,7 +2170,7 @@
             {
                 // 1) Identification
                 id: "61", year: "2013", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
-                frontImage: "front_61.png", backImage: "back_61.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_61.png", backImage: "/assets/images/coins_output/back_61.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 13\n20 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1508,7 +2185,7 @@
             {
                 // 1) Identification
                 id: "62", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "1 krone (dkk)",
-                frontImage: "front_62.png", backImage: "back_62.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_62.png", backImage: "/assets/images/coins_output/back_62.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 16\n1 KRONE",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1523,7 +2200,7 @@
             {
                 // 1) Identification
                 id: "63", year: "2016", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_63.png", backImage: "back_63.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_63.png", backImage: "/assets/images/coins_output/back_63.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 16\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1538,7 +2215,7 @@
             {
                 // 1) Identification
                 id: "64", year: "2017", country: "Denmark", monarch: "Margrethe II", value: "10 krone (dkk)",
-                frontImage: "front_64.png", backImage: "back_64.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_64.png", backImage: "/assets/images/coins_output/back_64.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 17\n10 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1553,7 +2230,7 @@
             {
                 // 1) Identification
                 id: "65", year: "2017", country: "Japan", monarch: "Emperor Akihito", value: "¥5 Yen (JPY)",
-                frontImage: "front_65.png", backImage: "back_65.png", translation: "🌱Japan🌱\nHeisei 29 (2017)\n5 yen",
+                frontImage: "/assets/images/coins_output/front_65.png", backImage: "/assets/images/coins_output/back_65.png", translation: "🌱Japan🌱\nHeisei 29 (2017)\n5 yen",
                 inscribedText: "🌱日本国🌱\n平成二十九年\n五円",
                 designFront: "Hole in center flanked by seed leaf, authority on top and date below",
                 designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
@@ -1568,7 +2245,7 @@
             {
                 // 1) Identification
                 id: "66", year: "2019", country: "Denmark", monarch: "Margrethe II", value: "5 krone (dkk)",
-                frontImage: "front_66.png", backImage: "back_66.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_66.png", backImage: "/assets/images/coins_output/back_66.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 19\n5 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1583,7 +2260,7 @@
             {
                 // 1) Identification
                 id: "67", year: "2020", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
-                frontImage: "front_67.png", backImage: "back_67.png", translation: "Queen of Denmark",
+                frontImage: "/assets/images/coins_output/front_67.png", backImage: "/assets/images/coins_output/back_67.png", translation: "Queen of Denmark",
                 inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 20\n20 KRONER",
                 designFront: "Portrait of Margrethe II facing right",
                 designBack: "Value, crowned royal coat of arms",
@@ -1598,7 +2275,7 @@
             {
                 // 1) Identification
                 id: "68", year: "2020", country: "Japan", monarch: "Emperor Naruhito", value: "¥100 Yen (JPY)",
-                frontImage: "front_68.png", backImage: "back_68.png", translation: "N🌱Japan🌱 Heisei 29 (2017) 5 yen",
+                frontImage: "/assets/images/coins_output/front_68.png", backImage: "/assets/images/coins_output/back_68.png", translation: "N🌱Japan🌱 Heisei 29 (2017) 5 yen",
                 inscribedText: "🌱日本国🌱 平戍二十九年 五円",
                 designFront: "Hole in center flanked by seed leaf, authority on top and date below",
                 designBack: "Large bending stalk of rice representing agriculture on top, water with value at the bottom representing fisheries, and teeth of a cog around the central hole representing industry",
@@ -1613,7 +2290,7 @@
             {
                 // 1) Identification
                 id: "69", year: "2023", country: "Poland", monarch: "Third Republic", value: "5 Groszy (zł)",
-                frontImage: "front_69.png", backImage: "back_69.png", translation: "Republic of Poland",
+                frontImage: "/assets/images/coins_output/front_69.png", backImage: "/assets/images/coins_output/back_69.png", translation: "Republic of Poland",
                 inscribedText: "RZECZPOSPOLITA POLSKA",
                 designFront: "Eagle with a crown (national coat of arms) surrounded by the name of the Republic of Poland and the year of mintage.",
                 designBack: "Value and a stylized laurel wreath below.",
@@ -1637,30 +2314,106 @@ const pageColumns = {
 */
 
         // DOM elements
+       // DOM elements
         const coinWheel = document.getElementById('coin-wheel');
         const spinBtn = document.getElementById('spin-btn');
         const resetBtn = document.getElementById('reset-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
         const coinModal = document.getElementById('coin-modal');
         const modalClose = document.getElementById('modal-close');
         const modalTitle = document.getElementById('modal-title');
+        const modalImages = document.getElementById('modal-images');
         const modalDetails = document.getElementById('modal-details');
         const wheelViewBtn = document.getElementById('wheel-view-btn');
         const tableViewBtn = document.getElementById('table-view-btn');
         const wheelView = document.getElementById('wheel-view');
         const tableView = document.getElementById('table-view');
+        const tableControls = document.getElementById('table-controls');
         const coinTable = document.querySelector('#coin-table tbody');
+        const searchBox = document.getElementById('search-box');
+        const countryFilter = document.getElementById('country-filter');
+        const materialFilter = document.getElementById('material-filter');
+        const monarchFilter = document.getElementById('monarch-filter');
+        const statsGrid = document.getElementById('stats-grid');
 
         let currentRotation = 0;
         let isSpinning = false;
+        let filteredCoins = [...coinData];
 
         // Initialize the wheel
         function initWheel() {
             coinWheel.innerHTML = '';
             
             const totalCoins = coinData.length;
-            const radius = 200; // radius of the wheel
+            const radius = 250; // radius of the wheel
             
             coinData.forEach((coin, index) => {
+                const angle = (index / totalCoins) * 2 * Math.PI;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                const coinSlot = document.createElement('div');
+                coinSlot.className = 'coin-slot';
+                coinSlot.style.left = `calc(50% + ${x}px)`;
+                coinSlot.style.top = `calc(50% + ${y}px)`;
+                coinSlot.style.transform = `translate(-50%, -50%)`;
+                
+                // Create pixelated coin based on material color
+                const color = getCoinColor(coin.material);
+                
+                coinSlot.innerHTML = `
+                    <div class="coin-slot-content">
+                        <div class="pixel-coin" style="background-color: ${color}">
+                            <div class="coin-id-wheel">${coin.id}</div>
+                        </div>
+                    </div>
+                `;
+                
+                coinSlot.addEventListener('click', () => openModal(coin));
+                coinWheel.appendChild(coinSlot);
+            });
+        }
+
+        // Spin the wheel
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinBtn.disabled = true;
+            const spinAmount = 1800 + Math.random() * 1800;
+            currentRotation += spinAmount;
+            
+            coinWheel.style.transform = `rotate(${currentRotation}deg)`;
+            
+            setTimeout(() => {
+                isSpinning = false;
+                spinBtn.disabled = false;
+                
+                // Pick a random coin and show its details
+                const randomIndex = Math.floor(Math.random() * coinData.length);
+                const randomCoin = coinData[randomIndex];
+                openModal(randomCoin);
+            }, 2000);
+        }
+
+        // Reset the wheel
+        function resetWheel() {
+            currentRotation = 0;
+            coinWheel.style.transform = `rotate(${currentRotation}deg)`;
+        }
+
+        // Shuffle coin positions
+        function shuffleWheel() {
+            // Create a copy of coinData and shuffle it
+            const shuffledCoins = [...coinData].sort(() => Math.random() - 0.5);
+            
+            // Reinitialize the wheel with shuffled coins
+            coinWheel.innerHTML = '';
+            
+            const totalCoins = shuffledCoins.length;
+            const radius = 250;
+            
+            shuffledCoins.forEach((coin, index) => {
                 const angle = (index / totalCoins) * 2 * Math.PI;
                 const x = Math.cos(angle) * radius;
                 const y = Math.sin(angle) * radius;
@@ -1675,6 +2428,7 @@ const pageColumns = {
                     <div class="coin-slot-content">
                         <div class="coin-id">${coin.id}</div>
                         <div class="coin-year">${coin.year}</div>
+                        <div class="coin-country">${coin.country}</div>
                     </div>
                 `;
                 
@@ -1683,75 +2437,122 @@ const pageColumns = {
             });
         }
 
-        // Spin the wheel
-        function spinWheel() {
-            if (isSpinning) return;
-            
-            isSpinning = true;
-            const spinAmount = 1800 + Math.random() * 1800; // Random spin between 1800-3600 degrees
-            currentRotation += spinAmount;
-            
-            coinWheel.style.transform = `rotate(${currentRotation}deg)`;
-            
-            setTimeout(() => {
-                isSpinning = false;
-            }, 4000); // Match with CSS transition duration
-        }
-
-        // Reset the wheel
-        function resetWheel() {
-            currentRotation = 0;
-            coinWheel.style.transform = `rotate(${currentRotation}deg)`;
-        }
-
         // Open modal with coin details
         function openModal(coin) {
             modalTitle.textContent = `Coin ${coin.id} - ${coin.country} ${coin.year}`;
             
+            // Set up images
+            modalImages.innerHTML = `
+                <div class="modal-image-container">
+                    <img src="${coin.frontImage}" alt="Front of coin ${coin.id}" class="modal-image">
+                    <div class="modal-image-label">Front</div>
+                </div>
+                <div class="modal-image-container">
+                    <img src="${coin.backImage}" alt="Back of coin ${coin.id}" class="modal-image">
+                    <div class="modal-image-label">Back</div>
+                </div>
+            `;
+            
+            // Set up details
             modalDetails.innerHTML = `
-                <div class="detail-item">
-                    <span class="detail-label">ID:</span>
-                    <span class="detail-value">${coin.id}</span>
+                <div class="detail-section">
+                    <h3>Identification</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">ID:</span>
+                        <span class="detail-value">${coin.id}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Year:</span>
+                        <span class="detail-value">${coin.year}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Country:</span>
+                        <span class="detail-value">${coin.country}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Monarch:</span>
+                        <span class="detail-value">${coin.monarch}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Value:</span>
+                        <span class="detail-value">${coin.value}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Inscribed Text:</span>
+                        <span class="detail-value inscribed">${coin.inscribedText}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Translation:</span>
+                        <span class="detail-value inscribed">${coin.translation}</span>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Year:</span>
-                    <span class="detail-value">${coin.year}</span>
+                
+                <div class="detail-section">
+                    <h3>Physical Characteristics</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Material:</span>
+                        <span class="detail-value">${coin.material}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Color:</span>
+                        <span class="detail-value">${coin.color}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Weight:</span>
+                        <span class="detail-value">${coin.weight}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Diameter:</span>
+                        <span class="detail-value">${coin.diameter}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Thickness:</span>
+                        <span class="detail-value">${coin.thickness}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Edge Type:</span>
+                        <span class="detail-value">${coin.edgeType}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Shape:</span>
+                        <span class="detail-value">${coin.shape}</span>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Country:</span>
-                    <span class="detail-value">${coin.country}</span>
+                
+                <div class="detail-section">
+                    <h3>Numismatic Details</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Rarity:</span>
+                        <span class="detail-value">${coin.rarity}/100</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Condition:</span>
+                        <span class="detail-value">${coin.condition}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Current Worth:</span>
+                        <span class="detail-value">${coin.currentWorth}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Mint:</span>
+                        <span class="detail-value">${coin.mint}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Catalogue Reference:</span>
+                        <span class="detail-value">${coin.catalogueRef}</span>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Monarch:</span>
-                    <span class="detail-value">${coin.monarch}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Value:</span>
-                    <span class="detail-value">${coin.value}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Material:</span>
-                    <span class="detail-value">${coin.material}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Weight:</span>
-                    <span class="detail-value">${coin.weight}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Diameter:</span>
-                    <span class="detail-value">${coin.diameter}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Condition:</span>
-                    <span class="detail-value">${coin.condition}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Rarity:</span>
-                    <span class="detail-value">${coin.rarity}/100</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Current Worth:</span>
-                    <span class="detail-value">${coin.currentWorth}</span>
+                
+                <div class="detail-section">
+                    <h3>Design</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Front Design:</span>
+                        <span class="detail-value">${coin.designFront}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Back Design:</span>
+                        <span class="detail-value">${coin.designBack}</span>
+                    </div>
                 </div>
             `;
             
@@ -1763,34 +2564,340 @@ const pageColumns = {
             coinModal.classList.remove('active');
         }
 
+        // Define page columns for table view
+        const pageColumns = {
+            "Coins": ["id", "frontImage", "backImage"],
+            "Identification": ["id", "year", "country", "monarch", "value", "inscribedText", "translation", "designFront", "designBack"],
+            "Physical Characteristics": ["id", "material", "color", "weight", "diameter", "thickness", "edgeType", "shape"],
+            "Numismatic Details": ["id", "rarity", "condition", "currentWorth", "mint", "catalogueRef"]
+        };
+
+        let currentPage = "Coins";
+        let currentPageTabs = null;
+        let coinsDisplayed = 5;
+        const coinsPerLoad = 5;
+        
         // Initialize table view
         function initTableView() {
-            coinTable.innerHTML = '';
+            createPageTabs();
+            updateTable();
+            populateFilters();
+        }
+
+        // Create page tabs for table view
+        function createPageTabs() {
+            // Remove existing page tabs if they exist
+            if (currentPageTabs) {
+                currentPageTabs.remove();
+            }
             
-            coinData.forEach(coin => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${coin.id}</td>
-                    <td>${coin.year}</td>
-                    <td>${coin.country}</td>
-                    <td>${coin.monarch}</td>
-                    <td>${coin.value}</td>
-                    <td>${coin.material}</td>
-                    <td>${coin.weight}</td>
-                    <td>${coin.diameter}</td>
-                    <td>${coin.condition}</td>
-                    <td>${coin.rarity}/100</td>
-                `;
-                
-                row.addEventListener('click', () => openModal(coin));
-                coinTable.appendChild(row);
+            const pageTabs = document.createElement('div');
+            pageTabs.className = 'page-tabs';
+            currentPageTabs = pageTabs;
+
+            Object.keys(pageColumns).forEach(page => {
+                const tab = document.createElement('button');
+                tab.className = `toggle-btn ${page === currentPage ? 'active' : ''}`;
+                tab.textContent = page;
+                tab.addEventListener('click', () => {
+                    currentPage = page;
+                    coinsDisplayed = 5; // Reset to 5 when switching pages
+                    updateTable();
+                    // Update active tab
+                    document.querySelectorAll('.page-tabs .toggle-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    tab.classList.add('active');
+                });
+                pageTabs.appendChild(tab);
             });
+
+            // Insert page tabs before the table container
+            const spreadsheetView = document.querySelector('.spreadsheet-view');
+            const tableContainer = document.querySelector('.spreadsheet-container');
+            spreadsheetView.insertBefore(pageTabs, tableContainer);
+        }
+        // Switch to table view
+         function showTableView() {
+            wheelView.style.display = 'none';
+            tableView.style.display = 'block';
+            tableControls.style.display = 'flex';
+            wheelViewBtn.classList.remove('active');
+            tableViewBtn.classList.add('active');
+            
+            // Reinitialize table view when switching to table view
+            initTableView();
+        }
+
+        // Get color based on coin material
+        function getCoinColor(material) {
+            const materialColors = {
+                'Silver': '#c0c0c0',
+                'Silver (.800)': '#c0c0c0',
+                'Silver (.925)': '#d3d3d3',
+                'Copper-Nickel': '#b87333',
+                'Bronze': '#cd7f32',
+                'Aluminium bronze': '#daa520',
+                'Gold': '#ffd700',
+                'Copper clad iron': '#b87333',
+                'Brass': '#b5a642',
+                'Aluminium': '#a9a9a9',
+                'Nickel': '#a8a8a8',
+                'Manganese brass': '#ffa500',
+                'Nordic gold': '#daa520',
+                'Brass plated steel': '#b5a642',
+                'Copper plated steel': '#b87333',
+                'Bi-metallic': '#808080',
+                'Zinc': '#a9a9a9'
+            };
+            
+            return materialColors[material] || '#666666'; // Default gray
+        }
+
+        // Update the spin button event listener
+        spinBtn.removeEventListener('click', spinWheel);
+        spinBtn.addEventListener('click', spinWheel);
+
+        // Initialize the gallery with enhanced table view
+        document.addEventListener('DOMContentLoaded', () => {
+            initWheel();
+            initTableView();
+            initStatistics();
+        });
+
+        // Update table 
+        function updateTable() {
+            const columns = pageColumns[currentPage];
+            const table = document.getElementById('coin-table');
+            const thead = table.querySelector('thead');
+            const tbody = table.querySelector('tbody');
+            
+            // Update table header
+            thead.innerHTML = '';
+            const headerRow = document.createElement('tr');
+            
+            columns.forEach(column => {
+                const th = document.createElement('th');
+                // Format column names for display
+                th.textContent = formatColumnName(column);
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            
+            // Update table body
+            tbody.innerHTML = '';
+            
+            // For coins page, only show limited number of images
+            const coinsToShow = currentPage === "Coins" 
+                ? filteredCoins.slice(0, coinsDisplayed)
+                : filteredCoins;
+            
+            coinsToShow.forEach(coin => {
+                const row = document.createElement('tr');
+                
+                columns.forEach(column => {
+                    const td = document.createElement('td');
+                    
+                    // Handle image columns specially
+                    if (column === 'frontImage' || column === 'backImage') {
+                        const img = document.createElement('img');
+                        img.src = coin[column];
+                        img.alt = column;
+                        img.style.cssText = 'width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; display: block; margin: 0 auto;';
+                        
+                        // Lazy loading for images
+                        img.loading = 'lazy';
+                        
+                        td.appendChild(img);
+                    } else if (column === 'inscribedText' || column === 'translation') {
+                        // Handle text with line breaks
+                        td.innerHTML = (coin[column] || 'N/A').replace(/\n/g, '<br>');
+                    } else {
+                        td.textContent = coin[column] || 'N/A';
+                    }
+                    
+                    row.appendChild(td);
+                });
+                
+                tbody.appendChild(row);
+            });
+
+            // Add "See More" button for coins page if there are more coins to show
+            if (currentPage === "Coins" && coinsDisplayed < filteredCoins.length) {
+                addSeeMoreButton();
+            } else {
+                removeSeeMoreButton();
+            }
+        }
+
+        // Add "See More" button
+        function addSeeMoreButton() {
+            removeSeeMoreButton(); // Remove existing button first
+            
+            const seeMoreBtn = document.createElement('button');
+            seeMoreBtn.id = 'see-more-btn';
+            seeMoreBtn.textContent = 'See More Coins';
+            seeMoreBtn.className = 'see-more-btn';
+            seeMoreBtn.addEventListener('click', loadMoreCoins);
+            
+            const tableContainer = document.querySelector('.spreadsheet-container');
+            tableContainer.parentNode.insertBefore(seeMoreBtn, tableContainer.nextSibling);
+        }
+
+        // Remove "See More" button
+        function removeSeeMoreButton() {
+            const existingBtn = document.getElementById('see-more-btn');
+            if (existingBtn) {
+                existingBtn.remove();
+            }
+        }
+
+        // Load more coins
+        function loadMoreCoins() {
+            coinsDisplayed += coinsPerLoad;
+            updateTable();
+        }
+
+        // Helper function to format column names for display
+        function formatColumnName(column) {
+            const nameMap = {
+                id: 'ID',
+                year: 'Year',
+                country: 'Country',
+                monarch: 'Monarch',
+                value: 'Value',
+                inscribedText: 'Inscribed Text',
+                translation: 'Translation',
+                designFront: 'Front Design',
+                designBack: 'Back Design',
+                frontImage: 'Front Image',
+                backImage: 'Back Image',
+                material: 'Material',
+                color: 'Color',
+                weight: 'Weight',
+                diameter: 'Diameter',
+                thickness: 'Thickness',
+                edgeType: 'Edge Type',
+                shape: 'Shape',
+                rarity: 'Rarity',
+                condition: 'Condition',
+                currentWorth: 'Current Worth',
+                mint: 'Mint',
+                catalogueRef: 'Catalogue Ref'
+            };
+            
+            return nameMap[column] || column;
+        }
+
+
+        // Populate filter dropdowns
+        function populateFilters() {
+            // Get unique values for each filter
+            const countries = [...new Set(coinData.map(coin => coin.country))].sort();
+            const materials = [...new Set(coinData.map(coin => coin.material))].sort();
+            const monarchs = [...new Set(coinData.map(coin => coin.monarch))].sort();
+            
+            // Populate country filter
+            countryFilter.innerHTML = '<option value="">All Countries</option>';
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countryFilter.appendChild(option);
+            });
+            
+            // Populate material filter
+            materialFilter.innerHTML = '<option value="">All Materials</option>';
+            materials.forEach(material => {
+                const option = document.createElement('option');
+                option.value = material;
+                option.textContent = material;
+                materialFilter.appendChild(option);
+            });
+            
+            // Populate monarch filter
+            monarchFilter.innerHTML = '<option value="">All Monarchs</option>';
+            monarchs.forEach(monarch => {
+                const option = document.createElement('option');
+                option.value = monarch;
+                option.textContent = monarch;
+                monarchFilter.appendChild(option);
+            });
+        }
+
+        // Filter coins based on search and filters
+        function filterCoins() {
+            const searchTerm = searchBox.value.toLowerCase();
+            const countryValue = countryFilter.value;
+            const materialValue = materialFilter.value;
+            const monarchValue = monarchFilter.value;
+            
+            filteredCoins = coinData.filter(coin => {
+                const matchesSearch = 
+                    coin.id.toLowerCase().includes(searchTerm) ||
+                    coin.year.toLowerCase().includes(searchTerm) ||
+                    coin.country.toLowerCase().includes(searchTerm) ||
+                    coin.monarch.toLowerCase().includes(searchTerm) ||
+                    coin.value.toLowerCase().includes(searchTerm) ||
+                    coin.material.toLowerCase().includes(searchTerm);
+                
+                const matchesCountry = !countryValue || coin.country === countryValue;
+                const matchesMaterial = !materialValue || coin.material === materialValue;
+                const matchesMonarch = !monarchValue || coin.monarch === monarchValue;
+                
+                return matchesSearch && matchesCountry && matchesMaterial && matchesMonarch;
+            });
+            
+            updateTable();
+        }
+
+        // Initialize statistics
+        function initStatistics() {
+            const totalCoins = coinData.length;
+            const countries = [...new Set(coinData.map(coin => coin.country))].length;
+            const monarchs = [...new Set(coinData.map(coin => coin.monarch))].length;
+            
+            // Calculate average rarity
+            const avgRarity = Math.round(coinData.reduce((sum, coin) => sum + parseInt(coin.rarity), 0) / totalCoins);
+            
+            // Calculate oldest and newest coins
+            const years = coinData.map(coin => parseInt(coin.year)).filter(year => !isNaN(year));
+            const oldestYear = Math.min(...years);
+            const newestYear = Math.max(...years);
+            
+            statsGrid.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-value">${totalCoins}</div>
+                    <div class="stat-label">Total Coins</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${countries}</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${monarchs}</div>
+                    <div class="stat-label">Monarchs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${avgRarity}</div>
+                    <div class="stat-label">Avg Rarity</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${oldestYear}</div>
+                    <div class="stat-label">Oldest Coin</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${newestYear}</div>
+                    <div class="stat-label">Newest Coin</div>
+                </div>
+            `;
         }
 
         // Switch to wheel view
         function showWheelView() {
             wheelView.style.display = 'block';
             tableView.style.display = 'none';
+            tableControls.style.display = 'none';
             wheelViewBtn.classList.add('active');
             tableViewBtn.classList.remove('active');
         }
@@ -1799,6 +2906,7 @@ const pageColumns = {
         function showTableView() {
             wheelView.style.display = 'none';
             tableView.style.display = 'block';
+            tableControls.style.display = 'flex';
             wheelViewBtn.classList.remove('active');
             tableViewBtn.classList.add('active');
         }
@@ -1806,6 +2914,7 @@ const pageColumns = {
         // Event listeners
         spinBtn.addEventListener('click', spinWheel);
         resetBtn.addEventListener('click', resetWheel);
+        shuffleBtn.addEventListener('click', shuffleWheel);
         modalClose.addEventListener('click', closeModal);
         coinModal.addEventListener('click', (e) => {
             if (e.target === coinModal) {
@@ -1815,12 +2924,20 @@ const pageColumns = {
         
         wheelViewBtn.addEventListener('click', showWheelView);
         tableViewBtn.addEventListener('click', showTableView);
+        
+        searchBox.addEventListener('input', filterCoins);
+        countryFilter.addEventListener('change', filterCoins);
+        materialFilter.addEventListener('change', filterCoins);
+        monarchFilter.addEventListener('change', filterCoins);
+        // Update the spin button event listener
+        spinBtn.addEventListener('click', spinWheel);
 
-        // Initialize the gallery
-        document.addEventListener('DOMContentLoaded', () => {
-            initWheel();
-            initTableView();
-        });
+    // Initialize the gallery with enhanced table view
+    document.addEventListener('DOMContentLoaded', () => {
+        initWheel();
+        initTableView();
+        initStatistics();
+    });
     </script>
 </body>
 </html>
