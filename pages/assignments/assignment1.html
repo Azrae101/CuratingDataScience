@@ -1270,7 +1270,7 @@
             {
                 // 1) Identification
                 id: "1", year: "1915", country: "Denmark", monarch: "Christian X", value: "2 kroner (dkk)",
-                frontImage: "/CuratingDataScience/assets/images/coins_output/front_1.png", backImage: "/CuratingDataScience/assets/images/coins_output/back_1.png", translation: "CHRISTIAN X\nKING OF DENMARK\n1915 VEP",
+                frontImage: "../../assets/images/coins_output/front_1.png", backImage: "../../assets/images/coins_output/back_1.png", translation: "CHRISTIAN X\nKING OF DENMARK\n1915 VEP",
                 inscribedText: "CHRISTIAN X\nKONGE AF DANMARK\n1915 VEP",
                 designFront: "Coat of arms in the center, porpoise left, barley ear right, denomination bottom.",
                 designBack: "Dolphin",
@@ -2304,6 +2304,39 @@
                 catalogueRef: "KM# 738"
             }
         ];
+
+// Ensure all image paths start with '../../' (normalise any leading '/' or 'assets/' paths)
+// This fixes entries that use root-relative paths like "/assets/..." so they behave like the
+// already-correct entries that start with "../../assets/..." (e.g. ID 1 and ID 2).
+coinData.forEach(coin => {
+    ['frontImage', 'backImage'].forEach(key => {
+        if (!coin[key]) return;
+        // already correct
+        if (coin[key].startsWith('../../')) return;
+
+        // root-relative '/assets/...' -> '../../assets/...'
+        if (coin[key].startsWith('/')) {
+            coin[key] = '../../' + coin[key].slice(1);
+            return;
+        }
+
+        // 'assets/...' -> '../../assets/...'
+        if (coin[key].startsWith('assets/')) {
+            coin[key] = '../../' + coin[key];
+            return;
+        }
+
+        // '../assets/...' or other relative paths: ensure they begin with '../../'
+        if (coin[key].startsWith('../')) {
+            // collapse any leading ../ sequences to a single '../../'
+            coin[key] = coin[key].replace(/^(?:\.\.\/)+/, '../../');
+            return;
+        }
+
+        // any other path (relative or bare filename) -> prefix with '../../'
+        coin[key] = '../../' + coin[key];
+    });
+});
 
 // Example of how you could structure the columns for your three Table View pages:
 /*
