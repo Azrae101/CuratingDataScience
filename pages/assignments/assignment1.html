@@ -1069,6 +1069,324 @@
             padding: 1px 4px;
         }
     }
+    
+    /* New styles for table image enlargement */
+    .table-image-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .table-image-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .table-image-modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .table-image-modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .table-image-modal-close:hover {
+        background: rgba(255,255,255,0.3);
+        transform: scale(1.1);
+    }
+    
+    /* Horizontal scroll for Identification section in modal */
+    .detail-section.identification {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .detail-section.identification .detail-item {
+        display: inline-block;
+        min-width: 250px;
+        margin-right: 20px;
+        vertical-align: top;
+        white-space: normal;
+    }
+    
+    /* Ensure the Identification section has a scrollbar when needed */
+    .detail-section.identification::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .detail-section.identification::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+    
+    .detail-section.identification::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+    
+    .detail-section.identification::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+
+    /* Make the table container wider and adjust layout */
+    .spreadsheet-container {
+        overflow-x: auto;
+        max-width: 100%;
+        margin: 1rem 0;
+    }
+
+    .data-table {
+        width: auto;
+        min-width: 100%;
+    }
+
+    /* Adjust column widths for better readability */
+    .data-table th:nth-child(1), /* ID */
+    .data-table td:nth-child(1) {
+        min-width: 60px;
+        max-width: 80px;
+    }
+
+    .data-table th:nth-child(2), /* Year */
+    .data-table td:nth-child(2) {
+        min-width: 80px;
+        max-width: 100px;
+    }
+
+    .data-table th:nth-child(3), /* Country */
+    .data-table td:nth-child(3) {
+        min-width: 120px;
+        max-width: 150px;
+    }
+
+    .data-table th:nth-child(4), /* Monarch */
+    .data-table td:nth-child(4) {
+        min-width: 150px;
+        max-width: 200px;
+    }
+
+    .data-table th:nth-child(5), /* Value */
+    .data-table td:nth-child(5) {
+        min-width: 120px;
+        max-width: 150px;
+    }
+
+    .data-table th:nth-child(6), /* Inscribed Text */
+    .data-table td:nth-child(6) {
+        min-width: 200px;
+        max-width: 300px;
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
+
+    .data-table th:nth-child(7), /* Translation */
+    .data-table td:nth-child(7) {
+        min-width: 200px;
+        max-width: 300px;
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
+
+    .data-table th:nth-child(8), /* Front Design */
+    .data-table td:nth-child(8) {
+        min-width: 200px;
+        max-width: 300px;
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
+
+    .data-table th:nth-child(9), /* Back Design */
+    .data-table td:nth-child(9) {
+        min-width: 200px;
+        max-width: 300px;
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
+
+    /* Adjust table cells to allow text wrapping */
+    .data-table td {
+        white-space: normal !important;
+        word-wrap: break-word;
+        max-width: none;
+        overflow: visible;
+        text-overflow: unset;
+    }
+
+    /* Make the assignment content wider on larger screens */
+    @media (min-width: 1200px) {
+        .assignment-content {
+            max-width: 1400px;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .assignment-content {
+            max-width: 1600px;
+        }
+    }
+
+    /* Ensure the table header stays visible when scrolling */
+    .data-table th {
+        position: sticky;
+        top: 0;
+        background: #3498db;
+        z-index: 10;
+    }
+
+        /* Mobile-specific table scrolling */
+    @media (max-width: 768px) {
+        .spreadsheet-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+                        linear-gradient(to left, white 30%, rgba(255,255,255,0)),
+                        linear-gradient(to right, rgba(0,0,0,0.1) 100%, rgba(0,0,0,0)),
+                        linear-gradient(to left, rgba(0,0,0,0.1) 100%, rgba(0,0,0,0));
+            background-position: left center, right center, left center, right center;
+            background-repeat: no-repeat;
+            background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+            background-attachment: local, local, scroll, scroll;
+        }
+
+        .data-table {
+            min-width: 800px; /* Force horizontal scroll on mobile */
+            width: 100%;
+        }
+
+        /* Adjust column widths for mobile scrolling */
+        .data-table th:nth-child(1),
+        .data-table td:nth-child(1) {
+            min-width: 50px;
+            max-width: 60px;
+        }
+
+        .data-table th:nth-child(2),
+        .data-table td:nth-child(2) {
+            min-width: 70px;
+            max-width: 80px;
+        }
+
+        .data-table th:nth-child(3),
+        .data-table td:nth-child(3) {
+            min-width: 100px;
+            max-width: 120px;
+        }
+
+        .data-table th:nth-child(4),
+        .data-table td:nth-child(4) {
+            min-width: 120px;
+            max-width: 150px;
+        }
+
+        .data-table th:nth-child(5),
+        .data-table td:nth-child(5) {
+            min-width: 100px;
+            max-width: 120px;
+        }
+
+        .data-table th:nth-child(6),
+        .data-table td:nth-child(6) {
+            min-width: 150px;
+            max-width: 200px;
+        }
+
+        .data-table th:nth-child(7),
+        .data-table td:nth-child(7) {
+            min-width: 150px;
+            max-width: 200px;
+        }
+
+        .data-table th:nth-child(8),
+        .data-table td:nth-child(8) {
+            min-width: 150px;
+            max-width: 200px;
+        }
+
+        .data-table th:nth-child(9),
+        .data-table td:nth-child(9) {
+            min-width: 150px;
+            max-width: 200px;
+        }
+
+        /* Scroll indicator for mobile */
+        .spreadsheet-container::before {
+            content: "← Scroll →";
+            display: block;
+            text-align: center;
+            padding: 8px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        /* Ensure table header stays above scroll indicator */
+        .data-table th {
+            top: 40px; /* Account for scroll indicator */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .data-table {
+            min-width: 700px; /* Slightly smaller min-width for very small screens */
+        }
+
+        .spreadsheet-container::before {
+            font-size: 0.7rem;
+            padding: 6px;
+        }
+    }
+
+    /* Enhanced scrollbar styling for better mobile experience */
+    .spreadsheet-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .spreadsheet-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .spreadsheet-container::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+
+    .spreadsheet-container::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
     </style>
 </head>
 <body>
@@ -1141,10 +1459,10 @@
                 </div>
                 
                 <div class="view-toggle">
-                    <button class="toggle-btn active" id="wheel-view-btn">Wheel View</button>
-                    <button class="toggle-btn" id="table-view-btn">Table View</button>
+                    <button id="table-view-btn" class="toggle-btn active">Table View</button>
+                    <button id="wheel-view-btn" class="toggle-btn">Wheel View</button>
                 </div>
-                
+            
                 <!-- Search and Filter -->
                 <div class="search-filter" id="table-controls" style="display: none;">
                     <input type="text" class="search-box" id="search-box" placeholder="Search coins...">
@@ -1259,6 +1577,12 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- NEW: Modal for table image enlargement -->
+    <div class="table-image-modal" id="table-image-modal">
+        <div class="table-image-modal-close" id="table-image-modal-close">&times;</div>
+        <img id="table-enlarged-image" src="" alt="Enlarged coin image">
     </div>
 
     <footer>
@@ -2348,7 +2672,6 @@ const pageColumns = {
 */
 
         // DOM elements
-       // DOM elements
         const coinWheel = document.getElementById('coin-wheel');
         const spinBtn = document.getElementById('spin-btn');
         const resetBtn = document.getElementById('reset-btn');
@@ -2374,6 +2697,68 @@ const pageColumns = {
         let isSpinning = false;
         let filteredCoins = [...coinData];
 
+        // Add table image modal functionality
+        const tableImageModal = document.getElementById('table-image-modal');
+        const tableImageModalClose = document.getElementById('table-image-modal-close');
+        const tableEnlargedImage = document.getElementById('table-enlarged-image');
+        
+        // Function to open table image modal
+        function openTableImageModal(imageSrc) {
+            tableEnlargedImage.src = imageSrc;
+            tableImageModal.classList.add('active');
+        }
+        
+        // Function to close table image modal
+        function closeTableImageModal() {
+            tableImageModal.classList.remove('active');
+        }
+        
+        // Event listeners for table image modal
+        tableImageModalClose.addEventListener('click', closeTableImageModal);
+        tableImageModal.addEventListener('click', (e) => {
+            if (e.target === tableImageModal) {
+                closeTableImageModal();
+            }
+        });
+        
+        // Add click event to table images
+        function addTableImageClickEvents() {
+            const tableImages = document.querySelectorAll('.data-table img');
+            tableImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openTableImageModal(img.src);
+                });
+            });
+        }
+        
+        // Add horizontal scroll to Identification section in modal
+        function addHorizontalScrollToIdentification() {
+            const identificationSection = document.querySelector('.modal-details .detail-section:first-child');
+            if (identificationSection) {
+                identificationSection.classList.add('identification');
+            }
+        }
+        
+        // Update the table function to add click events to images
+        const originalUpdateTable = updateTable;
+        updateTable = function() {
+            originalUpdateTable();
+            addTableImageClickEvents();
+        };
+        
+        // Update the modal function to add horizontal scroll
+        const originalOpenModal = openModal;
+        openModal = function(coin) {
+            originalOpenModal(coin);
+            addHorizontalScrollToIdentification();
+        };
+        
+        // Initialize these features when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            addTableImageClickEvents();
+        });
         // Initialize the wheel
         function initWheel() {
             coinWheel.innerHTML = '';
@@ -2850,7 +3235,7 @@ const pageColumns = {
             });
             
             // Populate monarch filter
-            monarchFilter.innerHTML = '<option value="">All Monarchs</option>';
+            monarchFilter.innerHTML = '<option value="">All Royals and Leaders</option>';
             monarchs.forEach(monarch => {
                 const option = document.createElement('option');
                 option.value = monarch;
@@ -2971,6 +3356,7 @@ const pageColumns = {
         initWheel();
         initTableView();
         initStatistics();
+        showTableView(); // Show table view as the initial view
     });
     </script>
 </body>
