@@ -900,7 +900,7 @@
             display: none;
         }
     }
-        .page-tabs {
+    .page-tabs {
         display: flex;
         gap: 1rem;
         margin-bottom: 1rem;
@@ -1386,6 +1386,116 @@
 
     .spreadsheet-container::-webkit-scrollbar-thumb:hover {
         background: #a8a8a8;
+    }
+
+    /* Enhanced Statistics Panel Styles */
+    .statistics-panel {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        border-left: 6px solid #3498db;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .statistics-panel h3 {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .statistics-panel h3::before {
+        content: "📊";
+        font-size: 1.2rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 1rem;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #3498db, #2980b9);
+    }
+
+    .stat-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: #34495e;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    .stat-subtext {
+        font-size: 0.75rem;
+        color: #7f8c8d;
+        font-weight: 500;
+        line-height: 1.3;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-value {
+            font-size: 1.6rem;
+        }
+        
+        .statistics-panel {
+            padding: 1.5rem;
+        }
+        
+        .stat-item {
+            padding: 1.2rem 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .stat-value {
+            font-size: 1.4rem;
+        }
     }
     </style>
 </head>
@@ -2584,18 +2694,33 @@
             },
             {
                 // 1) Identification
-                id: "67", year: "2020", country: "Denmark", monarch: "Margrethe II", value: "20 krone (dkk)",
-                frontImage: "/assets/images/coins_output/front_67.png", backImage: "/assets/images/coins_output/back_67.png", translation: "Queen of Denmark",
-                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\nS ♥ B\n20 20\n20 KRONER",
-                designFront: "Portrait of Margrethe II facing right",
-                designBack: "Value, crowned royal coat of arms",
+                id: "67",
+                year: "2020",
+                country: "Denmark",
+                monarch: "Margrethe II",
+                value: "20 Kroner (DKK)",
+                frontImage: "/assets/images/coins_output/front_67.png",
+                backImage: "/assets/images/coins_output/back_67.png",
+                translation: "Queen of Denmark",
+                inscribedText: "MARGRETHE II\nDANMARKS DRONNING\n1940 2020\n20 KRONER",
+                designFront: "The Queen in profile, facing right",
+                designBack: "A heart encircled by 12 pairs of scissors forming M-, symbolizing the Queen's motto and artistic work",
+
                 // 2) Physical Characteristics
-                material: "Aluminium-Bronze", color: "Golden", weight: "10 g", diameter: "27 mm", thickness: "2.3 mm",
-                edgeType: "Segmented reeding", shape: "Round",
+                material: "Aluminium bronze (92% Cu, 6% Al, 2% Ni)",
+                color: "Golden",
+                weight: "9.3 g",
+                diameter: "27 mm",
+                thickness: "Not specified", // Original data doesn't provide thickness
+                edgeType: "Rim with interrupted milling",
+                shape: "Round",
+
                 // 3) Numismatic details
-                rarity: "23", condition: "Very Good", currentWorth: "6 - 108 USD",
-                mint: "Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark (1739-date)",
-                catalogueRef: "KM# 873,\nSchön# 89"
+                rarity: "23",
+                condition: "Very Good",
+                currentWorth: "6 - 108 USD",
+                mint: "Mint of Finland (Suomen Rahapaja), Vantaa, Finland (1988-date)",
+                catalogueRef: "KM# 968"
             },
             {
                 // 1) Identification
@@ -3273,8 +3398,9 @@ const pageColumns = {
         // Initialize statistics
         function initStatistics() {
             const totalCoins = coinData.length;
-            const countries = [...new Set(coinData.map(coin => coin.country))].length;
-            const monarchs = [...new Set(coinData.map(coin => coin.monarch))].length;
+            const countries = [...new Set(coinData.map(coin => coin.country))];
+            const monarchs = [...new Set(coinData.map(coin => coin.monarch))];
+            const materials = [...new Set(coinData.map(coin => coin.material))];
             
             // Calculate average rarity
             const avgRarity = Math.round(coinData.reduce((sum, coin) => sum + parseInt(coin.rarity), 0) / totalCoins);
@@ -3283,31 +3409,131 @@ const pageColumns = {
             const years = coinData.map(coin => parseInt(coin.year)).filter(year => !isNaN(year));
             const oldestYear = Math.min(...years);
             const newestYear = Math.max(...years);
+            const yearSpan = newestYear - oldestYear;
+            
+            // Calculate condition breakdown
+            const conditionCounts = {};
+            coinData.forEach(coin => {
+                conditionCounts[coin.condition] = (conditionCounts[coin.condition] || 0) + 1;
+            });
+            const bestConditionCount = (conditionCounts['Very Good'] || 0) + (conditionCounts['Good'] || 0);
+            const goodConditionPercentage = Math.round((bestConditionCount / totalCoins) * 100);
+            
+            // Calculate most common country
+            const countryCounts = {};
+            coinData.forEach(coin => {
+                countryCounts[coin.country] = (countryCounts[coin.country] || 0) + 1;
+            });
+            const mostCommonCountry = Object.keys(countryCounts).reduce((a, b) => 
+                countryCounts[a] > countryCounts[b] ? a : b
+            );
+            const mostCommonCountryCount = countryCounts[mostCommonCountry];
+            
+            // Calculate most common material
+            const materialCounts = {};
+            coinData.forEach(coin => {
+                materialCounts[coin.material] = (materialCounts[coin.material] || 0) + 1;
+            });
+            const mostCommonMaterial = Object.keys(materialCounts).reduce((a, b) => 
+                materialCounts[a] > materialCounts[b] ? a : b
+            );
+
+            // Calculate average year
+            const avgYear = Math.round(years.reduce((sum, year) => sum + year, 0) / years.length);
+            
+            // Calculate time period distribution
+            const pre1950 = coinData.filter(coin => parseInt(coin.year) < 1950).length;
+            const post2000 = coinData.filter(coin => parseInt(coin.year) >= 2000).length;
+            const pre1950Percentage = Math.round((pre1950 / totalCoins) * 100);
+            const post2000Percentage = Math.round((post2000 / totalCoins) * 100);
+            
+            // Calculate value range (extract numeric values from currentWorth)
+            const worthValues = coinData.map(coin => {
+                const worth = coin.currentWorth;
+                if (worth.includes('-')) {
+                    const range = worth.split('-');
+                    return parseFloat(range[0].replace(/[^0-9.]/g, '')) || 0;
+                }
+                return parseFloat(worth.replace(/[^0-9.]/g, '')) || 0;
+            }).filter(val => val > 0);
+            
+            const maxValue = worthValues.length > 0 ? Math.max(...worthValues) : 0;
+            const minValue = worthValues.length > 0 ? Math.min(...worthValues.filter(val => val > 0)) : 0;
             
             statsGrid.innerHTML = `
                 <div class="stat-item">
                     <div class="stat-value">${totalCoins}</div>
                     <div class="stat-label">Total Coins</div>
+                    <div class="stat-subtext">in collection</div>
                 </div>
+                
                 <div class="stat-item">
-                    <div class="stat-value">${countries}</div>
+                    <div class="stat-value">${countries.length}</div>
                     <div class="stat-label">Countries</div>
+                    <div class="stat-subtext">${mostCommonCountry} (${mostCommonCountryCount})</div>
                 </div>
+                
                 <div class="stat-item">
-                    <div class="stat-value">${monarchs}</div>
-                    <div class="stat-label">Monarchs</div>
+                    <div class="stat-value">${monarchs.length}</div>
+                    <div class="stat-label">Monarchs & Leaders</div>
+                    <div class="stat-subtext">historical figures</div>
                 </div>
+                
                 <div class="stat-item">
-                    <div class="stat-value">${avgRarity}</div>
+                    <div class="stat-value">${yearSpan} yrs</div>
+                    <div class="stat-label">Time Span</div>
+                    <div class="stat-subtext">${oldestYear} - ${newestYear}</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">${avgYear}</div>
+                    <div class="stat-label">Average Year</div>
+                    <div class="stat-subtext">mean coin age</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-value">${pre1950Percentage}%</div>
+                    <div class="stat-label">Pre-1950</div>
+                    <div class="stat-subtext">historical coins</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">${post2000Percentage}%</div>
+                    <div class="stat-label">21st Century</div>
+                    <div class="stat-subtext">modern coins</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-value">${goodConditionPercentage}%</div>
+                    <div class="stat-label">Good Condition</div>
+                    <div class="stat-subtext">${bestConditionCount} coins</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">${avgRarity}/100</div>
                     <div class="stat-label">Avg Rarity</div>
+                    <div class="stat-subtext">${avgRarity < 20 ? 'Common' : avgRarity < 50 ? 'Uncommon' : 'Rare'}</div>
                 </div>
+                
                 <div class="stat-item">
-                    <div class="stat-value">${oldestYear}</div>
-                    <div class="stat-label">Oldest Coin</div>
+                    <div class="stat-value">${materials.length}</div>
+                    <div class="stat-label">Materials</div>
+                    <div class="stat-subtext">${mostCommonMaterial}</div>
                 </div>
+                
                 <div class="stat-item">
-                    <div class="stat-value">${newestYear}</div>
-                    <div class="stat-label">Newest Coin</div>
+                    <div class="stat-value">$${maxValue}</div>
+                    <div class="stat-label">Max Value</div>
+                    <div class="stat-subtext">estimated worth</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-value">${Math.round(coinData.reduce((sum, coin) => {
+                        const weight = parseFloat(coin.weight) || 0;
+                        return sum + weight;
+                    }, 0))}g</div>
+                    <div class="stat-label">Total Weight</div>
+                    <div class="stat-subtext">combined mass</div>
                 </div>
             `;
         }
