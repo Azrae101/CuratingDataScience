@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 2: Visualizing Consumer Psychology - Curating Data Exhibition</title>
+    <title>Assignment 3: Visualizing Consumer Psychology - Curating Data Exhibition</title>
     <link rel="stylesheet" href="../../styles/main.css">
     <style>
-        /* === Styling from previous assignment === */
+        /* === Base Styling === */
         .assignment-header {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 4rem 2rem;
             margin-bottom: 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assignment-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        .assignment-header h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .assignment-header p {
+            position: relative;
+            z-index: 2;
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
         .assignment-content {
@@ -23,52 +51,277 @@
 
         .author-info, .section, .download-section {
             background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             border: 1px solid #e9ecef;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            border-radius: 12px 0 0 12px;
         }
 
         .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         .author-info {
             border-left: 4px solid #3498db;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
 
         .section h2 {
             color: #2c3e50;
             border-bottom: 2px solid #3498db;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .section h3 {
+            color: #34495e;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .section h4 {
+            color: #5d6d7e;
+            margin: 1.5rem 0 0.75rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* === Image Styling === */
+        .profile-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            margin: 1.5rem 0;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .small-image {
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+            margin: -1rem 0 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* === Side by Side Image Layout === */
+        .image-pair {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            align-items: flex-start;
+        }
+
+        .image-pair-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-pair-item img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .image-pair-item img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .image-pair-caption {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* === Appendix Specific Styling === */
+        .appendix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .appendix-table th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .appendix-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #e9ecef;
+            background: white;
+        }
+
+        .appendix-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+
+        .appendix-table tr:hover td {
+            background: #e3f2fd;
+        }
+
+        .data-highlight {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .data-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+        }
+
+        .data-card h4 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+
+        details {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        pre code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            line-height: 1.5;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 6px;
+            display: block;
+            overflow-x: auto;
         }
 
         .reference-list {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
         }
 
         .reference-list li {
-            margin-bottom: 0.8rem;
-            line-height: 1.5;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            padding-left: 1rem;
+            border-left: 3px solid #3498db;
         }
 
+        /* === Responsive Design === */
         @media (max-width: 768px) {
             .assignment-header {
                 padding: 3rem 1rem;
             }
+            
+            .assignment-header h1 {
+                font-size: 2rem;
+            }
+            
             .assignment-content {
                 padding: 0 1rem 3rem;
             }
+            
             .section, .author-info {
                 padding: 1.5rem;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .appendix-table {
+                font-size: 0.9rem;
+            }
+            
+            .appendix-table th,
+            .appendix-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .image-pair {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .small-image {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .assignment-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .section h2 {
+                font-size: 1.4rem;
+            }
+            
+            .section h3 {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -110,54 +363,703 @@
             <p>
                 This report analyzes 1.25 million e-commerce transactions from a Kaggle dataset through two distinct data visualization approaches: a traditional visual analytics method and a feminist/critical data studies perspective. The goal is to explore how these different methods reveal or suppress understandings of consumer psychology and price perception, aligning with the course objective to practice data visualization from multiple viewpoints.
             </p>
+            <img src="/assets/images/figure1_ass3.png" alt="Figure 1" class="profile-image small-image">
+            <p class="image-caption"><strong>Figure 1:</strong> Screenshot of the E-commerce App Transactional Dataset on Kaggle (Pratama, 2023), showing an overview of customer, product, transaction, and click-stream tables, which capture user behavior and transaction data from a fashion e-commerce app.</p>
         </section>
 
         <section class="section">
             <h2>Visual Analytics Approach</h2>
             <p>
-                The first visualization is a scatter plot mapping perceived value against actual product prices, with customers divided into nine behavioral segments (e.g., Value-Optimistic, Budget-Pessimistic). This follows Cui’s (2019) definition of visual analytics as “the science of analytical reasoning facilitated by interactive visual interfaces.”
+                The first visualization is a scatter plot mapping perceived value against actual product prices, with customers divided into nine behavioral segments (e.g., Value-Optimistic, Budget-Pessimistic). This follows Cui's (2019) definition of visual analytics as "the science of analytical reasoning facilitated by interactive visual interfaces."
             </p>
             <p>
-                The plot reveals systematic patterns. Perceived value aligns closely with actual price at lower levels, clustering around the “perfect perception” line, but becomes more scattered as prices rise. This indicates greater uncertainty in how high-value products are perceived, possibly due to reduced price familiarity or aspirational tendencies among consumers.
+                The plot reveals systematic patterns. Perceived value aligns closely with actual price at lower levels, clustering around the "perfect perception" line, but becomes more scattered as prices rise. This indicates greater uncertainty in how high-value products are perceived, possibly due to reduced price familiarity or aspirational tendencies among consumers.
             </p>
             <p>
-                Despite its analytical clarity, this approach has key limitations. It privileges quantitative precision and abstracts complex psychological processes into data points (D’Ignazio & Klein, 2020). The “perfect perception” line imposes a normative standard that equates accuracy with value, reinforcing capitalist ideals and marginalizing alternative consumer perspectives.
+                Despite its analytical clarity, this approach has key limitations. It privileges quantitative precision and abstracts complex psychological processes into data points (D'Ignazio & Klein, 2020). The "perfect perception" line imposes a normative standard that equates accuracy with value, reinforcing capitalist ideals and marginalizing alternative consumer perspectives.
             </p>
-            <p><strong>Figure 1:</strong> Scatter plot comparing actual product prices (x-axis) against perceived value (y-axis) across 1.25 million transactions, colored by nine behavioral segments.</p>
+            <img src="/assets/images/figure2_ass3.png" alt="Figure 2" class="profile-image">
+            <p class="image-caption"><strong>Figure 2:</strong> Scatter plot comparing actual product prices (x-axis) against perceived value (y-axis) across 1.25 million transactions, colored by nine behavioral segments.</p>
         </section>
 
         <section class="section">
             <h2>Critical Data Studies Perspective</h2>
             <p>
-                The second visualization is a stacked bar chart showing the distribution of buying behaviors across age and gender demographics. This critical approach questions whose perceptions are being measured and how marketing systems might exploit these psychological patterns (D’Ignazio & Klein, 2020). 
+                The second visualization is a stacked bar chart showing the distribution of buying behaviors across age and gender demographics. This critical approach questions whose perceptions are being measured and how marketing systems might exploit these psychological patterns (D'Ignazio & Klein, 2020). 
             </p>
             <p>
-                This method attempts to “visceralize” the data, presenting it as human patterns rather than abstract points to engage the viewer emotionally. It creates a narrative about how consumer identity shapes economic behavior, showing, for example, a dominance of Value-Optimistic behavior in the 18–24 age group.
+                This method attempts to "visceralize" the data, presenting it as human patterns rather than abstract points to engage the viewer emotionally. It creates a narrative about how consumer identity shapes economic behavior, showing, for example, a dominance of Value-Optimistic behavior in the 18–24 age group.
             </p>
             <p>
-                Yet, this visualization also carries risk. By using binary gender and discrete age categories, it may reinforce what D’Ignazio & Klein (2020) term a “mythical, imaginary, impossible” objective viewpoint, presenting socially constructed categories as natural and suppressing intersectional complexities.
+                Yet, this visualization also carries risk. By using binary gender and discrete age categories, it may reinforce what D'Ignazio & Klein (2020) term a "mythical, imaginary, impossible" objective viewpoint, presenting socially constructed categories as natural and suppressing intersectional complexities.
             </p>
-            <p><strong>Figure 2:</strong> Stacked bar chart showing behavioral distribution across five age groups (18–24 to 55+) and two genders, highlighting dominant Value-Optimistic patterns in younger demographics.</p>
+            
+            <div class="image-pair">
+                <div class="image-pair-item">
+                    <img src="/assets/images/figure3_ass3_1.png" alt="Figure 3-1">
+                    <p class="image-pair-caption"><strong>Figure 3-1:</strong> Interactive website interface where users input demographic and spending data</p>
+                </div>
+                <div class="image-pair-item">
+                    <img src="/assets/images/figure3_ass3_2.png" alt="Figure 3-2">
+                    <p class="image-pair-caption"><strong>Figure 3-2:</strong> Generated algorithmic consumer persona based on user input</p>
+                </div>
+            </div>
+            <p class="image-caption"><strong>Figure 3:</strong> Interactive website ("The Algorithmic Mirror") where users input age, gender, and spending habits to generate their algorithmic consumer persona, mirroring e-commerce data collection practices.</p>
         </section>
 
         <section class="section">
             <h2>Reflection on Design and Viewer Experience</h2>
             <p>
-                The design choices directly shape the viewer’s understanding. The scatter plot creates distance, encouraging objective analysis but potentially dehumanizing consumers. Conversely, the demographic chart fosters empathy but risks stereotyping. Both visualizations, by operating on 1.25 million data points, create statistical significance at the cost of obscuring personal narratives and cultural contexts (Drucker, 2011).
+                The design choices directly shape the viewer's understanding. The scatter plot creates distance, encouraging objective analysis but potentially dehumanizing consumers. Conversely, the demographic chart fosters empathy but risks stereotyping. Both visualizations, by operating on 1.25 million data points, create statistical significance at the cost of obscuring personal narratives and cultural contexts (Drucker, 2011).
             </p>
             <p>
-                A significant unaddressed gap is that the “perceived value” metric is simulated, highlighting how consumer psychology is often inferred—a practice reminiscent of engineers trying to “close the semantic gap” between human experience and data (Seaver, 2022). A more feminist approach could involve interactive installations where viewers experience price perception tests themselves, making the data more visceral and challenging the power dynamics inherent in the original analysis.
+                A significant unaddressed gap is that the "perceived value" metric is simulated, highlighting how consumer psychology is often inferred—a practice reminiscent of engineers trying to "close the semantic gap" between human experience and data (Seaver, 2022). A more feminist approach could involve interactive installations where viewers experience price perception tests themselves, making the data more visceral and challenging the power dynamics inherent in the original analysis.
             </p>
         </section>
 
         <section class="section">
             <h2>Conclusion</h2>
             <p>
-                These two visualizations demonstrate that design choices in data representation are not neutral. The visual analytics approach (Cui, 2019) reveals systematic patterns but reduces human complexity. The critical approach (D’Ignazio & Klein, 2020) fosters engagement but may reinforce categorical thinking. The key insight is the consistent misperception of value across all segments, suggesting universal psychological patterns that challenge demographic targeting.
+                These two visualizations demonstrate that design choices in data representation are not neutral. The visual analytics approach (Cui, 2019) reveals systematic patterns but reduces human complexity. The critical approach (D'Ignazio & Klein, 2020) fosters engagement but may reinforce categorical thinking. The key insight is the consistent misperception of value across all segments, suggesting universal psychological patterns that challenge demographic targeting.
             </p>
             <p>
                 Ultimately, these visualizations reveal not only how consumers perceive prices but also how data systems perceive consumers as patterns to be analyzed and influenced—a process fraught with ethical considerations for autonomy and fairness (Milano et al., 2020).
             </p>
+        </section>
+
+        <section class="section">
+            <h2>Appendix</h2>
+            
+            <h3>Figure 4: Demographic Behavioral Distribution</h3>
+            <img src="/assets/images/figure4_ass3.png" alt="Figure 4: Stacked bar chart showing behavioral distribution across demographic groups" class="profile-image">
+            <p class="image-caption">Stacked bar chart showing behavioral distribution across 5 age groups (18-24 to 55+) and 2 genders. Height represents customer counts per segment; 18-24 age group dominates (680K customers), primarily Value-Optimistic. Gender split shows female customers (800K) favoring Value-Realistic behaviors, males (454K) preferring Value-Optimistic patterns.</p>
+            
+            <div class="data-highlight">
+                <h3>Dataset Overview</h3>
+                <p><strong>Total Transactions Analyzed:</strong> 1.25 million | <strong>Customer Segments:</strong> 9 behavioral profiles | <strong>Data Source:</strong> Kaggle E-commerce Transactional Dataset</p>
+            </div>
+
+            <h3>Behavioral Segment Distribution</h3>
+            <table class="appendix-table">
+                <thead>
+                    <tr>
+                        <th>Behavioral Segment</th>
+                        <th>Customer Count</th>
+                        <th>Percentage</th>
+                        <th>Primary Characteristics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Value-Optimistic</strong></td>
+                        <td>211,128</td>
+                        <td>16.8%</td>
+                        <td>Overestimates value by +20% on average</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Value-Realistic</strong></td>
+                        <td>211,117</td>
+                        <td>16.8%</td>
+                        <td>Accurate price perception (±0%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Value-Pessimistic</strong></td>
+                        <td>210,799</td>
+                        <td>16.8%</td>
+                        <td>Underestimates value significantly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Premium-Realistic</strong></td>
+                        <td>185,212</td>
+                        <td>14.8%</td>
+                        <td>Accurate perception of high-value items</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Premium-Optimistic</strong></td>
+                        <td>184,808</td>
+                        <td>14.7%</td>
+                        <td>Overvalues premium products</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Premium-Pessimistic</strong></td>
+                        <td>184,722</td>
+                        <td>14.7%</td>
+                        <td>Undervalues premium products</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Budget Segments</strong></td>
+                        <td>66,799</td>
+                        <td>5.4%</td>
+                        <td>Combined budget-conscious consumers</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4>Most Common Behavior by Age Group</h4>
+                    <ul>
+                        <li><strong>18-24:</strong> Value-Optimistic (680,221 customers)</li>
+                        <li><strong>25-34:</strong> Value-Optimistic (457,140 customers)</li>
+                        <li><strong>35-44:</strong> Value-Pessimistic (105,345 customers)</li>
+                        <li><strong>45-54:</strong> Value-Optimistic (11,480 customers)</li>
+                        <li><strong>55+:</strong> Value-Realistic (399 customers)</li>
+                    </ul>
+                </div>
+                
+                <div class="data-card">
+                    <h4>Most Common Behavior by Gender</h4>
+                    <ul>
+                        <li><strong>Female:</strong> Value-Realistic (800,114 customers)</li>
+                        <li><strong>Male:</strong> Value-Optimistic (454,471 customers)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Financial Characteristics by Behavior</h3>
+            <table class="appendix-table">
+                <thead>
+                    <tr>
+                        <th>Behavioral Segment</th>
+                        <th>Avg. Actual Price</th>
+                        <th>Avg. Perceived Value</th>
+                        <th>Value Gap</th>
+                        <th>Avg. Transaction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Value-Realistic</strong></td>
+                        <td>₹181,145</td>
+                        <td>₹181,105</td>
+                        <td>-0.0%</td>
+                        <td>₹1,081,615</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Value-Optimistic</strong></td>
+                        <td>₹181,341</td>
+                        <td>₹217,591</td>
+                        <td>+20.0%</td>
+                        <td>₹1,089,215</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Value-Pessimistic</strong></td>
+                        <td>₹180,892</td>
+                        <td>₹144,714</td>
+                        <td>-20.0%</td>
+                        <td>₹1,075,328</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <details>
+                <summary>Technical Implementation Details</summary>
+                <p><strong>Methodology:</strong> The analysis was conducted using Python with Pandas for data processing and Plotly for visualization. Behavioral segments were created based on spending levels and value perception gaps.</p>
+                <p><strong>Data Processing:</strong> The dataset underwent comprehensive cleaning and feature engineering, including age group categorization, perceived value simulation, and behavioral segmentation algorithms.</p>
+                <pre><code># Sample of the segmentation logic
+                def categorize_behavior(row):
+                    if row['product_revenue'] < 100000:
+                        spending_segment = 'Budget'
+                    elif row['product_revenue'] < 250000:
+                        spending_segment = 'Value'
+                    else:
+                        spending_segment = 'Premium'
+                    
+                    if row['value_gap_percentage'] > 10:
+                        perception_segment = 'Optimistic'
+                    elif row['value_gap_percentage'] < -10:
+                        perception_segment = 'Pessimistic'
+                    else:
+                        perception_segment = 'Realistic'
+                    
+                    return f'{spending_segment}-{perception_segment}'</code></pre>
+            </details>
+        </section>
+
+        <section class="section">
+            <h2>Technical Appendix: Analysis Code</h2>
+            
+            <details>
+                <summary><strong>Python Analysis Code (Click to expand)</strong></summary>
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 5px; overflow-x: auto; font-size: 0.9rem;">
+        <code>
+        import pandas as pd
+        import numpy as np
+        import ast
+        import os
+        import csv
+
+
+        def load_csv_safe(filename):
+            """Automatically detect encoding + delimiter and load a CSV, skipping malformed rows."""
+            base_path = r"C:\Users\clara\.cache\kagglehub\datasets\bytadit\transactional-ecommerce\versions\1"
+            path = os.path.join(base_path, filename)
+
+
+            # Detect delimiter
+            with open(path, 'r', encoding='latin1') as f:
+                sample = f.read(2048)
+                try:
+                    dialect = csv.Sniffer().sniff(sample)
+                    sep = dialect.delimiter
+                except Exception:
+                    sep = ','
+
+
+            # Load file with error handling
+            df = pd.read_csv(
+                path,
+                encoding='latin1',
+                sep=sep,
+                low_memory=False,
+                on_bad_lines='warn'
+            )
+            print(f"✓ Loaded {filename} - shape: {df.shape}")
+            return df
+
+
+        def prepare_behavioral_data():
+            """Load and prepare data for behavioral analysis"""
+        
+            # Load datasets
+            print("Loading datasets...")
+            transactions = load_csv_safe("transactions.csv")
+            customers = load_csv_safe("customer.csv")
+            products = load_csv_safe("product.csv")
+        
+            # Extract product IDs from metadata
+            def extract_product_ids(metadata):
+                if pd.isna(metadata):
+                    return []
+                try:
+                    data = ast.literal_eval(metadata)
+                    return [item.get("product_id") for item in data]
+                except Exception:
+                    return []
+
+
+            transactions["product_ids"] = transactions["product_metadata"].apply(extract_product_ids)
+
+
+            # Explode product_ids and merge datasets
+            print("Merging datasets...")
+            transactions_exploded = transactions.explode("product_ids")
+            transactions_exploded["product_ids"] = pd.to_numeric(transactions_exploded["product_ids"], errors="coerce")
+            merged = transactions_exploded.merge(products, left_on="product_ids", right_on="id", how="left")
+            merged = merged.merge(customers, on="customer_id", how="left")
+
+
+            # ------------------------------
+            # DATA PREPARATION FOR BEHAVIORAL ANALYSIS
+            # ------------------------------
+
+
+            # Extract item_price from product_metadata
+            def extract_item_price(metadata):
+                if pd.isna(metadata):
+                    return np.nan
+                try:
+                    data = ast.literal_eval(metadata)
+                    if len(data) > 0:
+                        return data[0].get("item_price", np.nan)
+                    return np.nan
+                except Exception:
+                    return np.nan
+
+
+            merged['product_revenue'] = merged['product_metadata'].apply(extract_item_price)
+
+
+            # Calculate age from birthdate
+            print("Calculating age groups...")
+            merged['birthdate'] = pd.to_datetime(merged['birthdate'], errors='coerce')
+            merged['age'] = (pd.to_datetime('2020-01-01') - merged['birthdate']).dt.days / 365.25
+            merged['age_group'] = pd.cut(merged['age'],
+                                        bins=[0, 24, 34, 44, 54, 100],
+                                        labels=['18-24', '25-34', '35-44', '45-54', '55+'])
+
+
+            # Simulate perceived value (in real scenario, this would come from survey data or ML model)
+            print("Creating behavioral features...")
+            np.random.seed(42)
+            merged['perceived_value'] = merged['product_revenue'] * np.random.uniform(0.7, 1.3, len(merged))
+
+
+            # Calculate value gap
+            merged['value_gap'] = merged['perceived_value'] - merged['product_revenue']
+            merged['value_gap_percentage'] = (merged['value_gap'] / merged['product_revenue']) * 100
+
+
+            # Create behavioral segments
+            def categorize_behavior(row):
+                if pd.isna(row['product_revenue']) or pd.isna(row['value_gap_percentage']):
+                    return 'Unknown'
+            
+                # Spending level segments
+                if row['product_revenue'] < 100000:
+                    spending_segment = 'Budget'
+                elif row['product_revenue'] < 250000:
+                    spending_segment = 'Value'
+                else:
+                    spending_segment = 'Premium'
+            
+                # Perception segments
+                if row['value_gap_percentage'] > 10:
+                    perception_segment = 'Optimistic'
+                elif row['value_gap_percentage'] < -10:
+                    perception_segment = 'Pessimistic'
+                else:
+                    perception_segment = 'Realistic'
+            
+                return f'{spending_segment}-{perception_segment}'
+
+
+            merged['buying_behavior'] = merged.apply(categorize_behavior, axis=1)
+
+
+            # Clean data for plotting
+            merged = merged.dropna(subset=['product_revenue', 'perceived_value', 'age_group', 'gender_y'])
+        
+            print(f"Final dataset shape: {merged.shape}")
+            print("Behavioral segments distribution:")
+            print(merged['buying_behavior'].value_counts())
+        
+            return merged
+
+
+        # Load and prepare the data
+        merged_data = prepare_behavioral_data()
+
+
+        import plotly.express as px
+        import plotly.graph_objects as go
+        from plotly.subplots import make_subplots
+
+
+        def create_behavioral_visualizations(merged):
+            """Create comprehensive behavioral visualizations"""
+        
+            # Convert categorical columns to string to avoid type issues
+            merged = merged.copy()
+            merged['age_group'] = merged['age_group'].astype(str)
+            merged['gender_y'] = merged['gender_y'].astype(str)
+        
+            # Create a sample for better visualization performance
+            sample_data = merged.sample(min(3000, len(merged)), random_state=42)
+        
+            # ------------------------------
+            # PLOT 1: COMPREHENSIVE USER BEHAVIOR MATRIX
+            # ------------------------------
+
+
+            fig1 = px.scatter(
+                sample_data,
+                x='product_revenue',
+                y='perceived_value',
+                color='buying_behavior',
+                size='total_amount',
+                hover_data=['masterCategory', 'subCategory', 'gender_y', 'age_group', 'payment_method'],
+                facet_col='gender_y',
+                facet_row='age_group',
+                title='<b>COMPREHENSIVE USER BEHAVIOR MATRIX:</b> Perceived Value vs Actual Spending by Gender, Age, and Behavioral Patterns',
+                labels={
+                    'product_revenue': 'ACTUAL PRODUCT PRICE',
+                    'perceived_value': 'PERCEIVED VALUE',
+                    'buying_behavior': 'BEHAVIORAL PROFILE',
+                    'gender_y': 'GENDER',
+                    'age_group': 'AGE GROUP'
+                },
+                color_discrete_map={
+                    # Budget behaviors
+                    'Budget-Optimistic': '#FF6B6B',  # Red - overestimates value
+                    'Budget-Realistic': '#FFA726',    # Orange - accurate perception  
+                    'Budget-Pessimistic': '#FFD54F',  # Yellow - underestimates value
+                
+                    # Value behaviors
+                    'Value-Optimistic': '#4ECDC4',    # Teal - overestimates value
+                    'Value-Realistic': '#26A69A',     # Darker teal - accurate
+                    'Value-Pessimistic': '#80CBC4',   # Light teal - underestimates
+                
+                    # Premium behaviors
+                    'Premium-Optimistic': '#45B7D1',  # Blue - overestimates
+                    'Premium-Realistic': '#1976D2',   # Dark blue - accurate
+                    'Premium-Pessimistic': '#90CAF9'  # Light blue - underestimates
+                }
+            )
+
+
+            # Add perfect perception line and confidence bands to each subplot
+            for row in range(1, 6):  # 5 age groups
+                for col in range(1, 3):  # 2 genders
+                    max_val = sample_data[['product_revenue', 'perceived_value']].max().max()
+                
+                    # Perfect perception line
+                    fig1.add_trace(
+                        go.Scatter(
+                            x=[0, max_val],
+                            y=[0, max_val],
+                            mode='lines',
+                            line=dict(dash='solid', color='black', width=2),
+                            name='Perfect Perception',
+                            showlegend=False
+                        ),
+                        row=row, col=col
+                    )
+                
+                    # ±10% confidence band
+                    fig1.add_trace(
+                        go.Scatter(
+                            x=[0, max_val],
+                            y=[0, max_val * 1.1],
+                            mode='lines',
+                            line=dict(dash='dot', color='gray', width=1),
+                            fillcolor='rgba(128,128,128,0.1)',
+                            fill='tonexty',
+                            showlegend=False
+                        ),
+                        row=row, col=col
+                    )
+                
+                    fig1.add_trace(
+                        go.Scatter(
+                            x=[0, max_val],
+                            y=[0, max_val * 0.9],
+                            mode='lines',
+                            line=dict(dash='dot', color='gray', width=1),
+                            fill='tonexty',
+                            showlegend=False
+                        ),
+                        row=row, col=col
+                    )
+
+
+            # Update layout for comprehensive view
+            fig1.update_layout(
+                height=1200,
+                showlegend=True,
+                template='plotly_white',
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1.02,
+                    xanchor="center",
+                    x=0.5,
+                    font=dict(size=10)
+                ),
+                title_font=dict(size=20),
+                font=dict(size=11)
+            )
+
+
+            # Update axes for better readability
+            fig1.update_xaxes(title_text="ACTUAL PRICE", matches=None, showticklabels=True)
+            fig1.update_yaxes(title_text="PERCEIVED VALUE", matches=None, showticklabels=True)
+
+
+            # Add annotations for interpretation
+            fig1.add_annotation(
+                text="Points ABOVE line = Overestimate value | Points BELOW line = Underestimate value",
+                xref="paper", yref="paper",
+                x=0.5, y=-0.05,
+                showarrow=False,
+                font=dict(size=12, color="gray")
+            )
+
+
+            fig1.show()
+
+
+            # ------------------------------
+            # PLOT 2: BEHAVIORAL SEGMENTATION DASHBOARD
+            # ------------------------------
+
+
+            # Create a comprehensive dashboard with multiple coordinated views
+            fig2 = make_subplots(
+                rows=3, cols=2,
+                subplot_titles=(
+                    'Spending Distribution by Demographic Segments',
+                    'Value Perception Accuracy by Segment',
+                    'Behavioral Profile Distribution',
+                    'Product Category Preferences by Behavior',
+                    'Price Sensitivity vs Spending Power',
+                    'Payment Method Preferences by Behavior'
+                ),
+                specs=[
+                    [{"type": "violin", "rowspan": 2}, {"type": "bar"}],
+                    [None, {"type": "bar"}],
+                    [{"type": "scatter"}, {"type": "bar"}]
+                ],
+                vertical_spacing=0.08,
+                horizontal_spacing=0.1,
+                column_widths=[0.5, 0.5]
+            )
+
+
+            # 4.1 Spending Distribution by Demographic Segments (Violin plot)
+            demographic_combinations = []
+            for age in ['18-24', '25-34', '35-44', '45-54', '55+']:
+                for gender in ['M', 'F']:
+                    demographic_combinations.append(f"{age}_{gender}")  # Using underscore instead of hyphen
+
+
+            for demo in demographic_combinations:
+                age, gender = demo.split('_')  # Split by underscore
+                demo_data = merged[(merged['age_group'] == age) & (merged['gender_y'] == gender)]['product_revenue'].dropna()
+                if len(demo_data) > 0:
+                    fig2.add_trace(
+                        go.Violin(
+                            y=demo_data,
+                            x=[demo] * len(demo_data),
+                            name=demo,
+                            legendgroup=demo,
+                            showlegend=False,
+                            side='positive' if gender == 'F' else 'negative',
+                            scalegroup=demo,
+                            meanline_visible=True,
+                            points=False,
+                            marker_color='#FF6B6B' if gender == 'F' else '#4ECDC4',
+                            line_color='#FF6B6B' if gender == 'F' else '#4ECDC4'
+                        ),
+                        row=1, col=1
+                    )
+
+
+            # 4.2 Value Perception Accuracy by Segment (Bar chart)
+            perception_accuracy = merged.groupby(['age_group', 'gender_y'])['value_gap_percentage'].mean().reset_index()
+            perception_accuracy['demographic'] = perception_accuracy['age_group'] + '_' + perception_accuracy['gender_y']  # Using underscore
+
+
+            for gender in ['M', 'F']:
+                gender_data = perception_accuracy[perception_accuracy['gender_y'] == gender].sort_values('value_gap_percentage')
+                fig2.add_trace(
+                    go.Bar(
+                        x=gender_data['demographic'],
+                        y=gender_data['value_gap_percentage'],
+                        name=f"Gender {gender}",
+                        marker_color='#FF6B6B' if gender == 'F' else '#4ECDC4',
+                        showlegend=True
+                    ),
+                    row=1, col=2
+                )
+
+
+            # 4.3 Behavioral Profile Distribution (Stacked Bar)
+            behavior_dist = merged.groupby(['age_group', 'gender_y', 'buying_behavior']).size().reset_index(name='count')
+            behavior_dist['demographic'] = behavior_dist['age_group'] + '_' + behavior_dist['gender_y']  # Using underscore
+
+
+            # Get behavior types for stacking
+            behavior_types = sorted(behavior_dist['buying_behavior'].unique())
+
+
+            for behavior in behavior_types:
+                behavior_data = behavior_dist[behavior_dist['buying_behavior'] == behavior]
+                fig2.add_trace(
+                    go.Bar(
+                        x=behavior_data['demographic'],
+                        y=behavior_data['count'],
+                        name=behavior,
+                        showlegend=True
+                    ),
+                    row=2, col=2
+                )
+
+
+            # 4.4 Price Sensitivity vs Spending Power (Bubble chart)
+            segment_analysis = merged.groupby(['age_group', 'gender_y']).agg({
+                'product_revenue': 'mean',
+                'value_gap_percentage': 'std',  # Higher std = more variable perception = more sensitive
+                'customer_id': 'nunique'
+            }).reset_index()
+            segment_analysis['demographic'] = segment_analysis['age_group'] + '_' + segment_analysis['gender_y']  # Using underscore
+
+
+            fig2.add_trace(
+                go.Scatter(
+                    x=segment_analysis['product_revenue'],
+                    y=segment_analysis['value_gap_percentage'].fillna(0),
+                    mode='markers+text',
+                    marker=dict(
+                        size=segment_analysis['customer_id'] / 50,
+                        color=segment_analysis['value_gap_percentage'].fillna(0),
+                        colorscale='RdYlBu_r',
+                        showscale=True,
+                        colorbar=dict(title="Price Sensitivity")
+                    ),
+                    text=segment_analysis['demographic'],
+                    textposition="middle center",
+                    hovertemplate='<b>%{text}</b><br>Avg Spending: %{x:,.0f}<br>Sensitivity: %{y:.1f}%<br>Customers: %{marker.size:.0f}<extra></extra>',
+                    showlegend=False
+                ),
+                row=3, col=1
+            )
+
+
+            # 4.5 Payment Method Preferences by Behavior
+            payment_behavior = merged.groupby(['buying_behavior', 'payment_method']).size().reset_index(name='count')
+            payment_totals = payment_behavior.groupby('buying_behavior')['count'].sum().reset_index()
+            payment_behavior = payment_behavior.merge(payment_totals, on='buying_behavior', suffixes=('', '_total'))
+            payment_behavior['percentage'] = (payment_behavior['count'] / payment_behavior['count_total']) * 100
+
+
+            for payment_method in payment_behavior['payment_method'].unique():
+                method_data = payment_behavior[payment_behavior['payment_method'] == payment_method]
+                fig2.add_trace(
+                    go.Bar(
+                        x=method_data['buying_behavior'],
+                        y=method_data['percentage'],
+                        name=payment_method,
+                        showlegend=True
+                    ),
+                    row=3, col=2
+                )
+
+
+            # Update layout for comprehensive dashboard
+            fig2.update_layout(
+                title_text="<b>BEHAVIORAL SEGMENTATION DASHBOARD:</b> Comprehensive User Profiling by Demographics and Psychology",
+                title_x=0.5,
+                title_font=dict(size=18),
+                height=1400,
+                showlegend=True,
+                template="plotly_white",
+                barmode='stack',
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1.02,
+                    xanchor="center",
+                    x=0.5
+                )
+            )
+
+
+            # Update axes with better labels
+            fig2.update_xaxes(title_text="Demographic Segments", row=1, col=1)
+            fig2.update_yaxes(title_text="Spending Distribution", row=1, col=1)
+            fig2.update_xaxes(title_text="Demographic Segments", row=1, col=2)
+            fig2.update_yaxes(title_text="Avg Value Gap (%)", row=1, col=2)
+            fig2.update_xaxes(title_text="Demographic Segments", row=2, col=2)
+            fig2.update_yaxes(title_text="Count of Users", row=2, col=2)
+            fig2.update_xaxes(title_text="Average Spending", row=3, col=1)
+            fig2.update_yaxes(title_text="Price Sensitivity (Std of Value Gap)", row=3, col=1)
+            fig2.update_xaxes(title_text="Behavioral Profiles", row=3, col=2)
+            fig2.update_yaxes(title_text="Percentage (%)", row=3, col=2)
+
+
+            fig2.show()
+
+
+        # Create visualizations
+        print("Creating visualizations...")
+        create_behavioral_visualizations(merged_data)
+
+        </code>
+                </pre>
+            </details>
+            
+            <p><strong>Note:</strong> This code was used to generate the behavioral segments and visualizations analyzed in this report. The analysis processed 1.25 million transactions from the e-commerce dataset.</p>
         </section>
 
         <section class="section">
