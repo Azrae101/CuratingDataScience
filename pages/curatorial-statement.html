@@ -312,6 +312,32 @@
                 justify-content: center;
             }
         }
+
+        .ethical-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .ethical-paragraph {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .ethical-paragraph h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .ethical-paragraph p {
+            margin-bottom: 0;
+            color: #444;
+        }
     </style>
 </head>
 <body>
@@ -352,7 +378,7 @@
                 <section class="statement-section">
                     <h2>Introduction</h2>
                     <p>This digital exhibition represents my semester-long journey through the Curating Data course, where I've explored the complex relationship between data, knowledge, and curation practices. As a Cognitive Science student, I approached this course with a particular interest in how humans process, organize, and make sense of information.</p>
-                    <p>Throughout this semester, I've engaged with various forms of data—from structured datasets to personal notes and creative assignments—transforming them into a cohesive exhibition that reflects my learning trajectory. This statement serves as both a guide to the exhibition and a reflection on my curatorial process.</p>
+                    <p>Throughout this semester, I've engaged with various forms of data; from structured datasets to personal notes and creative assignments; transforming them into a cohesive exhibition that reflects my learning trajectory. This statement serves as both a guide to the exhibition and a reflection on my curatorial process.</p>
                 </section>
 
                 <section class="statement-section">
@@ -416,46 +442,59 @@
                     
                     <div class="reflection-quote">
                         <p>"Curating is not just about selecting and arranging objects, but about creating relationships between them that generate new meanings and insights."</p>
-                        <div class="quote-author">— My interpretation of Enwezor's approach</div>
+                        <div class="quote-author">- My interpretation of Enwezor's approach</div>
                     </div>
                     
-                    <p>Through this exhibition, I've come to understand curation as an active, interpretive practice that shapes how knowledge is encountered and understood. The decisions I've made about what to include, how to categorize items, and what connections to highlight are not neutral—they reflect my particular perspective as a Cognitive Science student interested in human-information interaction.</p>
+                    <p>Through this exhibition, I've come to understand curation as an active, interpretive practice that shapes how knowledge is encountered and understood. The decisions I've made about what to include, how to categorize items, and what connections to highlight are not neutral; they reflect my particular perspective as a Cognitive Science student interested in human-information interaction.</p>
                 </section>
 
-                <section id="ethical-considerations">
-                    <h2>Ethical Considerations in Data Curation ✅ <span>[New Section]</span></h2>
-
-                    <p>
-                        An essential dimension of curating data is recognizing the ethical responsibilities embedded in every curatorial decision. 
-                        Data is never neutral—it reflects choices about inclusion, exclusion, representation, and power.
-                    </p>
-
-                    <h3>Responsibility &amp; Care</h3>
-                    <p>
-                        As a curator, I acknowledge my role in shaping how data is presented and interpreted. 
-                        This includes a commitment to transparency in my methods and critical awareness of potential biases that inform data selection and framing. 
-                        I approach data curation as a practice of care—care for the sources of data, for those represented within it, and for those who will encounter it in the future.
-                    </p>
-
-                    <h3>Privacy &amp; GDPR Compliance</h3>
-                    <p>
-                        In accordance with the General Data Protection Regulation (GDPR), all data used in this exhibition either originates from open, non-personal sources or has been anonymized when necessary. 
-                        Any personal or identifiable information encountered during coursework has been treated with confidentiality and not shared publicly. 
-                        This reflects an understanding that ethical data practice begins with respect for privacy and consent.
-                    </p>
-
-                    <h3>Open Access &amp; Attribution</h3>
-                    <p>
-                        This exhibition also aligns with the principles of open access and fair use, aiming to make knowledge accessible while respecting intellectual property. 
-                        All third-party materials are properly cited, and open datasets are credited according to their licenses. 
-                        My goal is to contribute to a culture of responsible sharing—balancing openness with accountability.
-                    </p>
-
-                    <h3>Reflexivity &amp; Bias</h3>
-                    <p>
-                        Ethics in data curation extends beyond compliance to include reflexivity: continuously examining my own assumptions, disciplinary biases, and interpretive frameworks. 
-                        By foregrounding these reflections, I seek to make my curatorial process as transparent and self-aware as possible.
-                    </p>
+                <section class="statement-section" id="ethical-considerations">
+                    <h2>Ethical Considerations in Data Curation</h2>
+                    <p>An essential dimension of curating data is recognizing the ethical responsibilities embedded in every curatorial decision. Data is never neutral; it reflects choices about inclusion, exclusion, representation, and power.</p>
+                    
+                    <div class="key-concepts">
+                        <h3>Core Ethical Principles</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <h4>Responsibility & Care</h4>
+                                <p>Acknowledging the curator's role in shaping data presentation and interpretation</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Privacy & GDPR</h4>
+                                <p>Ensuring compliance with data protection regulations and respecting privacy</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Open Access & Attribution</h4>
+                                <p>Balancing openness with proper attribution and intellectual property rights</p>
+                            </div>
+                            <div class="concept-card">
+                                <h4>Reflexivity & Bias</h4>
+                                <p>Continuously examining assumptions and interpretive frameworks</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ethical-content">
+                        <div class="ethical-paragraph">
+                            <h3>Responsibility & Care</h3>
+                            <p>As a curator, I acknowledge my role in shaping how data is presented and interpreted. This includes a commitment to transparency in my methods and critical awareness of potential biases that inform data selection and framing. I approach data curation as a practice of care; care for the sources of data, for those represented within it, and for those who will encounter it in the future.</p>
+                        </div>
+                        
+                        <div class="ethical-paragraph">
+                            <h3>Privacy & GDPR Compliance</h3>
+                            <p>In accordance with the General Data Protection Regulation (GDPR), all data used in this exhibition either originates from open, non-personal sources or has been anonymized when necessary. Any personal or identifiable information encountered during coursework has been treated with confidentiality and not shared publicly. This reflects an understanding that ethical data practice begins with respect for privacy and consent.</p>
+                        </div>
+                        
+                        <div class="ethical-paragraph">
+                            <h3>Open Access & Attribution</h3>
+                            <p>This exhibition also aligns with the principles of open access and fair use, aiming to make knowledge accessible while respecting intellectual property. All third-party materials are properly cited, and open datasets are credited according to their licenses. My goal is to contribute to a culture of responsible sharing; balancing openness with accountability.</p>
+                        </div>
+                        
+                        <div class="ethical-paragraph">
+                            <h3>Reflexivity & Bias</h3>
+                            <p>Ethics in data curation extends beyond compliance to include reflexivity: continuously examining my own assumptions, disciplinary biases, and interpretive frameworks. By foregrounding these reflections, I seek to make my curatorial process as transparent and self-aware as possible.</p>
+                        </div>
+                    </div>
                 </section>
 
             </div>
