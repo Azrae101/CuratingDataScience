@@ -2947,6 +2947,38 @@ const pageColumns = {
         function resetWheel() {
             currentRotation = 0;
             coinWheel.style.transform = `rotate(${currentRotation}deg)`;
+            
+            // Reinitialize the wheel with original coin order (1-69)
+            coinWheel.innerHTML = '';
+            
+            const totalCoins = coinData.length;
+            const radius = 250;
+            
+            coinData.forEach((coin, index) => {
+                const angle = (index / totalCoins) * 2 * Math.PI;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                const coinSlot = document.createElement('div');
+                coinSlot.className = 'coin-slot';
+                coinSlot.style.left = `calc(50% + ${x}px)`;
+                coinSlot.style.top = `calc(50% + ${y}px)`;
+                coinSlot.style.transform = `translate(-50%, -50%)`;
+                
+                // Create pixelated coin based on material color
+                const color = getCoinColor(coin.material);
+                
+                coinSlot.innerHTML = `
+                    <div class="coin-slot-content">
+                        <div class="pixel-coin" style="background-color: ${color}">
+                            <div class="coin-id-wheel">${coin.id}</div>
+                        </div>
+                    </div>
+                `;
+                
+                coinSlot.addEventListener('click', () => openModal(coin));
+                coinWheel.appendChild(coinSlot);
+            });
         }
 
         // Shuffle coin positions
@@ -2971,11 +3003,14 @@ const pageColumns = {
                 coinSlot.style.top = `calc(50% + ${y}px)`;
                 coinSlot.style.transform = `translate(-50%, -50%)`;
                 
+                // Create pixelated coin based on material color (SAME AS INITWHEEL)
+                const color = getCoinColor(coin.material);
+                
                 coinSlot.innerHTML = `
                     <div class="coin-slot-content">
-                        <div class="coin-id">${coin.id}</div>
-                        <div class="coin-year">${coin.year}</div>
-                        <div class="coin-country">${coin.country}</div>
+                        <div class="pixel-coin" style="background-color: ${color}">
+                            <div class="coin-id-wheel">${coin.id}</div>
+                        </div>
                     </div>
                 `;
                 
