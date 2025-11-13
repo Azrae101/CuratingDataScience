@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops - Curating Data Exhibition</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        .workshops-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #e74c3c 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .workshops-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .workshop-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .workshop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .workshop-number {
+            background: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .workshop-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .workshop-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .workshop-meta {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .workshop-objectives {
+            background: #e8f4fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .workshop-objectives h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        
+        .workshop-objectives ul {
+            margin: 0.5rem 0 0 1rem;
+        }
+        
+        .workshop-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tool-tag {
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .workshop-link {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .workshop-link:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .workshop-link.external {
+            background: #27ae60;
+        }
+        
+        .workshop-link.external:hover {
+            background: #229954;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-hands-on {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .workshop-highlight {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .workshop-highlight h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .workshops-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .workshops-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Curating Data</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="workshops.html" class="active">Workshops</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="references.html">References</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="workshops-header">
+            <div class="workshops-content">
+                <h1>Curating Data Workshops</h1>
+                <p>Hands-on experiences exploring critical data practices through interactive sessions</p>
+            </div>
+        </section>
+
+        <section class="workshops-content">
+            
+
+            <div class="workshops-grid">
+                <!-- Collecting the Everyday Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">1</div>
+                    <h3>Collecting the Everyday Workshop</h3>
+                    <span class="status-badge status-complete">Completed</span>
+                    
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 37 (10 Sep)<br>
+                        <strong>Theme:</strong> COLLECTING<br>
+                        <strong>Connection:</strong> Assignment 1 - Coin Collection
+                    </div>
+                    
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Digital Objects</span>
+                        <span class="tool-tag">Metadata</span>
+                        <span class="tool-tag">Quantification</span>
+                        <span class="tool-tag">Photography</span>
+                    </div>
+                    
+                    <div class="workshop-description">
+                        Explored curating everyday digital objects through data and metadata practices. 
+                        This hands-on workshop examined how physical objects become digital data, 
+                        focusing on the processes of datafication and the politics of what gets included or excluded in datasets.
+                    </div>
+                    
+                    <div class="workshop-objectives">
+                        <h4>Learning Objectives:</h4>
+                        <ul>
+                            <li>Understand data/metadata relationships in digital curation</li>
+                            <li>Practice quantification techniques for physical objects</li>
+                            <li>Examine the materialities of information systems</li>
+                            <li>Critical analysis of everyday data collection practices</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="assignments/assignment1.html" class="workshop-link">
+                        View Assignment 1 →
+                    </a>
+                </div>
+
+                <!-- Categorising/Knowledge Making Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">2</div>
+                    <h3>Categorising/Knowledge Making Workshop</h3>
+                    <span class="status-badge status-complete">Completed</span>
+                    
+                    <div class="workshop-meta">
+                        <strong>Dates:</strong> Week 40 (1 Oct) + Special Session (7 Oct)<br>
+                        <strong>Theme:</strong> CATEGORISING<br>
+                        <strong>Special Guest:</strong> Lukas Fuchsgruber<br>
+                        <strong>Connection:</strong> Assignment 2 - Liao Huanxing & Wikidata
+                    </div>
+                    
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Wikidata</span>
+                        <span class="tool-tag">SPARQL</span>
+                        <span class="tool-tag">Semantic Web</span>
+                        <span class="tool-tag">AI/ML Datasets</span>
+                        <span class="tool-tag">Classifications</span>
+                        <span class="tool-tag">Dekoloniale Project</span>
+                    </div>
+                    
+                    <div class="workshop-description">
+                        A comprehensive exploration of classification systems across multiple sessions. The main workshop examined how classifications matter in knowledge systems, working with Wikidata as semantic infrastructure and the Dekoloniale project. The intensive session with Lukas Fuchsgruber focused on taxonomies and their discontents, examining how AI and machine learning datasets perpetuate biases and exploring decolonial approaches to natural history collections.
+                    </div>
+                    
+                    <div class="workshop-objectives">
+                        <h4>Learning Objectives:</h4>
+                        <ul>
+                            <li>Understand why classifications matter (Bowker & Star)</li>
+                            <li>Navigate Wikidata as semantic infrastructure</li>
+                            <li>Examine knowledge representation and data labor</li>
+                            <li>Critical analysis of AI/ML dataset biases</li>
+                            <li>Explore decolonial approaches to natural history collections</li>
+                            <li>Practice decolonial approaches to data representation</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="assignments/assignment2.html" class="workshop-link">
+                        View Assignment 2 →
+                    </a>
+                </div>
+
+                <!-- Critical Infographics Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">3</div>
+                    <h3>Critical Infographics Workshop</h3>
+                    <span class="status-badge status-complete">Completed</span>
+                    
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 45 (5 Nov)<br>
+                        <strong>Theme:</strong> DISPLAYING/VISUALISING<br>
+                        <strong>Connection:</strong> Assignment 3 - Consumer Psychology
+                    </div>
+                    
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Visual Analytics</span>
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">Plotly</span>
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">Data Feminism</span>
+                    </div>
+                    
+                    <div class="workshop-description">
+                        Explored critical approaches to data visualization inspired by W.E.B. Du Bois's Data Portraits and Data Feminism principles. 
+                        Examined how visualizations can challenge dominant narratives and incorporate multiple perspectives, 
+                        questioning rational, scientific, objective viewpoints from mythical, imaginary, impossible standpoints.
+                    </div>
+                    
+                    <div class="workshop-objectives">
+                        <h4>Learning Objectives:</h4>
+                        <ul>
+                            <li>Understand visualization rhetoric and framing effects</li>
+                            <li>Analyze W.E.B. Du Bois's pioneering data visualization work</li>
+                            <li>Apply Data Feminism principles to visualization design</li>
+                            <li>Create visualizations that challenge dominant narratives</li>
+                            <li>Examine the politics of visual representation</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="assignments/assignment3.html" class="workshop-link">
+                            View Assignment 3 →
+                        </a>
+                        <a href="https://app.powerbi.com/groups/me/reports/ddec4d60-0fe1-4786-9a87-3448045993de/f31677364241d7a4470c?experience=power-bi&clientSideAuth=0" 
+                           class="workshop-link external" target="_blank">
+                            Power BI Dashboard →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workshops-grid">
+                <!-- Additional Special Workshops -->
+                <div class="workshop-card">
+                    <div class="workshop-number">4</div>
+                    <h3>Workshop with Vladan Joler</h3>
+                    <span class="status-badge status-complete">Completed</span>
+                    
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 46 (12 Nov)<br>
+                        <strong>Theme:</strong> ARCHIVING<br>
+                        <strong>Focus:</strong> Archives and digital preservation
+                    </div>
+                    
+                    <div class="workshop-description">
+                        Archive workshop exploring digital preservation, the politics of archival systems, 
+                        and understanding how archives shape collective memory and knowledge preservation practices.
+                    </div>
+                </div>
+
+                <div class="workshop-card">
+                    <div class="workshop-number">5</div>
+                    <h3>Data Storage Workshop (Midas)</h3>
+                    <span class="status-badge status-complete">Completed</span>
+                    
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 47 (19 Nov)<br>
+                        <strong>Theme:</strong> Materiality and geopolitics<br>
+                        <strong>Instructor:</strong> Dr. Midas Nouwens
+                    </div>
+                    
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Data Centers</span>
+                        <span class="tool-tag">Cloud Infrastructure</span>
+                        <span class="tool-tag">Data Sovereignty</span>
+                    </div>
+                    
+                    <div class="workshop-description">
+                        Examined the materiality and geopolitics of data storage, focusing on Nordic data center development 
+                        and the challenges between transnational capitalism and data sovereignty in cloud computing.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Curating Data Exhibition</p>
+    </footer>
+</body>
+</html>

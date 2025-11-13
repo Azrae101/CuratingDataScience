@@ -531,45 +531,117 @@
   </div>
 
   <script>
-    const originalCards = {
-        "title": "Curating Data Readings",
-        "creator": "DataCurator",
-        "cards": [
-            {"term": "Critical Data Studies", "definition": "A field that examines the cultural, ethical, and political dimensions of data. It rejects the view of data as neutral and instead investigates how data is generated, curated, and exerts power within sociotechnical systems."},
-            {"term": "Data Assemblage", "definition": "The complex, interconnected sociotechnical system that produces and gives meaning to data. It includes thought, knowledge, finance, politics, materiality, practices, organizations, and laws."},
-            {"term": "Raw Data is an Oxymoron", "definition": "The concept that data is never truly raw or untouched. It is always cooked/shaped, framed, and interpreted by human choices, tools, and disciplinary norms before it can function as data."},
-            {"term": "Technological Determinism", "definition": "The flawed belief that technology (like Big Data) autonomously drives social change. CDS argues that technology is a product of society that in turn shapes it."},
-            {"term": "Apophenia", "definition": "The human tendency to perceive meaningful patterns or connections in random or meaningless data. A significant risk when analyzing large datasets (Check: spurious correlations website)."},
-            {"term": "Big Data", "definition": "Datasets that are too large or complex to be processed by traditional software. Characterized by volume, velocity, and variety, and generated continuously."},
-            {"term": "Small Data", "definition": "Data that is only generated infrequently (e.g., a national census every 10 years) using inflexible methods."},
-            {"term": "Data Holding", "definition": "Informal, often personal storage of data (e.g., backups, personal files). Lacks metadata, standards, and long-term preservation planning."},
-            {"term": "Data Archive", "definition": "A formal, curated, and documented collection of data intended for long-term preservation and reuse. Includes data, metadata, and context, and is managed by specialists."},
-            {"term": "Trusted Digital Repository (TDR)", "definition": "A certified digital repository that ensures long-term access to data, complying with standards like the Open Archival Information System (OAIS) model."},
-            {"term": "Cyber-infrastructure", "definition": "Large-scale, standardized, and interoperable data infrastructures that are cross-institutional (e.g., for genomics or climate data)."},
-            {"term": "Data Friction", "definition": "The costs, resistances, and challenges involved in the collection, integration, and sharing of data."},
-            {"term": "DIKW Hierarchy", "definition": "A model representing a hierarchy of understanding: Data → Information → Knowledge → Wisdom. Each higher level adds context, meaning, and value."},
-            {"term": "Data (in DIKW)", "definition": "Discrete, objective symbols or facts without context or meaning (e.g., the number 72)."},
-            {"term": "Information", "definition": "Data that has been processed and organized to be meaningful and relevant for a purpose (e.g., The temperature is 72°F)."},
-            {"term": "Knowledge", "definition": "Information that has been understood and internalized through experience and context. It is actionable information that answers how questions."},
-            {"term": "Wisdom", "definition": "The evaluated understanding of knowledge. It involves judgment, ethics, values, and understanding long-term consequences. It answers why and cannot be automated."},
-            {"term": "Efficiency", "definition": "Doing things right; the use of resources relative to an objective. Can be automated."},
-            {"term": "Effectiveness", "definition": "Doing the right things; efficiency multiplied by value. Requires human wisdom and judgment."},
-            {"term": "Curating (Data)", "definition": "The practice of selecting, managing, and preserving data. It is not a neutral act but a practice of knowledge creation and power."},
-            {"term": "Posthuman Curating", "definition": "A concept where curating is no longer performed solely by humans but is a distributed process involving nonhuman agents like algorithms, software, and platforms."},
-            {"term": "Content Curation", "definition": "The mundane, massive-scale practice of selecting and managing online content (e.g., reblogging on Tumblr). Users perform curation while simultaneously becoming data for algorithms."},
-            {"term": "The Curatorial", "definition": "A philosophy or distinct field of discourse and thought about the practice and theory of curating."},
-            {"term": "Metadata", "definition": "Data about data. It provides crucial context for other data, such as how, when, and by whom it was created. It is not neutral and enacts particular worldviews."},
-            {"term": "Quantification", "definition": "The process of turning qualities into quantities. It is not a neutral, descriptive act but a situated, creative, and agential practice deeply entangled with power and world-making."},
-            {"term": "Surveillance Capitalism", "definition": "An economic system centered on the commodification of personal data for profit and behavioral prediction and modification."},
-            {"term": "Synthetic Data", "definition": "Artificially generated data that mimics the statistical properties of real-world data. Used to address privacy concerns or data scarcity but raises questions about fidelity."},
-            {"term": "Data Justice", "definition": "An ethical framework concerned with fairness in the way data is used, highlighting how data-driven systems can reinforce existing inequalities and power structures."},
-            {"term": "Metadata Justice", "definition": "The ongoing struggle to resist harmful classifications and update biased metadata standards (e.g., changing illegal aliens to undocumented immigrants in library systems)."},
-            {"term": "Digital Divide (in Big Data)", "definition": "The inequality in access to large-scale data resources, creating a divide between Big Data rich institutions (e.g., corporations, well-funded universities) and Big Data poor ones."},
-        ]
-    };
+    // Get the selected deck from localStorage
+    const selectedDeckTitle = localStorage.getItem('selectedDeck');
     
-    const allTerms = originalCards.cards.map(c => c.term);
-    const allDefs = originalCards.cards.map(c => c.definition);
+    // Define all decks (same as in index.html)
+    const allDecks = [
+            {
+                "deckTitle": "Introduction",
+                "cards": [
+                    {"term": "Critical Data Studies", "definition": "A field that examines the cultural, ethical, and political dimensions of data. It rejects the view of data as neutral and instead investigates how data is generated, curated, and exerts power within sociotechnical systems."},
+                    {"term": "Data Assemblage", "definition": "The complex, interconnected sociotechnical system that produces and gives meaning to data. It includes thought, knowledge, finance, politics, materiality, practices, organizations, and laws."},
+                    {"term": "Raw Data is an Oxymoron", "definition": "The concept that data is never truly raw or untouched. It is always cooked/shaped, framed, and interpreted by human choices, tools, and disciplinary norms before it can function as data."},
+                    {"term": "Technological Determinism", "definition": "The flawed belief that technology (like Big Data) autonomously drives social change. CDS argues that technology is a product of society that in turn shapes it."},
+                    {"term": "Apophenia", "definition": "The human tendency to perceive meaningful patterns or connections in random or meaningless data. A significant risk when analyzing large datasets."},
+                    {"term": "Big Data", "definition": "Datasets that are too large or complex to be processed by traditional software. Characterized by volume, velocity, and variety, and generated continuously."},
+                    {"term": "Small Data", "definition": "Data that is only generated infrequently (e.g., a national census every 10 years) using inflexible methods."},
+                    {"term": "Data Holding", "definition": "Informal, often personal storage of data (e.g., backups, personal files). Lacks metadata, standards, and long-term preservation planning."},
+                    {"term": "Data Archive", "definition": "A formal, curated, and documented collection of data intended for long-term preservation and reuse. Includes data, metadata, and context, and is managed by specialists."},
+                    {"term": "Trusted Digital Repository (TDR)", "definition": "A certified digital repository that ensures long-term access to data, complying with standards like the Open Archival Information System (OAIS) model."},
+                    {"term": "Cyber-infrastructure", "definition": "Large-scale, standardized, and interoperable data infrastructures that are cross-institutional (e.g., for genomics or climate data)."},
+                    {"term": "Data Friction", "definition": "The costs, resistances, and challenges involved in the collection, integration, and sharing of data."},
+                    {"term": "DIKW Hierarchy", "definition": "A model representing a hierarchy of understanding: Data → Information → Knowledge → Wisdom. Each higher level adds context, meaning, and value."},
+                    {"term": "Curating (Data)", "definition": "The practice of selecting, managing, and preserving data. It is not a neutral act but a practice of knowledge creation and power."}
+                ]
+            },
+            {
+                "deckTitle": "COLLECTING",
+                "cards": [
+                    {"term": "Metadata", "definition": "Data about data. It provides crucial context for other data, such as how, when, and by whom it was created. It is not neutral and enacts particular worldviews."},
+                    {"term": "Quantification", "definition": "The process of turning qualities into quantities. It is not a neutral, descriptive act but a situated, creative, and agential practice deeply entangled with power and world-making."},
+                    {"term": "Surveillance Capitalism", "definition": "An economic system centered on the commodification of personal data for profit and behavioral prediction and modification."},
+                    {"term": "Synthetic Data", "definition": "Artificially generated data that mimics the statistical properties of real-world data. Used to address privacy concerns or data scarcity but raises questions about fidelity."},
+                    {"term": "Data Justice", "definition": "An ethical framework concerned with fairness in the way data is used, highlighting how data-driven systems can reinforce existing inequalities and power structures."},
+                    {"term": "Metadata Justice", "definition": "The ongoing struggle to resist harmful classifications and update biased metadata standards (e.g., changing illegal aliens to undocumented immigrants in library systems)."},
+                    {"term": "Digital Divide (in Big Data)", "definition": "The inequality in access to large-scale data resources, creating a divide between Big Data rich institutions (e.g., corporations, well-funded universities) and Big Data poor ones."},
+                    {"term": "Data Exhaust", "definition": "Data generated as a by-product of other processes or activities, often collected without the user's primary intent."},
+                    {"term": "Data Broker", "definition": "Companies that collect, aggregate, and sell data from various sources, often for marketing, credit scoring, or social sorting purposes."},
+                    {"term": "Datafication", "definition": "The transformation of various aspects of life into data through processes of quantification and digitization."},
+                    {"term": "Digitization", "definition": "The process of converting analog information or physical objects into digital format."},
+                    {"term": "Digitalization", "definition": "The application of digital processes in real-life contexts and social relations, often transforming how activities are organized."},
+                    {"term": "Materiality of Data", "definition": "The concept that data, tools, and infrastructures have concrete forms and constraints that shape how knowledge is created, organized, and used."},
+                    {"term": "Datastructuring", "definition": "The socio-technical practices of organizing digital traces into configured structures that enable analysis, value extraction, and connection to social activity."}
+                ]
+            },
+            {
+                "deckTitle": "CATEGORISING",
+                "cards": [
+                    {"term": "Classification", "definition": "The systematic grouping of objects, information, or people based on shared characteristics, used to organize knowledge and enable action."},
+                    {"term": "Taxonomy", "definition": "The science or technique of classification, typically involving an ordered arrangement of groups or categories in a hierarchical structure."},
+                    {"term": "Semantic Infrastructure", "definition": "Tools, systems, and structured data that create, transmit, and give meaning to facts across the web using ontological classification systems."},
+                    {"term": "Linked Open Data (LOD)", "definition": "Structured data that is freely available, uses shared identifiers, and can be linked across datasets to create meaningful networks of information."},
+                    {"term": "Ontology (in data)", "definition": "A formal, structured description of concepts and relationships in a particular domain, used to categorize and relate information."},
+                    {"term": "Wikidata", "definition": "A collaborative knowledge base of structured data that serves as semantic infrastructure for Wikipedia and external applications."},
+                    {"term": "Semantic Web", "definition": "An extension of the World Wide Web through standards that make data machine-readable and enable meaningful connections between different datasets."},
+                    {"term": "RDF (Resource Description Framework)", "definition": "A framework for representing information about resources on the web, using subject-predicate-object expressions known as triples."},
+                    {"term": "SPARQL", "definition": "A query language for retrieving and manipulating data stored in RDF format, similar to SQL for relational databases."},
+                    {"term": "Algorithmic Categorization", "definition": "The use of algorithms and machine learning to automatically classify and organize data, content, or users."},
+                    {"term": "Recommender Systems", "definition": "Algorithms that suggest relevant items to users based on their preferences, behavior, or similarities to other users."},
+                    {"term": "Content-Based Filtering", "definition": "A recommendation approach that suggests items similar to those a user has liked in the past, based on item characteristics."},
+                    {"term": "Collaborative Filtering", "definition": "A recommendation approach that suggests items based on the preferences of users with similar tastes or behaviors."},
+                    {"term": "Cold Start Problem", "definition": "The challenge faced by recommender systems when there is insufficient data about new users or items to make accurate recommendations."}
+                ]
+            },
+            {
+                "deckTitle": "DISPLAYING/VISUALISING",
+                "cards": [
+                    {"term": "Visual Analytics", "definition": "The science of analytical reasoning facilitated by interactive visual interfaces, combining human judgment with computational analysis."},
+                    {"term": "Graphical Excellence", "definition": "Edward Tufte's concept of well-designed statistical graphics that communicate complex ideas with clarity, precision, and efficiency."},
+                    {"term": "Critical Infographics", "definition": "Data visualizations that consciously engage with political, social, and ethical dimensions, often challenging dominant narratives."},
+                    {"term": "Data Feminism", "definition": "An approach to data science and visualization that challenges masculinized ideals of objectivity and incorporates emotion, embodiment, and multiple perspectives."},
+                    {"term": "God Trick", "definition": "Donna Haraway's term for the illusion of a neutral, disembodied viewpoint that claims to see everything from nowhere, often critiqued in data visualization."},
+                    {"term": "Situated Knowledge", "definition": "The feminist concept that all knowledge is produced from specific cultural, historical, and geographic contexts, not from a neutral vantage point."},
+                    {"term": "Data Visceralization", "definition": "An approach to data communication that engages multiple senses and emotions, moving beyond visual display to create embodied experiences."},
+                    {"term": "Brushing and Linking", "definition": "A visual analytics technique where selecting data in one view automatically highlights corresponding data in other linked views."},
+                    {"term": "Rhetoric in Visualization", "definition": "The persuasive power of data visualizations, achieved through design choices about what to include, exclude, highlight, or obscure."},
+                    {"term": "W.E.B. Du Bois's Data Portraits", "definition": "Groundbreaking visualizations created for the 1900 Paris Exposition that challenged racial stereotypes by presenting complex data about African American life."},
+                    {"term": "Explanatory Visualization", "definition": "Visualizations designed to communicate clear findings and support reasoning about specific data patterns or relationships."},
+                    {"term": "Evocative Visualization", "definition": "Visualizations intended to provoke emotion, question assumptions, or foreground ethical and political dimensions of data."},
+                    {"term": "Parallel Coordinates", "definition": "A visualization technique for plotting multivariate data across multiple parallel axes, useful for showing relationships between multiple variables."}
+                ]
+            },
+            {
+                "deckTitle": "ARCHIVING",
+                "cards": [
+                    {"term": "Archive", "definition": "A collection of historical documents or records, or the place where such records are kept, serving as institutional or cultural memory."},
+                    {"term": "FAIR Principles", "definition": "Guidelines for making data Findable, Accessible, Interoperable, and Reusable, promoting better data management and stewardship."},
+                    {"term": "CARE Principles", "definition": "Guidelines for Indigenous Data Governance focusing on Collective Benefit, Authority to Control, Responsibility, and Ethics."},
+                    {"term": "Indigenous Archives", "definition": "Archival practices and collections that center Indigenous knowledge systems, sovereignty, and self-representation."},
+                    {"term": "Records Continuum", "definition": "A model that views records creation, management, and preservation as an ongoing process rather than separate lifecycle stages."},
+                    {"term": "Accumulate, Aggregate, Destroy", "definition": "A framework describing how digital archives function: accumulating content, aggregating it into new forms, and determining what to preserve or destroy."},
+                    {"term": "Digital Vulnerability", "definition": "The fragility of born-digital data, which faces risks of format obsolescence, corruption, and technological dependency."},
+                    {"term": "Data Preservation", "definition": "The active management and maintenance of digital materials to ensure their long-term accessibility, authenticity, and usability."},
+                    {"term": "Dematerialization of the Object", "definition": "The process through which physical objects become digital representations in archives, changing how they are accessed and understood."},
+                    {"term": "Liberalization of the Archival Gaze", "definition": "The expansion of what is considered worthy of archiving in digital contexts, potentially including everything."},
+                    {"term": "Internet Archive", "definition": "A non-profit digital library offering permanent access to historical collections that exist in digital format, including websites."},
+                    {"term": "Wayback Machine", "definition": "A digital archive of the World Wide Web, allowing users to see how websites looked in the past."},
+                    {"term": "Archival Ethics", "definition": "Principles guiding responsible archival practice, including issues of representation, access, privacy, and cultural sensitivity."},
+                    {"term": "Decolonial Archival Approaches", "definition": "Methods that challenge colonial frameworks in archives, seeking to redress historical silences and power imbalances."}
+                ]
+            }
+        ];
+      
+      // Find the selected deck
+    let currentDeck = allDecks.find(deck => deck.deckTitle === selectedDeckTitle);
+    
+    // If no deck is selected, redirect to games.html
+    if (!currentDeck) {
+      alert('No deck selected. Redirecting to deck selection.');
+      window.location.href = 'games.html';
+    }
+    const allTerms = currentDeck.cards.map(c => c.term);
+    const allDefs = currentDeck.cards.map(c => c.definition);
 
     let terms = [...allTerms];
     let answers = [...allDefs];
@@ -578,7 +650,7 @@
     let currentCard = 0;
     let knownCount = 0;
     let attemptedCount = 0;
-    let checkpointInterval = 10; // Show checkpoint every 10 cards
+    let checkpointInterval = 10;
 
     // Motivational messages for checkpoints
     const motivationalMessages = [
@@ -774,7 +846,7 @@
     }
 
     function goToMenu() {
-      window.location.href = 'pages/games.html';
+      window.location.href = 'games.html';
     }
 
     // Touch and click events
