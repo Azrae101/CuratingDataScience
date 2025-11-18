@@ -6,26 +6,24 @@
     <title>Workshops - Curating Data Exhibition</title>
     <link rel="stylesheet" href="../styles/main.css">
     <style>
+        /* Workshop page-specific styles only (navbar styles now in main.css) */
         .workshops-header {
             background: linear-gradient(135deg, #2c3e50 0%, #e74c3c 100%);
             color: white;
             padding: 4rem 2rem;
             margin-bottom: 2rem;
         }
-        
         .workshops-content {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem 4rem;
         }
-        
         .workshops-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2.5rem;
             margin-top: 2rem;
         }
-        
         .workshop-card {
             background: white;
             border-radius: 10px;
@@ -37,12 +35,10 @@
             display: flex;
             flex-direction: column;
         }
-        
         .workshop-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-        
         .workshop-number {
             background: #e74c3c;
             color: white;
@@ -55,11 +51,10 @@
             font-weight: bold;
             margin-bottom: 1rem;
         }
-        
         .workshop-card h3 {
             color: #2c3e50;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+        }
         }
         
         .workshop-description {
@@ -187,6 +182,9 @@
     <header>
         <nav>
             <div class="logo">Curating Data</div>
+            <button class="nav-toggle" aria-label="Open navigation menu">
+                <span class="hamburger"></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
@@ -568,4 +566,6 @@
         <p>&copy; 2025 Curating Data Exhibition | Clara Holst</p>
     </footer>
 </body>
+</body>
+<script src="../scripts/main.js"></script>
 </html>

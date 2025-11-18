@@ -1,3 +1,70 @@
+/* Hamburger menu styles */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    z-index: 200;
+}
+.hamburger {
+    width: 28px;
+    height: 3px;
+    background: var(--primary, #2c3e50);
+    display: block;
+    position: relative;
+    border-radius: 2px;
+    transition: background 0.3s;
+}
+.hamburger:before,
+.hamburger:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 28px;
+    height: 3px;
+    background: var(--primary, #2c3e50);
+    border-radius: 2px;
+    transition: transform 0.3s;
+}
+.hamburger:before {
+    top: -9px;
+}
+.hamburger:after {
+    top: 9px;
+}
+.nav-toggle.active .hamburger {
+    background: transparent;
+}
+.nav-toggle.active .hamburger:before {
+    transform: translateY(9px) rotate(45deg);
+}
+.nav-toggle.active .hamburger:after {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 220px;
+        box-shadow: 0 8px 24px rgba(44,62,80,0.08);
+        padding: 1.5rem 1.2rem;
+        gap: 1.2rem;
+        border-radius: 0 0 12px 12px;
+        display: none;
+    }
+    .nav-links.open {
+        display: flex;
+    }
+}
 /* Reset and base styles */
 * {
     margin: 0;
@@ -28,6 +95,7 @@ nav {
     padding: 1rem 5%;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .logo {
