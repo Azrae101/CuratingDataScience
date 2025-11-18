@@ -14,22 +14,22 @@
         }
         
         .workshops-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem 4rem;
         }
         
         .workshops-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
             margin-top: 2rem;
         }
         
         .workshop-card {
             background: white;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 2.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border: 1px solid #e9ecef;
@@ -170,10 +170,15 @@
         @media (max-width: 768px) {
             .workshops-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .workshops-header h1 {
                 font-size: 2rem;
+            }
+            
+            .workshop-card {
+                padding: 1.5rem;
             }
         }
     </style>
