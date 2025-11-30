@@ -1500,7 +1500,7 @@
                 <p>5th Semester, Cognitive Science BSc, Arts Faculty, Aarhus University</p>
                 <p>Jens Chr. Skous Vej 2, 8000 Aarhus, Denmark</p>
                 <p>Critical Data Studies, Elective | Curating Data Course</p>
-                <p>Characters: 4,797 ~ 2 pages</p>
+                <p>Characters: 10.728 ~ 4,5 pages</p>
             </div>
 
             <div class="download-section">
@@ -1668,20 +1668,22 @@
                 </table>
             </div>
 
-
-            <!-- Rest of your content sections remain the same -->
             <div class="section">
                 <h2>1. Process of Collecting, Digitising, and Datafying</h2>
                 <p>The project began with the Holst Family Coin Collection of 75 coins. Each coin was systematically photographed on both sides with a OnePlus 8T and measured (weight, diameter) using digital tools. These physical and contextual details (monarch, mint, catalog reference) were entered into Google Sheets. Later on, 6 duplicates of existing coins in the collection were excluded.</p>
                 <br>
                 <p>The dataset was organised into 25 variables: Identification (ID, Year, Country, Monarch), Physical Attributes (Material, Weight, Size), Numismatic Details (Mint, Rarity, Reference), and Collection Management (Condition, Current Worth). This process transformed the heterogeneous objects into a structured archive. By doing so, the collection became not only preserved but also reconfigured into a tool for comparative analysis.</p>
+                <br>
+                <p><em>File referenced: ClaraHolst_HolstFamilyCoinCollection_A1.xlsx</em></p>
             </div>
 
             <div class="section">
                 <h2>2. Critical Reflection on Design Decisions</h2>
                 <p>The choice of variables was shaped by a dual purpose: to serve both numismatic cataloguing and personal collection management. Therefore, standard identifiers like Year, Country, and Reign are essential for any coin dataset, enabling classification and historical placement. Additionally, variables like Material, Weight, and Diameter objectify the coins through measurable, quantitative properties, aligning with traditional numismatic practice.</p>
                 <br>
-                <p>The decision to include a subjective "Condition" grade creates a limit to the collector's personal perception. Furthermore, sensory experiences like the coin's "feel" or the detailed historical narrative behind a design change (e.g., the shift from silver to aluminium bronze in Danish coins post-WWI) were lost, as they resist easy quantification into spreadsheet cells. More significantly, 'Mintage Quantity' was excluded; a key variable for objectively assessing rarity. Instead, rarity was approximated using Numista.com's 0 - 100 index, where 0 denotes common and 100 denotes extremely rare.</p>
+                <p>The decision to include a subjective "Condition" grade creates a limit to the collector's personal perception. Furthermore, sensory experiences like the coin's “feel” or the detailed historical narrative behind a design change (e.g., the shift from silver to aluminium bronze in Danish coins post-WWI) were lost, as they resist easy quantification into spreadsheet cells. More significantly, ‘Mintage Quantity’ was excluded; a key variable for objectively assessing rarity. Instead, rarity was approximated using Numista.com’s 0–100 index, where 0 denotes common and 100 denotes extremely rare.</p>
+                <br>
+                <p>Additional limitations arise from practical constraints. Photographing with a phone may result in color distortions or inconsistent lighting, and measurement tools have finite precision. The dataset also reflects personal selection choices, so coins collected opportunistically or for sentimental reasons may overrepresent certain types or countries, limiting representativeness.</p>
             </div>
 
             <div class="section">
@@ -1695,23 +1697,57 @@
                 <h2>4. Connection to Course Theories and Concepts</h2>
                 <p>First, the very act of datafication resonates with the concept that "raw data is an oxymoron" (Gitelman & Jackson, 2013). The coins themselves are not data. They become data only through a series of deliberate, "cooking" processes: selecting which coins to include (excluding duplicates), choosing which attributes to measure, and defining categories like "Colour" (Silver, Golden) or "Condition." Each variable represents a choice about what is worth capturing, transforming the messy reality of physical objects into a clean, structured dataset. This dataset is not a neutral reflection of the collection but a constructed representation shaped by my decisions, tools, and purposes.</p>
                 <br>
-                <p>Second, the design decisions exemplify the power and limitations of quantification (Wernimont, 2021). Quantification is an agential practice that makes the world manageable and comparable. By turning traits like material composition and size into numbers and labels, the coins were digitized for sorting, filtering, and analysis; the core functions of a spreadsheet. Yet Wernimont argues that quantification is not merely descriptive, but also world-making. The inability to capture a coin's historical narrative or aesthetic appeal means these aspects are excluded from the dataset's 'official' knowledge, showing how quantification empowers some forms of knowledge while marginalizing others.</p>
+                <p>Second, the design decisions exemplify the power and limitations of quantification (Wernimont, 2021). Quantification is an agential practice that makes the world manageable and comparable. By turning traits like material composition and size into numbers and labels, the coins were digitized for sorting, filtering, and analysis; the core functions of a spreadsheet. Yet Wernimont argues that quantification is not merely descriptive but also world-making. The inability to capture a coin’s historical narrative or aesthetic appeal means these aspects are excluded from the dataset’s ‘official’ knowledge, showing how quantification empowers some forms of knowledge while marginalizing others.</p>
                 <br>
                 <p>In conclusion, curating the coin collection into a dataset was an exercise in knowledge creation, not mere transcription. The resulting spreadsheet is a powerful tool for specific queries, but is also a product of specific curatorial choices that highlight certain truths while silencing others.</p>
+            </div>
+
+            <div class="section">
+                <h2>5. Metadata as Contextual Infrastructure</h2>
+                <p>Beyond the tabular dataset, I created structured metadata to situate the Holst Family Coin Collection within its wider context. The metadata records key aspects such as the total size of the archive, its temporal and geographic scope, the device used for photographing the coins, the location of image capture, and the date of the last update. It functions as an interpretive layer, documenting the conditions under which the dataset was produced (Greenberg et al., 2023).</p>
+                <br>
+                <p>Details such as photographing the coins with a OnePlus 8T in Aarhus V, Denmark, and excluding five duplicate coins reveal the practical and methodological choices that shaped the collection. These elements increase transparency and allow future users to understand not only the coins but also the processes, constraints, and decisions that influenced their digital representation (Horsch et al., 2021).</p>
+            </div>
+
+            <div class="section">
+                <h2>6. Ethical Considerations in Curating the Coin Collection</h2>
+                <p>Ethical considerations are central to curating the Holst Family Coin Collection. The collection’s methodology aligns closely with emerging ethical guidelines for dataset curation (Pushkarna et al., 2022). Assessing a coin’s condition or estimating its market value involves subjective judgment. Making these interpretive steps explicit through metadata and documentation prevents the dataset from appearing more objective than it is.</p>
+                <br>
+                <p>Including collectors’ names, photograph locations, and technical details about image capture required careful reflection on necessity and potential exposure. While the dataset contains no sensitive personal data, a minimalist and purpose-driven approach ensures responsible practice (Mindel, 2021).</p>
+                <br>
+                <p>The personal connection to the coins adds an ethical dimension. Many coins were collected as souvenirs or found in natural settings, and even coins with little monetary value hold significant sentimental importance. This influenced which coins were documented and how, blending personal attachment with numismatic categorization. This approach demonstrates a holistic, purpose-driven method of cultural preservation that goes beyond mere cataloging (Orr & Crawford, 2024).</p>
+                <br>
+                <p>The dataset also incorporates external sources, including rarity indices and catalog references from Numista and other authorities. Proper citation respects intellectual property and ensures transparency. Overall, the ethical stance emphasizes care, accuracy, and openness, acknowledging both technical and personal factors that shaped the collection.</p>
+            </div>
+
+            <div class="section">
+                <h2>Conclusion</h2>
+                <p>Curating the Holst Family Coin Collection transformed physical coins into a structured dataset, enabling systematic preservation and comparison. Decisions such as variable selection, grading condition, and approximating rarity shaped the knowledge produced while highlighting the limits of quantification. The dataset allows efficient analysis but reduces the coins’ historical and aesthetic narratives to discrete cells.</p>
+                <br>
+                <p>This process illustrates how datafication constructs knowledge, showing that even carefully measured attributes cannot fully capture the coins’ stories or material significance. Metadata and ethical considerations provide context and transparency, acknowledging personal connections, subjective judgments, and external references without overemphasizing them.</p>
+                <br>
+                <p>Overall, the Holst Family Coin Collection dataset demonstrates the interplay of curatorial choices, personal meaning, and analytical utility, revealing how context and deliberate decisions shape both the representation and understanding of cultural objects.</p>
             </div>
 
             <div class="section">
                 <h2>References</h2>
                 <div class="reference-list">
                     <ul>
-                        <li>Dourish, P. (2017). Spreadsheets and Spreadsheet Events in Organizational Life. In The Stuff of Bits: An Essay on the Materialities of Information (pp. 81–104). The MIT Press.</li>
-                        <li>Gitelman, L., & Jackson, V. (2013). Introduction. In "Raw Data" Is an Oxymoron (pp. 1–12). The MIT Press.</li>
-                        <li>Kitchin, R. (2022). Introducing Data. In The Data Revolution: Big Data, Open Data, Data Infrastructures and Their Consequences (pp. 1–19). SAGE Publications Ltd.</li>
-                        <li>Wernimont, J. (2021). Quantification. In N. B. Thylstrup, D. Agostinho, A. Ring, C. D'Ignazio, & K. Veel (Eds.), Uncertain Archives: Critical Keywords for Big Data (pp. 427–431). The MIT Press.</li>
-                        <li>Numista. (n.d.). Numista coin catalog. Numista. Retrieved September 24, 2025, from https://en.numista.com/</li>
+                        <li>Dourish, P. (2017). <em>Spreadsheets and Spreadsheet Events in Organizational Life</em>. In <em>The Stuff of Bits</em> (pp. 81–104). MIT Press.</li>
+                        <li>Gitelman, L., & Jackson, V. (2013). Introduction. In <em>"Raw Data" Is an Oxymoron</em> (pp. 1–12). MIT Press.</li>
+                        <li>Greenberg, J., Wu, M., Liu, W., & Liu, F. (2023). Metadata as Data Intelligence. <em>Data Intelligence</em>, 5(1), 1–5.</li>
+                        <li>Holst, C. (2025). Complete dataset [Google Sheets]. Google.</li>
+                        <li>Horsch, M. T., Chiacchiera, S., Cavalcanti, W. L., & Schembera, B. (2021). Research Data Infrastructures and Engineering Metadata. Springer.</li>
+                        <li>Kitchin, R. (2022). Introducing Data. In <em>The Data Revolution</em>. SAGE Publications.</li>
+                        <li>Mindel, D. (2021). Ethics and digital collections: a selective overview of evolving complexities. <em>Journal of Documentation</em>.</li>
+                        <li>Numista. (n.d.). Numista coin catalog. Retrieved September 24, 2025.</li>
+                        <li>Orr, W., & Crawford, K. (2024). Building Better Datasets: Seven Recommendations for Responsible Design. arXiv.</li>
+                        <li>Pushkarna, M., Zaldivar, A., & Kjartansson, O. (2022). Data Cards: Purposeful and Transparent Dataset Documentation. FAT* Conference.</li>
+                        <li>Wernimont, J. (2021). Quantification. In <em>Uncertain Archives</em> (pp. 427–431). MIT Press.</li>
                     </ul>
                 </div>
             </div>
+
         </article>
     </main>
 
