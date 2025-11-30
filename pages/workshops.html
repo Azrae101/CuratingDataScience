@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops - Curating Data Exhibition</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* Workshop page-specific styles only (navbar styles now in main.css) */
+        .workshops-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #e74c3c 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .workshops-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .workshop-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .workshop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .workshop-number {
+            background: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .workshop-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        }
+        
+        .workshop-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .workshop-meta {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .workshop-objectives {
+            background: #e8f4fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .workshop-objectives h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        
+        .workshop-objectives ul {
+            margin: 0.5rem 0 0 1rem;
+        }
+        
+        .workshop-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tool-tag {
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .workshop-link {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .workshop-link:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .workshop-link.external {
+            background: #27ae60;
+        }
+        
+        .workshop-link.external:hover {
+            background: #229954;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-hands-on {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .workshop-highlight {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .workshop-highlight h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 900px) {
+            .workshops-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .workshops-header h1 {
+                font-size: 2rem;
+            }
+            
+            .workshop-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Curating Data</div>
+            <button class="nav-toggle" aria-label="Open navigation menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="workshops.html" class="active">Workshops</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="references.html">References</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="workshops-header">
+            <div class="workshops-content">
+                <h1>Curating Data Workshops</h1>
+                <p>Hands-on experiences exploring critical data practices through interactive sessions</p>
+            </div>
+        </section>
+
+        <section class="workshops-content">
+
+            <div class="workshops-grid">
+                <!-- Obsidian Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">1</div>
+                    <h3>Obsidian Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> 7 September<br>
+                        <strong>Theme:</strong> CATEGORISING<br>
+                        <strong>Focus:</strong> Knowledge management and linking<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Obsidian</span>
+                        <span class="tool-tag">Knowledge Graphs</span>
+                        <span class="tool-tag">Note-taking</span>
+                        <span class="tool-tag">Linked Data</span>
+                    </div>
+                    <div class="workshop-description">
+                        Hands-on workshop exploring Obsidian as a tool for knowledge management and data curation. 
+                        Learned to create interconnected notes, build knowledge graphs, and organize information 
+                        through linking and tagging systems.
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="https://obsidian.md/download" class="workshop-link external" target="_blank">Download Obsidian →</a>
+                    </div>
+                </div>
+                <!-- Collecting the Everyday Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">2</div>
+                    <h3>Collecting the Everyday Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 37 (10 Sep)<br>
+                        <strong>Theme:</strong> COLLECTING<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Digital Objects</span>
+                        <span class="tool-tag">Metadata</span>
+                        <span class="tool-tag">Quantification</span>
+                        <span class="tool-tag">Photography</span>
+                    </div>
+                    <div class="workshop-description">
+                        Explored curating everyday digital objects through data and metadata practices. 
+                        This hands-on workshop examined how physical objects become digital data, 
+                        focusing on the processes of datafication and the politics of what gets included or excluded in datasets.
+                    </div>
+                    <a href="https://docs.google.com/spreadsheets/d/1JMmGTsjAlckzuSq4F0EI7MiOGu5YUsG84EahcJUwv1Y/edit?usp=sharing" class="workshop-link external" target="_blank">
+                        Bag Collection Data Spreadsheet →
+                    </a>
+                </div>
+            </div>
+
+            <div class="workshops-grid">
+                <!-- Synthetic Data Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">3</div>
+                    <h3>Synthetic Data Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 38 (17 Sep)<br>
+                        <strong>Theme:</strong> COLLECTING<br>
+                        <strong>Instructor:</strong> Dr. Midas Nouwens
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Synthetic Data</span>
+                        <span class="tool-tag">Data Privacy</span>
+                        <span class="tool-tag">AI/ML</span>
+                        <span class="tool-tag">Data-intensive Capitalism</span>
+                    </div>
+                    <div class="workshop-description">
+                        Explored synthetic data generation and its implications for data-intensive capitalism. 
+                        Examined how synthetic data can serve as an alternative to surveillance capitalism 
+                        while maintaining analytical utility for machine learning and research purposes.
+                    </div>
+                </div>
+                <!-- Materialities of Information Systems Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">4</div>
+                    <h3>Materialities of Information Systems Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 39 (24 Sep)<br>
+                        <strong>Theme:</strong> COLLECTING<br>
+                        <strong>Focus:</strong> Spreadsheets and organizational life<br>
+                        <strong>Connection:</strong> Assignment 1 - Coin Collection<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Spreadsheets</span>
+                        <span class="tool-tag">Data Infrastructure</span>
+                        <span class="tool-tag">Small Data</span>
+                        <span class="tool-tag">Digital Traces</span>
+                    </div>
+                    <div class="workshop-description">
+                        Examined the material aspects of information systems, focusing on spreadsheets as 
+                        fundamental data infrastructure. Explored how digital traces are organized and 
+                        curated into actionable information within organizational contexts.
+                    </div>
+                    <a href="assignments/assignment1.html" class="workshop-link">
+                        View Assignment 1 →
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="workshops-grid">
+                <!-- Dekoloniale Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">5</div>
+                    <h3>Dekoloniale Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 40 (1 Oct)<br>
+                        <strong>Theme:</strong> CATEGORISING<br>
+                        <strong>Special Guest:</strong> Lukas Fuchsgruber<br>
+                        <strong>Focus:</strong> Liao Huanxing in Wikidata<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Wikidata</span>
+                        <span class="tool-tag">Dekoloniale Project</span>
+                        <span class="tool-tag">Decolonial Methods</span>
+                        <span class="tool-tag">Natural History</span>
+                        <span class="tool-tag">Taxonomies</span>
+                    </div>
+                    <div class="workshop-description">
+                        Focused on decolonial approaches to knowledge representation in Wikidata, with a special emphasis on the Liao Huanxing case and the Dekoloniale project. Explored how taxonomies and data structures can perpetuate or challenge colonial legacies in digital collections.
+                    </div>
+                    <a href="https://www.wikidata.org/wiki/Q136450200" class="workshop-link external" target="_blank">
+                        Liao Huanxing Wikidata →
+                    </a>
+                    <a href="assignments/assignment2.html" class="workshop-link">
+                        View Assignment 2 →
+                    </a>
+                </div>
+                <!-- Categorising/Knowledge Making Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">6</div>
+                    <h3>Categorising/Knowledge Making Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 41 (7 Oct)<br>
+                        <strong>Theme:</strong> CATEGORISING<br>
+                        <strong>Special Guest:</strong> Lukas Fuchsgruber<br>
+                        <strong>Focus:</strong> SPARQL, Wikidata Query Service<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Wikidata</span>
+                        <span class="tool-tag">SPARQL</span>
+                        <span class="tool-tag">Semantic Web</span>
+                        <span class="tool-tag">Classifications</span>
+                    </div>
+                    <div class="workshop-description">
+                        Explored the use of SPARQL and the Wikidata Query Service for knowledge making and data analysis. Participants learned to construct queries and analyze structured data in Wikidata, deepening their understanding of semantic web technologies and classification systems.
+                    </div>
+                    <a href="https://query.wikidata.org/" class="workshop-link external" target="_blank">
+                        Wikidata Query Service →
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="workshops-grid">
+                <!-- Recommender Systems Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">7</div>
+                    <h3>Recommender Systems Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 43 (22 Oct)<br>
+                        <strong>Theme:</strong> CATEGORISING<br>
+                        <strong>Instructor:</strong> Dr. Midas Nouwens
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Algorithms</span>
+                        <span class="tool-tag">Music Recommendation</span>
+                        <span class="tool-tag">Ethics</span>
+                        <span class="tool-tag">Computational Taste</span>
+                    </div>
+                    <div class="workshop-description">
+                        Explored algorithmic categorization through recommender systems, focusing on music recommendation 
+                        algorithms. Examined the ethical challenges of recommendation systems and how algorithms 
+                        shape taste and cultural consumption patterns.
+                    </div>
+                    <a href="https://docs.google.com/spreadsheets/d/1S3nJaaTlp2oRCu3U37zr2vXhybvguZvG2ixdXiH6Y48/edit?usp=sharing" class="workshop-link external" target="_blank">
+                        Recommendation Systems Spreadsheet →
+                    </a>
+                </div>
+                <!-- Visual Analytics Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">8</div>
+                    <h3>Visual Analytics Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 44 (29 Oct)<br>
+                        <strong>Theme:</strong> DISPLAYING/VISUALISING<br>
+                        <strong>Instructor:</strong> Dr. Midas Nouwens
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Visual Analytics</span>
+                        <span class="tool-tag">Data Visualization</span>
+                        <span class="tool-tag">Graphical Excellence</span>
+                        <span class="tool-tag">Personal Data</span>
+                    </div>
+                    <div class="workshop-description">
+                        Hands-on workshop focusing on visualizing personal data using visual analytics principles. 
+                        Applied Tufte's concepts of graphical excellence to create meaningful visualizations 
+                        of individual datasets and explored comprehensive approaches to visual data analysis.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="workshops-grid">
+                <!-- Titanic Visualization Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">9</div>
+                    <h3>Titanic Visualization Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Part of Visual Analytics Sessions<br>
+                        <strong>Theme:</strong> DISPLAYING/VISUALISING<br>
+                        <strong>Dataset:</strong> Titanic passenger data<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Historical Data</span>
+                        <span class="tool-tag">Statistical Visualization</span>
+                        <span class="tool-tag">Social Class Analysis</span>
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">Survival Analysis</span>
+                    </div>
+                    <div class="workshop-description">
+                        Practical visualization exercise using the famous Titanic dataset to explore 
+                        relationships between social class, demographics, and survival rates. Applied 
+                        critical visualization techniques to examine historical inequalities through data.
+                    </div>
+                    <a href="https://app.powerbi.com/groups/me/reports/ddec4d60-0fe1-4786-9a87-3448045993de/f31677364241d7a4470c?experience=power-bi&clientSideAuth=0" 
+                           class="workshop-link external" target="_blank">
+                            Power BI Dashboard →
+                        </a>
+                </div>
+                <!-- Critical Infographics Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">10</div>
+                    <h3>Critical Infographics Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 45 (5 Nov)<br>
+                        <strong>Theme:</strong> DISPLAYING/VISUALISING<br>
+                        <strong>Connection:</strong> Assignment 3 - Consumer Psychology<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Visual Analytics</span>
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">Plotly</span>
+                        <span class="tool-tag">Data Feminism</span>
+                    </div>
+                    <div class="workshop-description">
+                        Explored critical approaches to data visualization inspired by W.E.B. Du Bois's Data Portraits and Data Feminism principles. 
+                        Examined how visualizations can challenge dominant narratives and incorporate multiple perspectives, 
+                        questioning rational, scientific, objective viewpoints from mythical, imaginary, impossible standpoints.
+                    </div>
+                    <div>
+                        <a href="assignments/assignment3.html" class="workshop-link" style="display:block;width:100%;box-sizing:border-box;">
+                            View Assignment 3 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="workshops-grid">
+                <!-- Archive Workshop with Vladan Joler -->
+                <div class="workshop-card">
+                    <div class="workshop-number">11</div>
+                    <h3>Archive Workshop with Vladan Joler</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 46 (12 Nov)<br>
+                        <strong>Theme:</strong> ARCHIVING<br>
+                        <strong>Special Guest:</strong> Vladan Joler<br>
+                        <strong>Focus:</strong> Archives and digital preservation<br>
+                        <strong>Instructor:</strong> Dr Magdalena Tyżlik-Carver
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Digital Archives</span>
+                        <span class="tool-tag">FAIR Principles</span>
+                        <span class="tool-tag">CARE Principles</span>
+                        <span class="tool-tag">Indigenous Data</span>
+                    </div>
+                    <div class="workshop-description">
+                        Archive workshop exploring digital preservation, the politics of archival systems, 
+                        and understanding how archives shape collective memory and knowledge preservation practices. 
+                        Examined FAIR and CARE principles for ethical data management.
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="http://waybackmachine.com" class="workshop-link external" target="_blank">Website Archive (waybackmachine) →</a>
+                    </div>
+                </div>
+                <!-- Data Storage Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">12</div>
+                    <h3>Data Storage Workshop</h3>
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 47 (19 Nov)<br>
+                        <strong>Theme:</strong> Materiality and geopolitics<br>
+                        <strong>Instructor:</strong> Dr. Midas Nouwens
+                    </div>
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Data Centers</span>
+                        <span class="tool-tag">Cloud Infrastructure</span>
+                        <span class="tool-tag">Data Sovereignty</span>
+                        <span class="tool-tag">Nordic Development</span>
+                    </div>
+                    <div class="workshop-description">
+                        Examined the materiality and geopolitics of data storage, focusing on Nordic data center development 
+                        and the challenges between transnational capitalism and data sovereignty in cloud computing. 
+                        Explored the environmental and political implications of data infrastructure.
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="https://www.submarinecablemap.com/" class="workshop-link external" target="_blank">Submarine Cable Map →</a>
+                        <a href="https://www.datacentermap.com/ixp/" class="workshop-link external" target="_blank">Internet Exchange Points Map →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workshops-grid">
+                <!-- Data Storage Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-number">11</div>
+                    <h3>Data Storage Workshop</h3>
+                    
+                    <div class="workshop-meta">
+                        <strong>Date:</strong> Week 47 (19 Nov)<br>
+                        <strong>Theme:</strong> Materiality and geopolitics<br>
+                        <strong>Instructor:</strong> Dr. Midas Nouwens
+                    </div>
+                    
+                    <div class="workshop-tools">
+                        <span class="tool-tag">Data Centers</span>
+                        <span class="tool-tag">Cloud Infrastructure</span>
+                        <span class="tool-tag">Data Sovereignty</span>
+                        <span class="tool-tag">Nordic Development</span>
+                    </div>
+                    
+                    <div class="workshop-description">
+                        Examined the materiality and geopolitics of data storage, focusing on Nordic data center development 
+                        and the challenges between transnational capitalism and data sovereignty in cloud computing. 
+                        Explored the environmental and political implications of data infrastructure.
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="https://geotraceroute.com/" class="workshop-link external" target="_blank">GeoTraceroute →</a>
+                        <a href="https://visualizingtheinternet.com/?view=story" class="workshop-link external" target="_blank">Visualizing the Internet →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Curating Data Exhibition | Clara Holst</p>
+    </footer>
+</body>
+</body>
+<script src="../scripts/main.js"></script>
+</html>

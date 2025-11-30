@@ -6,26 +6,24 @@
     <title>Assignments - Curating Data Exhibition</title>
     <link rel="stylesheet" href="../styles/main.css">
     <style>
+        /* Assignment page-specific styles only (navbar styles now in main.css) */
         .assignments-header {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 4rem 2rem;
             margin-bottom: 2rem;
         }
-        
         .assignments-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem 4rem;
         }
-        
         .assignments-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
-        
         .assignment-card {
             background: white;
             border-radius: 10px;
@@ -37,12 +35,10 @@
             display: flex;
             flex-direction: column;
         }
-        
         .assignment-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-        
         .assignment-number {
             background: #3498db;
             color: white;
@@ -55,11 +51,10 @@
             font-weight: bold;
             margin-bottom: 1rem;
         }
-        
         .assignment-card h3 {
             color: #2c3e50;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+        }
         }
         
         .assignment-description {
@@ -143,10 +138,14 @@
     <header>
         <nav>
             <div class="logo">Curating Data</div>
+            <button class="nav-toggle" aria-label="Open navigation menu">
+                <span class="hamburger"></span>
+            </button>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li><a href="curatorial-statement.html">Curatorial Statement</a></li>
-                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="assignments.html" class="active">Assignments</a></li>
+                <li><a href="workshops.html">Workshops</a></li>
                 <li><a href="notes.html">Notes</a></li>
                 <li><a href="games.html">Games</a></li>
                 <li><a href="references.html">References</a></li>
@@ -232,7 +231,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Curating Data Exhibition</p>
+        <p>&copy; 2025 Curating Data Exhibition | Clara Holst</p>
     </footer>
 </body>
+</body>
+<script src="../scripts/main.js"></script>
 </html> 

@@ -61,6 +61,26 @@ class ImageGallery {
 
 // Initialize galleries when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Hamburger menu toggle for nav
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+    }
+
+    // Close menu when clicking a link (optional UX)
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+
     // Initialize any image galleries
     const galleryContainers = document.querySelectorAll('.image-gallery');
     galleryContainers.forEach(container => {

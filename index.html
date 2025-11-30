@@ -95,6 +95,50 @@
         .nav-links a.active:after {
             width: 100%;
         }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            z-index: 200;
+        }
+        .hamburger {
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            display: block;
+            position: relative;
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+        .hamburger:before,
+        .hamburger:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: transform 0.3s;
+        }
+        .hamburger:before {
+            top: -9px;
+        }
+        .hamburger:after {
+            top: 9px;
+        }
+        .nav-toggle.active .hamburger {
+            background: transparent;
+        }
+        .nav-toggle.active .hamburger:before {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .nav-toggle.active .hamburger:after {
+            transform: translateY(-9px) rotate(-45deg);
+        }
         
         main {
             max-width: 1200px;
@@ -180,7 +224,7 @@
         
         .exhibition-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
         }
         
@@ -194,6 +238,11 @@
             border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         .exhibition-item:before {
@@ -214,13 +263,16 @@
         .exhibition-item h3 {
             font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
         
         .exhibition-item p {
             color: var(--gray);
             line-height: 1.6;
+            margin-bottom: 0;
+            margin-top: 0.5rem;
         }
         
         .featured-section {
@@ -350,8 +402,25 @@
         }
         
         @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
             .nav-links {
-                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                align-items: flex-end;
+                width: 220px;
+                box-shadow: 0 8px 24px rgba(44,62,80,0.08);
+                padding: 1.5rem 1.2rem;
+                gap: 1.2rem;
+                border-radius: 0 0 12px 12px;
+                display: none;
+            }
+            .nav-links.open {
+                display: flex;
             }
             
             .hero h1 {
@@ -367,7 +436,14 @@
             }
             
             .exhibition-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            .exhibition-item {
+                min-width: 0;
+                max-width: 100%;
+                min-height: 180px;
+                padding: 2rem 1rem;
             }
             
             .featured-grid {
@@ -409,13 +485,17 @@
     <header>
         <nav>
             <div class="logo">Curating Data</div>
+            <button class="nav-toggle" aria-label="Open navigation menu">
+                <span class="hamburger"></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="pages/curatorial-statement.html">Curatorial Statement</a></li>
                 <li><a href="pages/assignments.html">Assignments</a></li>
+                <li><a href="pages/workshops.html">Workshops</a></li>
                 <li><a href="pages/notes.html">Notes</a></li>
                 <li><a href="pages/games.html">Games</a></li>
-                <li><a href="pages/datasets.html">Datasets</a></li>
+                <li><a href="pages/references.html">References</a></li>
                 <li><a href="pages/about.html">About</a></li>
             </ul>
         </nav>
@@ -494,7 +574,7 @@
         
         <section class="quote-section">
             <p class="quote">"Curating is not just about selecting and arranging objects, but about creating relationships between them that generate new meanings and insights."</p>
-            <p class="quote-author">— My interpretation of Okwui Enwezor's approach to curation</p>
+            <p class="quote-author">- My interpretation of Okwui Enwezor's approach to curation</p>
         </section>
     </main>
 
@@ -505,9 +585,10 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="pages/curatorial-statement.html">Curatorial Statement</a></li>
                 <li><a href="pages/assignments.html">Assignments</a></li>
+                <li><a href="pages/workshops.html">Workshops</a></li>
                 <li><a href="pages/notes.html">Notes</a></li>
                 <li><a href="pages/games.html">Games</a></li>
-                <li><a href="references.html">References</a></li>
+                <li><a href="pages/references.html">References</a></li>
                 <li><a href="pages/about.html">About</a></li>
             </ul>
             <p class="copyright">&copy; 2025 Curating Data Exhibition | Clara Holst</p>
