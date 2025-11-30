@@ -363,47 +363,109 @@
             <p><strong>Institution:</strong> Arts Faculty, Aarhus University</p>
             <p><strong>Course:</strong> Critical Data Studies (Curating Data)</p>
             <p><strong>Location:</strong> Jens Chr. Skous Vej 2, 8000 Aarhus, Denmark</p>
-            <p><strong>Characters:</strong> 4,979 (~2 pages)</p>
+            <p><strong>Characters:</strong> 14.399 (~6 pages)</p>
         </section>
 
         <section class="section">
             <h2>Introduction</h2>
             <p>
-                This report analyzes 1.25 million e-commerce transactions from a Kaggle dataset through two distinct data visualization approaches: a traditional visual analytics method and a feminist/critical data studies perspective. The goal is to explore how these different methods reveal or suppress understandings of consumer psychology and price perception, aligning with the course objective to practice data visualization from multiple viewpoints.
+                This report analyzes 1.25 million e-commerce transactions from a Kaggle dataset,
+                shown in Figure 1, through two distinct data visualization approaches: a traditional
+                visual analytics method and an interactive feminist/critical data studies perspective.
+                The goal is to explore how these different methods reveal or suppress understandings
+                of consumer psychology and price perception, aligning with the course objective to
+                practice data visualization from multiple viewpoints.
             </p>
+
             <img src="../../assets/images/figure1_ass3.png" alt="Figure 1" class="profile-image small-image">
-            <p class="image-caption"><strong>Figure 1:</strong> Screenshot of the E-commerce App Transactional Dataset on Kaggle (Pratama, 2023), showing an overview of customer, product, transaction, and click-stream tables, which capture user behavior and transaction data from a fashion e-commerce app.</p>
+            <p class="image-caption">
+                <strong>Figure 1:</strong> Screenshot of the E-commerce App Transactional Dataset on Kaggle (Pratama, 2023),
+                showing an overview of customer, product, transaction, and click-stream tables, which capture
+                user behavior and transaction data from a fashion e-commerce app.
+            </p>
         </section>
 
         <section class="section">
             <h2>Visual Analytics Approach</h2>
             <p>
-                The first visualization is a scatter plot mapping perceived value against actual product prices, with customers divided into nine behavioral segments (e.g., Value-Optimistic, Budget-Pessimistic). This follows Cui's (2019) definition of visual analytics as "the science of analytical reasoning facilitated by interactive visual interfaces."
+                The first visualization is a scatter plot mapping perceived value against actual
+                product prices, with customers divided into nine behavioral segments (e.g.,
+                Value-Optimistic, Budget-Pessimistic). This follows Cui’s (2019) definition of visual
+                analytics as “the science of analytical reasoning facilitated by interactive visual
+                interfaces.”
             </p>
             <br>
             <p>
-                The plot reveals systematic patterns. Perceived value aligns closely with actual price at lower levels, clustering around the "perfect perception" line, but becomes more scattered as prices rise. This indicates greater uncertainty in how high-value products are perceived, possibly due to reduced price familiarity or aspirational tendencies among consumers.
+                To clarify the analytical framework, the behavioral segments were constructed by
+                cross-tabulating two dimensions. First, customers were categorized into three
+                spending tiers based on their transaction history: "Budget" (lowest average spend),
+                "Value" (mid-range), and "Premium" (highest average spend). Second, their
+                "perceived value" rating for products was classified as "Optimistic" (perceived value
+                > 110% of actual price), "Realistic" (90–110%), or "Pessimistic" (&lt;90%). This creates
+                the nine segments, such as a "Budget-Optimistic" shopper who spends little but
+                tends to overvalue products.
             </p>
             <br>
             <p>
-                Despite its analytical clarity, this approach has key limitations. It privileges quantitative precision and abstracts complex psychological processes into data points (D'Ignazio & Klein, 2020). The "perfect perception" line imposes a normative standard that equates accuracy with value, reinforcing capitalist ideals and marginalizing alternative consumer perspectives.
+                The data pipeline, implemented in Python, began by merging three primary datasets:
+                transactional records, customer demographics, and product information. A key
+                technical challenge was extracting structured data from the JSON-like
+                <em>product_metadata</em> field, which was parsed using Python’s <code>ast.literal_eval()</code>
+                to isolate product IDs and prices for analysis.
             </p>
+            <br>
+            <p>
+                The visualization itself was generated using Plotly to create an interactive,
+                multi-faceted scatter plot. A stratified sampling method ensured clarity while preserving
+                representativeness. Subplots compare demographic groups, using color for behavioral
+                categories, point size for transaction amounts, and include a perfect perception line (y=x)
+                with ±10% confidence bands.
+            </p>
+            <br>
+            <p>
+                The statistical results reveal a consumer landscape dominated by mid-range,
+                value-conscious shoppers. The three Value segments (Value-Optimistic, Value-Realistic,
+                and Value-Pessimistic) each represent 16.8% of customers, together forming 50.4% of
+                the population; indicating that spending level and perception bias operate as
+                independent psychological dimensions.
+            </p>
+
             <img src="../../assets/images/figure2_ass3.png" alt="Figure 2" class="profile-image">
-            <p class="image-caption"><strong>Figure 2:</strong> Scatter plot comparing actual product prices (x-axis) against perceived value (y-axis) across 1.25 million transactions, colored by nine behavioral segments.</p>
+            <p class="image-caption">
+                <strong>Figure 2:</strong> Scatter plot comparing actual product prices (x-axis) against perceived value (y-axis)
+                across 1.25 million transactions. Points colored by nine behavioral segments and sized by
+                transaction amount. The black diagonal indicates perfect perception.
+            </p>
+
+            <br>
+            <p>
+                First and foremost, Figure 2 reveals interesting systematic patterns. Perceived value
+                aligns closely with actual price at lower levels but becomes more scattered at higher
+                prices, indicating greater uncertainty in the perception of high-value products.
+            </p>
+            <br>
+            <p>
+                Despite its analytical clarity, this approach has key limitations. It privileges quantitative
+                precision and abstracts complex psychological processes into data points (D’Ignazio &
+                Klein, 2020). The “perfect perception” line imposes a normative standard that equates
+                accuracy with value.
+            </p>
+            <br>
+            <p>
+                Furthermore, the statistical aggregation masks individual stories and cultural contexts.
+                The dataset’s Indonesian origin is significant, as price points and perception patterns
+                must be interpreted within their specific economic environment.
+            </p>
         </section>
 
         <section class="section">
             <h2>Critical Data Studies Perspective</h2>
             <p>
-                The second visualization is a stacked bar chart showing the distribution of buying behaviors across age and gender demographics. This critical approach questions whose perceptions are being measured and how marketing systems might exploit these psychological patterns (D'Ignazio & Klein, 2020). 
-            </p>
-            <br>
-            <p>
-                This method attempts to "visceralize" the data, presenting it as human patterns rather than abstract points to engage the viewer emotionally. It creates a narrative about how consumer identity shapes economic behavior, showing, for example, a dominance of Value-Optimistic behavior in the 18-24 age group.
-            </p>
-            <br>
-            <p>
-                Yet, this visualization also carries risk. By using binary gender and discrete age categories, it may reinforce what D'Ignazio & Klein (2020) term a "mythical, imaginary, impossible" objective viewpoint, presenting socially constructed categories as natural and suppressing intersectional complexities.
+                I developed <em>The Algorithmic Mirror</em> website to visceralize datafication through
+                interactive engagement (D’Ignazio & Klein, 2020), as seen in Figure 3. The website
+                invites users to input demographic information and spending habits, mirroring
+                e-commerce platform data collection practices. Users receive a personalized consumer
+                persona based on the same behavioral segments as the dataset.
             </p>
 
             <div class="interactive-link-section">
@@ -417,41 +479,93 @@
                         </a>
                     </div>
                 </div>
-            </div></a></div>
-            
+            </div>
+
             <div class="image-pair">
                 <div class="image-pair-item">
                     <img src="../../assets/images/figure3_ass3_1.png" alt="Figure 3-1">
-                    <p class="image-pair-caption"><strong>Figure 3-1:</strong> Interactive website interface where users input demographic and spending data</p>
+                    <p class="image-pair-caption">
+                        <strong>Figure 3-1:</strong> Interactive website interface where users input demographic and spending data.
+                    </p>
                 </div>
                 <div class="image-pair-item">
                     <img src="../../assets/images/figure3_ass3_2.png" alt="Figure 3-2">
-                    <p class="image-pair-caption"><strong>Figure 3-2:</strong> Generated algorithmic consumer persona based on user input</p>
+                    <p class="image-pair-caption">
+                        <strong>Figure 3-2:</strong> Generated algorithmic consumer persona based on user input.
+                    </p>
                 </div>
             </div>
+
+            <p>
+                The website operationalizes critical data studies principles through three key design
+                choices: (1) applying the same segmentation logic to user input, (2) incorporating a
+                multi-currency model contextualizing Indian price points within Danish, Eurozone,
+                and US spending norms, and (3) intentionally restricting gender options to highlight
+                the “tyranny of categories.”
+            </p>
+            <br>
+            <p>
+                This design surfaces the “semantic gap” (Seaver, 2022) between lived identity and
+                computational representation. The moment of recognition, or misrecognition, when
+                users see their assigned persona creates visceral engagement with datafication.
+            </p>
+            <br>
+            <p>
+                The website also foregrounds ethical feedback loops (Milano et al., 2020), showing how
+                algorithmic profiling can reinforce behavioral assumptions. By revealing these
+                mechanisms, <em>The Algorithmic Mirror</em> supports what Seaver (2022) calls
+                “infrastructural recognition.”
+            </p>
         </section>
 
         <section class="section">
             <h2>Reflection on Design and Viewer Experience</h2>
             <p>
-                The design choices directly shape the viewer's understanding. The scatter plot creates distance, encouraging objective analysis but potentially dehumanizing consumers. Conversely, the demographic chart fosters empathy but risks stereotyping. Both visualizations, by operating on 1.25 million data points, create statistical significance at the cost of obscuring personal narratives and cultural contexts (Drucker, 2011).
+                The design choices in both visualizations shape viewer understanding through different
+                epistemological frameworks. The scatter plot positions viewers as distant analysts,
+                revealing macro-trends but risking dehumanization. The interactive website places users
+                in the position of the datafied subject, generating visceral engagement but also
+                reproducing reductive categories.
             </p>
             <br>
             <p>
-                A significant unaddressed gap is that the "perceived value" metric is simulated, highlighting how consumer psychology is often inferred; a practice reminiscent of engineers trying to "close the semantic gap" between human experience and data (Seaver, 2022). A more feminist approach could involve interactive installations where viewers experience price perception tests themselves, making the data more visceral and challenging the power dynamics inherent in the original analysis.
+                These approaches illustrate Drucker’s (2011) assertion that all data is performative and
+                arranged. The simulated “perceived value” metric underscores how psychological
+                constructs are inferred, not observed; another example of engineers attempting to
+                “close the semantic gap.”
+            </p>
+            <br>
+            <p>
+                The dataset’s geographical specificity is essential. The price ranges and behavioral
+                distributions are rooted in the Indonesian market and cannot be universalized.
             </p>
         </section>
 
         <section class="section">
             <h2>Conclusion</h2>
             <p>
-                These two visualizations demonstrate that design choices in data representation are not neutral. The visual analytics approach (Cui, 2019) reveals systematic patterns but reduces human complexity. The critical approach (D'Ignazio & Klein, 2020) fosters engagement but may reinforce categorical thinking. The key insight is the consistent misperception of value across all segments, suggesting universal psychological patterns that challenge demographic targeting.
+                These contrasting visualization approaches demonstrate that data representation is
+                never neutral. The visual analytics method reveals systematic patterns but reduces
+                human complexity to quantifiable metrics. The interactive critical approach fosters
+                personal engagement but must interrogate its own categorical foundations.
             </p>
             <br>
             <p>
-                Ultimately, these visualizations reveal not only how consumers perceive prices but also how data systems perceive consumers as patterns to be analyzed and influenced; a process fraught with ethical considerations for autonomy and fairness (Milano et al., 2020).
+                Both approaches show consistent patterns of value misperception across consumer
+                segments, reflecting psychological tendencies that complicate demographic targeting.
+                Together, they reveal how data systems reconstruct human identity as analyzable
+                patterns, raising ethical questions for fairness and autonomy (Milano et al., 2020).
+            </p>
+            <br>
+            <p>
+                The website enacts feminist data principles by making datafication processes visible and
+                emotionally resonant, modeling situated, partial knowledge rather than an impossible
+                “view from nowhere.” Ultimately, the project demonstrates that a single dataset can
+                tell multiple stories; macro-level behavioral patterns and personal experiences of
+                algorithmic classification.
             </p>
         </section>
+
 
         <section class="section">
             <h2>Appendix</h2>
